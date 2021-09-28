@@ -36,7 +36,7 @@ function xmldb_local_leeloolxptrivias_install() {
 
     $table = new xmldb_table('quiz');
     $field = new xmldb_field('quiztype');
-    $field->set_attributes(XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, [null, null], '', 'allowofflineattempts');
+    $field->set_attributes(XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, null, '', 'allowofflineattempts');
 
     // Conditionally launch add field displaywordcount.
     if (!$dbman->field_exists($table, $field)) {
