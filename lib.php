@@ -44,7 +44,7 @@ function local_leeloolxptrivias_before_footer() {
                 $difficultyval = 1;
             }
 
-            $$selectedone = '';
+            $selectedone = '';
             $selectedtwo = '';
             $selectedthree = '';
 
@@ -58,7 +58,9 @@ function local_leeloolxptrivias_before_footer() {
                 $selectedthree = 'selected';
             }
 
-            $difficulty_field = '<div id="fitem_id_difficulty" class="form-group row  fitem   "><div class="col-md-3 col-form-label d-flex pb-0 pr-md-0"><label class="d-inline word-break " for="id_difficulty">Difficulty</label><div class="ml-1 ml-md-auto d-flex align-items-center align-self-start"></div></div><div class="col-md-9 form-inline align-items-start felement" data-fieldtype="select"><select class="custom-select" name="difficulty" id="id_difficulty"><option value="1" '.$selectedone.'>1</option><option value="2" '.$selectedtwo.'>2</option><option value="3" '.$selectedthree.'>3</option></select><div class="form-control-feedback invalid-feedback" id="id_error_difficulty"></div></div></div>';
+            $difficultylang = get_string ('difficulty_lang', 'local_leeloolxptrivias');
+
+            $difficultyfield = '<div id="fitem_id_difficulty" class="form-group row  fitem   "><div class="col-md-3 col-form-label d-flex pb-0 pr-md-0"><label class="d-inline word-break " for="id_difficulty">'.$difficultylang.'</label><div class="ml-1 ml-md-auto d-flex align-items-center align-self-start"></div></div><div class="col-md-9 form-inline align-items-start felement" data-fieldtype="select"><select class="custom-select" name="difficulty" id="id_difficulty"><option value="1" '.$selectedone.'>1</option><option value="2" '.$selectedtwo.'>2</option><option value="3" '.$selectedthree.'>3</option></select><div class="form-control-feedback invalid-feedback" id="id_error_difficulty"></div></div></div>';
 
             $PAGE->requires->js_init_code('require(["jquery"], function ($) {
                 $(document).ready(function () {
@@ -72,7 +74,7 @@ function local_leeloolxptrivias_before_footer() {
 
                     setCookie("question_difficulty_'.$questionid.'", '.$difficultyval.', 1);
 
-                    var diff_field = \''.$difficulty_field.'\';
+                    var diff_field = \''.$difficultyfield.'\';
                     $(diff_field).insertAfter("#fitem_id_name");
 
                     $("#id_difficulty").change(function () {
