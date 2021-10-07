@@ -30,7 +30,6 @@ $string['setting_title'] = 'Leeloo LXP Trivias';
 
 $string['privacy:metadata'] = 'The Leeloo LXP Trivias plugin does not store data itself.';
 
-$string['difficulty_lang'] = 'Difficulty';
 $string['leeloo_fields_lang'] = 'Additional fields';
 $string['quiz_type_lang'] = 'Quiz Type';
 $string['discover_lang'] = 'Discover';

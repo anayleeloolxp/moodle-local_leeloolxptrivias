@@ -305,7 +305,7 @@ class local_leeloolxptrivias_mod_quiz_renderer extends mod_quiz_renderer {
         if( $stopentry == 1 ){
             $button->class .= ' quizstartbuttondiv';
         }else{
-            $button->class .= ' quizstartbuttondiv quizstartbuttondivthinkblue';
+            $button->class .= ' quizstartbuttondiv quizstartbuttondivthinkblue quizstartbuttondivthinkblueren';
         }
 
         if ($popuprequired) {

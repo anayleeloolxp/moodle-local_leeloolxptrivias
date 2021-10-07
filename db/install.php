@@ -30,18 +30,5 @@ defined('MOODLE_INTERNAL') || die();
  */
 function xmldb_local_leeloolxptrivias_install() {
 
-    global $CFG, $DB, $OUTPUT;
-
-    $dbman = $DB->get_manager(); // Loads ddl manager and xmldb classes.
-
-    $table = new xmldb_table('quiz');
-    $field = new xmldb_field('quiztype');
-    $field->set_attributes(XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, null, '', 'allowofflineattempts');
-
-    // Conditionally launch add field displaywordcount.
-    if (!$dbman->field_exists($table, $field)) {
-        $dbman->add_field($table, $field);
-    }
-
     return true;
 }

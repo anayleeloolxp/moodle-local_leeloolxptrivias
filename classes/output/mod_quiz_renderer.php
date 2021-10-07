@@ -31,6 +31,7 @@ use confirm_action;
 use mod_quiz_preflight_check_form;
 use quiz_nav_panel_base;
 use html_writer;
+use popup_action;
 
 defined('MOODLE_INTERNAL') || die;
 /**
@@ -61,11 +62,13 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
      */
     public function view_page($course, $quiz, $cm, $context, $viewobj) {
 
-        global $USER;
+        global $USER, $PAGE;
 
         if( isset($quiz->quiztype) && !is_siteadmin() ){
             
             if( $quiz->quiztype == 'trivias' ){
+
+                $spinnerhtml = '';
 
                 global $CFG;
                 require_once($CFG->dirroot . '/lib/filelib.php');
@@ -121,6 +124,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
     
                     $infoopp = json_decode($outputopp);
 
+                    //print_r($infoopp);
+
                     if( $infoopp ){
 
                         $infooppdata = $infoopp->data;
@@ -148,26 +153,40 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         );
 
                         global $PAGE;
-                        $PAGE->requires->js(new moodle_url('/local/leeloolxptrivias/js/roulette.js'));
-        
-                        echo '<div class="roulette_m" style="left: 0;visibility: hidden;position: fixed;padding: 10%;background: rgba(0,0,0,.5);width: 100%;height: 100%;top: 0;z-index: 999999;"><div class="roulette" style="display:none;">';
+                        $PAGE->requires->js(new moodle_url('/local/leeloolxptrivias/js/jquery.superwheel.min.js'));
 
+                        $attemptlast = end($viewobj->attempts);
+                        $hidespinner = '';
+                        if( isset( $attemptlast->state ) ){
+                            if( $attemptlast->state == 'inprogress' ){
+                                $hidespinner = 'style="display:none"';
+                            }
+                        }
+                        $spinnerhtml .= '<div class="roulette_m" '.$hidespinner.'><main class="cd-main-content text-center">
+                            <div class="wheel-with-image"></div>
+                            <!--<button type="button" class="button button-primary wheel-with-image-spin-button">Spin</button>-->
+                        </main> <!-- cd-main-content -->';
+
+                        $spinnerhtml .= '<div class="opponent_div" style="display:none"></div></div>';
+        
+                        $oppslises = array();
                         foreach( $opponents as $key=>$opponent ){
                             if( $opponent->email == $opponentemail ){
                                 $opponentname = $opponent->name;
                                 $opponentstopnum = $key;
                             }
-                            
-                            echo '<img height="200" width="200" src="'.$opponent->image.'"/>';
-                        }
 
-                        echo '</div>
-                        <div class="opponent_div" style="display:none"></div>
-                        </div>
-                        ';
+                            $oppslises[$key]['text'] = $opponent->image;
+                            $oppslises[$key]['value'] = $key;
+                            $oppslises[$key]['message'] = $opponent->name;
+                            $oppslises[$key]['backgroundtext'] = '#a7b2da';
+
+                        }
 
                         $PAGE->requires->js_init_code('require(["jquery"], function ($) {
                             $(document).ready(function () {
+
+                                $("body").addClass("trivia_quiz_view");
 
                                 function setCookie(cname, cvalue, exdays) {
                                     const d = new Date();
@@ -176,42 +195,89 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
                                 }
 
+                                $(document).on("click",".trivia_play",function(e){	
+                                    $(".quizstartbuttondivthinkblue button").trigger("click");
+                                    $(".sWheel-title").css("visibility", "visible");
+                                });
+
                                 setCookie("l_quiz_isopp", 0, 1);
                                 setCookie("l_quiz_time", 0, 1);
                                 setCookie("l_quiz_id", 0, 1);
         
-                                var option = {
-                                    speed : 50,
-                                    duration : 1,
-                                    stopImageNumber : '.$opponentstopnum.',
-                                    startCallback : function() {
-                                        console.log("start");
+                                $(".wheel-with-image").superWheel({
+                                    slices: '.json_encode($oppslises).',
+                                    text : {
+                                        type: "image",
+                                        color: "#d3d8ec",
+                                        size: 25,
+                                        offset : 10,
+                                        orientation: "h"
+                                        
                                     },
-                                    slowDownCallback : function() {
-                                        console.log("slowDown");
+                                    slice: {
+                                        background: "#d3d8ec",
+                                        selected: {
+                                            background: "#a7b2da"
+                                        }
+                                    },                                   
+                                    line: {
+                                        width: 1,
+                                        color: "#a7b2da"
                                     },
-                                    stopCallback : function($stopElm) {
-                                        console.log("stop");
-                                        $(".opponent_div").show();
-                                        $(".quizstartbuttondivthinkblue form").unbind("submit").submit();
-                                    }
-                                }
+                                    outer: {
+                                        width: 1,
+                                        color: "#a7b2da"
+                                    },
+                                    inner: {
+                                        width: 15,
+                                        color: "#a7b2da"
+                                    },
+                                    marker: {
+                                        background: "#a7b2da",
+                                        animate: 1
+                                    },
+                                    center: {
+                                        rotate: "false",
+                                        html: {
+                                            template: "<span class=\'trivia_play\'>PLAY!</span>"
+                                        }
+                                    },
+                                    selector: "value",
+                                });
+                            
+                                var tick = new Audio("'.$CFG->wwwroot.'/local/leeloolxptrivias/media/tick.mp3");
                                 
-                                $("div.roulette").roulette(option);
-        
+                                $(document).on("click",".wheel-with-image-spin-button",function(e){	
+                                    $(".wheel-with-image").superWheel("start","value",'.$opponentstopnum.');
+                                    $(this).prop("disabled",true);
+                                });
+                                
+                                $(".wheel-with-image").superWheel("onStart",function(results){	
+                                    $(".wheel-with-image-spin-button").text("Spinning...");
+                                });
+
+                                $(".wheel-with-image").superWheel("onStep",function(results){
+                                    if (typeof tick.currentTime !== "undefined")
+                                        tick.currentTime = 0;   
+                                    tick.play();
+                                });
+
+                                $(".wheel-with-image").superWheel("onComplete",function(results){
+                                    $(".wheel-with-image-spin-button:disabled").prop("disabled",false).text("Spin");
+
+                                    $(".opponent_div").show();
+                                    $(".quizstartbuttondivthinkblue form").unbind("submit").submit();
+                                });
+
                                 $(".quizstartbuttondivthinkblue form").submit(function(e){
 
                                     $(".opponent_div").html("'.$opponentname.' is your opponent.");
 
-                                    console.log("submitclicked");
                                     e.preventDefault();
+                                    
                                     $(".roulette_m").css("visibility", "visible");
-                                    setTimeout(function(){
-                                        $("div.roulette").roulette("start");
-                                    }, 500);    	
-                                    //return false;
-                                    console.log("submitstopped");
-                                    //ajax code to insert data
+                                    
+                                    $(".wheel-with-image").superWheel("start","value",'.$opponentstopnum.');  	
 
                                     var postForm = {
                                         "useremail" : "'.$baseemail.'",
@@ -229,34 +295,26 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                             console.log(data);
                                         }
                                     });
-
-
-                                    /*setTimeout(function(){
-                                        
-                                        e.currentTarget.submit();
-                                        
-                                    }, 7500);*/
                                     
                                 });
                             });
         
                         });');
-        
-                        echo 'The trivia dynamics';
-
                     }
-                    
-
                 }
-                
             }
-
         }
 
         $output = '';
-        $output .= $this->view_information($quiz, $cm, $context, $viewobj->infomessages);
-        $output .= $this->view_table($quiz, $context, $viewobj);
-        $output .= $this->view_result_info($quiz, $context, $cm, $viewobj);
+        if( isset($quiz->quiztype) && !is_siteadmin() && $quiz->quiztype == 'trivias' ){
+            $output .= '<div class="trivia_info"><h2>Ready?</h2></div>';
+            $output .= $spinnerhtml;
+        }else{
+            $output .= $this->view_information($quiz, $cm, $context, $viewobj->infomessages);
+            $output .= $this->view_table($quiz, $context, $viewobj);
+            $output .= $this->view_result_info($quiz, $context, $cm, $viewobj);
+        }
+        
         $output .= $this->box($this->view_page_buttons($viewobj), 'quizattempt');
         return $output;
     }
@@ -286,7 +344,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         if( $stopentry == 1 ){
             $button->class .= ' quizstartbuttondiv';
         }else{
-            $button->class .= ' quizstartbuttondiv quizstartbuttondivthinkblue';
+            $button->class .= ' quizstartbuttondiv quizstartbuttondivthinkblue quizstartbuttondivthinkbluemodren';
         }
 
         if ($popuprequired) {
@@ -367,7 +425,16 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
     public function attempt_page($attemptobj, $page, $accessmanager, $messages, $slots, $id,
             $nextpage) {
         
-        if( !is_siteadmin() ){
+        
+        if($attemptobj->get_quiz()->quiztype == 'trivias'){
+            global $PAGE;
+            $PAGE->add_body_class('trivia_question');
+        }
+        
+        if( !is_siteadmin() && $attemptobj->get_quiz()->quiztype == 'trivias' ){
+
+            //$PAGE->requires->css('/local/leeloolxptrivias/css/trivia.css');
+
             $this->page->requires->js_init_code('require(["jquery"], function ($) {
                 $(document).ready(function () {
 
@@ -419,6 +486,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         $output = '';
         $output .= $this->header();
         $output .= $this->quiz_notices($messages);
+        $output .= html_writer::tag('div', '<span></span>',
+                array('class' => 'thinkblue_quiztimetaken top_timer hidden'));
         $output .= $this->attempt_form($attemptobj, $page, $slots, $id, $nextpage);
         $output .= $this->footer();
         return $output;
