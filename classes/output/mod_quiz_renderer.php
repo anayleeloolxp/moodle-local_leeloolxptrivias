@@ -32,6 +32,7 @@ use mod_quiz_preflight_check_form;
 use quiz_nav_panel_base;
 use html_writer;
 use popup_action;
+use mod_quiz_display_options;
 
 defined('MOODLE_INTERNAL') || die;
 /**
@@ -43,6 +44,39 @@ defined('MOODLE_INTERNAL') || die;
  * @category output
  */
 class mod_quiz_renderer extends \mod_quiz_renderer {
+    /**
+     * Builds the review page
+     *
+     * @param quiz_attempt $attemptobj an instance of quiz_attempt.
+     * @param array $slots an array of intgers relating to questions.
+     * @param int $page the current page number
+     * @param bool $showall whether to show entire attempt on one page.
+     * @param bool $lastpage if true the current page is the last page.
+     * @param mod_quiz_display_options $displayoptions instance of mod_quiz_display_options.
+     * @param array $summarydata contains all table data
+     * @return $output containing html data.
+     */
+    public function review_page(quiz_attempt $attemptobj, $slots, $page, $showall,
+                                $lastpage, mod_quiz_display_options $displayoptions,
+                                $summarydata) {
+
+        
+        if($attemptobj->get_quiz()->quiztype == 'trivias'){
+            global $PAGE;
+            $PAGE->add_body_class('trivia_review');
+        }
+
+        $output = '';
+        $output .= $this->header();
+        $output .= $this->review_summary_table($summarydata, $page);
+        $output .= $this->review_form($page, $showall, $displayoptions,
+                $this->questions($attemptobj, true, $slots, $page, $showall, $displayoptions),
+                $attemptobj);
+
+        $output .= $this->review_next_navigation($attemptobj, $page, $lastpage, $showall);
+        $output .= $this->footer();
+        return $output;
+    }
     /*
      * View Page
      */
