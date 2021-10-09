@@ -46,6 +46,7 @@ class observer {
         global $DB, $CFG;
         $other = $event->other;
         $quizid = $other['quizid'];
+        $activityid = $event->contextinstanceid;
         $userid = $other['submitterid'];
         $courseid = $event->courseid;
         $lquizid = $_COOKIE['l_quiz_id'];
@@ -114,7 +115,7 @@ class observer {
 
                 require_once($CFG->dirroot . '/lib/filelib.php');
 
-                $postdata = array('email' => base64_encode($userdata->email), 'score' => $score, 'moodlequizid' => $quizid, 'courseid' => $courseid, 'lquizid' => $lquizid, 'lquizisopp' => $lquizisopp, 'lquiztime' => $lquiztime);
+                $postdata = array('email' => base64_encode($userdata->email), 'score' => $score, 'moodlequizid' => $quizid, 'courseid' => $courseid, 'lquizid' => $lquizid, 'lquizisopp' => $lquizisopp, 'lquiztime' => $lquiztime, 'activityid' => $activityid);
 
                 file_put_contents(dirname(__FILE__).'/postdata.txt', print_r($postdata, true));
 

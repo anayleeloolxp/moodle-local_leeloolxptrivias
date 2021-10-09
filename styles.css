@@ -178,6 +178,14 @@
     color: #a7b2da;
     text-align: center;
 }
+.reward_html {
+    text-align: center;
+    font-size: 20px;
+    color: #a7b2da;
+}
+.reward_html span {
+    font-size: 30px;
+}
 span.trivia_play {
     display: block;
     line-height: 0;
@@ -192,4 +200,43 @@ span.trivia_play {
 }
 .sWheel-title {
     visibility: hidden;
+}
+.trivia_review #region-main.has-blocks {
+    width: 100%;
+}
+.triva_review_inner h2 {
+    font-size: 50px;
+    text-align: center;
+}
+.triva_review_inner.winner h2 {
+    color: #a7b2da;
+}
+.triva_review_inner.losser h2 {
+    color: red;
+}
+.triva_review_inner.waiting h2 {
+    color: #DBE1EB;
+}
+.trivia_users div {
+    background: #dbe1eb;
+    display: block;
+    text-align: center;
+    border-radius: 30px;
+    padding: 10px;
+    margin: 10px auto;
+    width: max-content;
+}
+.trivia_playagain {
+    background: #dbe1eb;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: block;
+    text-align: center;
+    line-height: 0;
+    padding-top: 50px;
+    margin: 60px auto;
+}
+.losser .reward_html {
+    opacity: .2;
 }

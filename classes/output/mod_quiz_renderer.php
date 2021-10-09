@@ -66,15 +66,115 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             $PAGE->add_body_class('trivia_review');
         }
 
-        $output = '';
-        $output .= $this->header();
-        $output .= $this->review_summary_table($summarydata, $page);
-        $output .= $this->review_form($page, $showall, $displayoptions,
-                $this->questions($attemptobj, true, $slots, $page, $showall, $displayoptions),
-                $attemptobj);
+        global $USER;
 
-        $output .= $this->review_next_navigation($attemptobj, $page, $lastpage, $showall);
-        $output .= $this->footer();
+            
+        if( $attemptobj->get_quiz()->quiztype == 'trivias' ){
+            $triva_review = '';
+            global $CFG;
+            require_once($CFG->dirroot . '/lib/filelib.php');
+            $leeloolxplicense = get_config('local_leeloolxptrivias')->license;
+
+            $url = 'https://leeloolxp.com/api_moodle.php/?action=page_info';
+            $postdata = array('license_key' => $leeloolxplicense);
+
+            $curl = new curl;
+
+            $options = array(
+                'CURLOPT_RETURNTRANSFER' => true,
+                'CURLOPT_HEADER' => false,
+                'CURLOPT_POST' => count($postdata),
+            );
+
+            if (!$output = $curl->post($url, $postdata, $options)) {
+                $false = 1;
+            }
+
+            $infoleeloolxp = json_decode($output);
+
+            if ($infoleeloolxp->status != 'false') {
+                $leeloolxpurl = $infoleeloolxp->data->install_url;
+                $false = 0;
+            } else {
+                $false = 1;
+            }
+            
+            if( $false == 0 ){
+
+                $postdata = array(
+                    'id' => base64_encode($_COOKIE['l_quiz_id']),
+                    'activityid' => $attemptobj->get_quiz()->cmid
+                );
+
+                $url = $leeloolxpurl.'/admin/sync_moodle_course/gettriviadata';
+
+                $curl = new curl;
+
+                $options = array(
+                    'CURLOPT_RETURNTRANSFER' => true,
+                    'CURLOPT_HEADER' => false,
+                    'CURLOPT_POST' => count($postdata),
+                );
+
+                $outputopp = $curl->post($url, $postdata, $options);
+
+                $infoopp = json_decode($outputopp);
+
+                if( $infoopp ){
+                    $data = $infoopp->data;
+
+                    //print_r($data);
+                    $reward = $data->reward;
+
+                    if( $reward != 0 ){
+                        $rewardhtml = '<div class="reward_html">Reward: <span>'.$reward.'</span>coins</div>';
+                    }else{
+                        $rewardhtml = '';
+                    }
+
+                    $usershtml = '<div class="trivia_users">
+                    <div class="triviauser1">'.$data->user.' - Score -'.$data->scoreuser.' - '.$data->usertime.'. seconds</div>
+                    <div class="triviauser2">'.$data->opponent.' - Score - '.$data->scoreopponent.' - '.$data->opponenttime.'. seconds</div>
+                    </div>';
+
+                    if( $data->winner == '0' ){
+                        $triva_review .= '<div class="triva_review_inner waiting"><h2>Waiting!</h2>'.$rewardhtml.$usershtml.'</div>';
+                    }elseif( $USER->email == $data->winner ){
+                        $triva_review .= '<div class="triva_review_inner winner"><h2>You Won!</h2>'.$rewardhtml.$usershtml.'</div>';
+                    }else{
+                        $triva_review .= '<div class="triva_review_inner losser"><h2>You Lost!</h2>'.$rewardhtml.$usershtml.'</div>';
+                    }
+                }
+            }
+
+            $triva_review .= '<style>[data-region="blocks-column"]{display:none}</style>';
+
+            $triva_review .= '<a class="trivia_playagain" href="'.$CFG->wwwroot.'/mod/quiz/view.php?id='.$attemptobj->get_quiz()->cmid.'">Play Again!</a>';
+
+            $output = '';
+            $output .= $this->header();
+            $output .= $triva_review;
+            //$output .= $this->review_summary_table($summarydata, $page);
+            /*$output .= $this->review_form($page, $showall, $displayoptions,
+                    $this->questions($attemptobj, true, $slots, $page, $showall, $displayoptions),
+                    $attemptobj);*/
+    
+            $output .= $this->review_next_navigation($attemptobj, $page, $lastpage, $showall);
+            $output .= $this->footer();
+
+        }else{
+            $output = '';
+            $output .= $this->header();
+            $output .= $this->review_summary_table($summarydata, $page);
+            $output .= $this->review_form($page, $showall, $displayoptions,
+                    $this->questions($attemptobj, true, $slots, $page, $showall, $displayoptions),
+                    $attemptobj);
+    
+            //$output .= $this->review_next_navigation($attemptobj, $page, $lastpage, $showall);
+            $output .= $this->footer();
+        }
+
+        
         return $output;
     }
     /*
@@ -103,6 +203,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             if( $quiz->quiztype == 'trivias' ){
 
                 $spinnerhtml = '';
+                $reward = 0;
 
                 global $CFG;
                 require_once($CFG->dirroot . '/lib/filelib.php');
@@ -140,6 +241,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         'quiztype' => $quiz->quiztype,
                         'course_id' => $quiz->course,
                         'moodlequizid' => $quiz->id,
+                        'activityid' => $cm->id,
                     );
 
                     $url = $leeloolxpurl.'/admin/sync_moodle_course/quiz_opponents_response';
@@ -158,6 +260,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
     
                     $infoopp = json_decode($outputopp);
 
+                    //print_r($postdata);
                     //print_r($infoopp);
 
                     if( $infoopp ){
@@ -168,6 +271,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         $opponentemail = $infoopp->data->opponentemail;
                         $isopponent = $infoopp->data->is_opponent;
                         $lquizid = $infoopp->data->quizid_autoincrement;
+
+                        $reward = $infoopp->reward;
+                        //$reward = 300;
 
                         $savequizdata = array(
                             'moodlequizid' => $quiz->id,
@@ -341,7 +447,14 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
         $output = '';
         if( isset($quiz->quiztype) && !is_siteadmin() && $quiz->quiztype == 'trivias' ){
-            $output .= '<div class="trivia_info"><h2>Ready?</h2></div>';
+
+            if( $reward != 0 ){
+                $rewardhtml = '<div class="reward_html">Reward: <span>'.$reward.'</span>coins</div>';
+            }else{
+                $rewardhtml = '';
+            }
+
+            $output .= '<div class="trivia_info"><h2>Ready?</h2>'.$rewardhtml.'</div>';
             $output .= $spinnerhtml;
         }else{
             $output .= $this->view_information($quiz, $cm, $context, $viewobj->infomessages);
@@ -467,54 +580,91 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         
         if( !is_siteadmin() && $attemptobj->get_quiz()->quiztype == 'trivias' ){
 
-            //$PAGE->requires->css('/local/leeloolxptrivias/css/trivia.css');
+            global $USER;
+            $baseemail = base64_encode($USER->email);
+            
+            global $CFG;
+            require_once($CFG->dirroot . '/lib/filelib.php');
+            $leeloolxplicense = get_config('local_leeloolxptrivias')->license;
 
-            $this->page->requires->js_init_code('require(["jquery"], function ($) {
-                $(document).ready(function () {
+            $url = 'https://leeloolxp.com/api_moodle.php/?action=page_info';
+            $postdata = array('license_key' => $leeloolxplicense);
 
-                    function setCookie(cname, cvalue, exdays) {
-                        const d = new Date();
-                        d.setTime(d.getTime() + (exdays*24*60*60*1000));
-                        let expires = "expires="+ d.toUTCString();
-                        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-                    }
+            $curl = new curl;
 
-                    function getCookie(cname) {
-                        let name = cname + "=";
-                        let ca = document.cookie.split(";");
-                        for(let i = 0; i < ca.length; i++) {
-                        let c = ca[i];
-                        while (c.charAt(0) == " ") {
-                            c = c.substring(1);
+            $options = array(
+                'CURLOPT_RETURNTRANSFER' => true,
+                'CURLOPT_HEADER' => false,
+                'CURLOPT_POST' => count($postdata),
+            );
+
+            if (!$output = $curl->post($url, $postdata, $options)) {
+                $false = 1;
+            }
+
+            $infoleeloolxp = json_decode($output);
+
+            if ($infoleeloolxp->status != 'false') {
+                $leeloolxpurl = $infoleeloolxp->data->install_url;
+
+                $url = $leeloolxpurl.'/admin/sync_moodle_course/savetriviadata';
+                //$PAGE->requires->css('/local/leeloolxptrivias/css/trivia.css');
+
+                $this->page->requires->js_init_code('require(["jquery"], function ($) {
+                    $(document).ready(function () {
+
+                        function getCookie(cname) {
+                            let name = cname + "=";
+                            let ca = document.cookie.split(";");
+                            for(let i = 0; i < ca.length; i++) {
+                            let c = ca[i];
+                            while (c.charAt(0) == " ") {
+                                c = c.substring(1);
+                            }
+                            if (c.indexOf(name) == 0) {
+                                return c.substring(name.length, c.length);
+                            }
+                            }
+                            return "";
                         }
-                        if (c.indexOf(name) == 0) {
-                            return c.substring(name.length, c.length);
+            
+                        var l_quiz_time = getCookie("l_quiz_time");
+                        var l_quiz_isopp = getCookie("l_quiz_isopp");
+
+                        function save_trivia_time(){
+                            var postForm = {
+                                "timetaken" : Math.round( (parseInt( getCookie("l_quiz_time") ) ) / 1000),
+                                "useremail" : "'.$baseemail.'",
+                                "course_id" : "'.$attemptobj->get_quiz()->course.'",
+                                "moodlequizid" : "'.$attemptobj->get_quiz()->id.'",
+                                "isopponent" : l_quiz_isopp,
+                            };
+
+                            var postdata = {
+                                "data" : window.btoa(JSON.stringify(postForm))
+                            }
+                            
+                            $.ajax({
+                                type : "POST",
+                                url : "'.$url.'",
+                                data : postdata,
+                            });
                         }
-                        }
-                        return "";
-                    }
 
-                    var l_quiz_time = getCookie("l_quiz_time");
-                    console.log("l_quiz_time"+l_quiz_time);
+                        setInterval(function() {
+                            save_trivia_time();
+                        }, 1000 * 60 );
 
-                    var start = new Date();
-                    console.log("start"+start);
+                        $(window).bind("beforeunload", function(){
+                            save_trivia_time();
+                            $(".thinkblue_quiztimetaken").hide();
+                        });
 
-                    $(window).bind("beforeunload", function(){
-                        console.log("leavepage");
-                        var end = new Date();
-                        console.log("end"+end);
-                        var timeSpent = end - start;
-                        console.log("timeSpent"+timeSpent);
-                        var cookiespenttime = parseInt(l_quiz_time) + parseInt(timeSpent);
-                        console.log("cookiespenttime"+cookiespenttime);
-                        setCookie("l_quiz_time", cookiespenttime, 1);
-                        $(".thinkblue_quiztimetaken").hide();
-                    });
+                        $(".thinkblue_quiztimetaken").show();
+                    }); 
+                });');
 
-                    $(".thinkblue_quiztimetaken").show();
-                }); 
-            });');
+            }
         }    
 
         $output = '';
@@ -556,6 +706,13 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         if( !is_siteadmin() ){
             $output .= '<script>
             
+            function setCookie(cname, cvalue, exdays) {
+                const d = new Date();
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                let expires = "expires="+ d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+
             function getCookie(cname) {
                 let name = cname + "=";
                 let ca = document.cookie.split(";");
@@ -572,13 +729,25 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             }
 
             var l_quiz_time = getCookie("l_quiz_time");
-            console.log("l_quiz_time"+l_quiz_time);
 
             var start = new Date;
 
-            setInterval(function() {
+            function myTimer() {
+
+                var end = new Date();
+                var timeSpent = end - start;
+                var cookiespenttime = parseInt(l_quiz_time) + parseInt(timeSpent);
+                setCookie("l_quiz_time", cookiespenttime, 1);
+
                 $(".thinkblue_quiztimetaken span").text( Math.round( (parseInt(l_quiz_time) + (new Date - start)) / 1000) + " Seconds");
-            }, 1000);</script>';
+            }
+
+            var myVar = setInterval( myTimer , 1000);
+            
+            $(window).bind("beforeunload", function(){
+                clearInterval(myVar);
+            });
+            </script>';
 
             $output .= html_writer::tag('div', 'Time taken: <span></span>',
                 array('class' => 'thinkblue_quiztimetaken hidden'));
