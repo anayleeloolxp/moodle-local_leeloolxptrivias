@@ -133,8 +133,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                     }
 
                     $usershtml = '<div class="trivia_users">
-                    <div class="triviauser1">'.$data->user.' - Score -'.$data->scoreuser.' - '.$data->usertime.'. seconds</div>
-                    <div class="triviauser2">'.$data->opponent.' - Score - '.$data->scoreopponent.' - '.$data->opponenttime.'. seconds</div>
+                    <div class="triviauser1">'.$data->user.' <b>Score</b>: '.$data->scoreuser.' <b>Time</b>: '.$data->usertime.' seconds</div>
+                    <div class="triviauser2">'.$data->opponent.' <b>Score</b>: '.$data->scoreopponent.' <b>Time</b>: '.$data->opponenttime.' seconds</div>
                     </div>';
 
                     if( $data->winner == '0' ){
