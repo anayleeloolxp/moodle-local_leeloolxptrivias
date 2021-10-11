@@ -273,7 +273,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         $lquizid = $infoopp->data->quizid_autoincrement;
 
                         $reward = $infoopp->reward;
-                        //$reward = 300;
+                        $timelastatempt = $infoopp->timelastatempt*1000;
+                        $l_quiz_isopp = $infoopp->l_quiz_isopp;
+                        $l_quiz_id = $infoopp->l_quiz_id;
 
                         $savequizdata = array(
                             'moodlequizid' => $quiz->id,
@@ -297,9 +299,19 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
                         $attemptlast = end($viewobj->attempts);
                         $hidespinner = '';
+
+                        $setcookies = 'setCookie("l_quiz_isopp", 0, 1);
+                        setCookie("l_quiz_time", 0, 1);
+                        setCookie("l_quiz_id", 0, 1);';
+
                         if( isset( $attemptlast->state ) ){
                             if( $attemptlast->state == 'inprogress' ){
                                 $hidespinner = 'style="display:none"';
+
+                                $setcookies = 'setCookie("l_quiz_isopp", '.$l_quiz_isopp.', 1);
+                                setCookie("l_quiz_time", '.$timelastatempt.', 1);
+                                setCookie("l_quiz_id", '.$l_quiz_id.', 1);';
+
                             }
                         }
                         $spinnerhtml .= '<div class="roulette_m" '.$hidespinner.'><main class="cd-main-content text-center">
@@ -340,9 +352,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                     $(".sWheel-title").css("visibility", "visible");
                                 });
 
-                                setCookie("l_quiz_isopp", 0, 1);
-                                setCookie("l_quiz_time", 0, 1);
-                                setCookie("l_quiz_id", 0, 1);
+                                '.$setcookies.'
         
                                 $(".wheel-with-image").superWheel({
                                     slices: '.json_encode($oppslises).',
@@ -704,50 +714,52 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         $output .= html_writer::end_tag('div');
 
         if( !is_siteadmin() ){
-            $output .= '<script>
-            
-            function setCookie(cname, cvalue, exdays) {
-                const d = new Date();
-                d.setTime(d.getTime() + (exdays*24*60*60*1000));
-                let expires = "expires="+ d.toUTCString();
-                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-            }
+            $this->page->requires->js_init_code('require(["jquery"], function ($) {
+                $(document).ready(function () {
+                    function setCookie(cname, cvalue, exdays) {
+                        const d = new Date();
+                        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                        let expires = "expires="+ d.toUTCString();
+                        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                    }
 
-            function getCookie(cname) {
-                let name = cname + "=";
-                let ca = document.cookie.split(";");
-                for(let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) == " ") {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-                }
-                return "";
-            }
+                    function getCookie(cname) {
+                        let name = cname + "=";
+                        let ca = document.cookie.split(";");
+                        for(let i = 0; i < ca.length; i++) {
+                        let c = ca[i];
+                        while (c.charAt(0) == " ") {
+                            c = c.substring(1);
+                        }
+                        if (c.indexOf(name) == 0) {
+                            return c.substring(name.length, c.length);
+                        }
+                        }
+                        return "";
+                    }
 
-            var l_quiz_time = getCookie("l_quiz_time");
+                    var l_quiz_time = getCookie("l_quiz_time");
 
-            var start = new Date;
+                    var start = new Date;
 
-            function myTimer() {
+                    function myTimer() {
 
-                var end = new Date();
-                var timeSpent = end - start;
-                var cookiespenttime = parseInt(l_quiz_time) + parseInt(timeSpent);
-                setCookie("l_quiz_time", cookiespenttime, 1);
+                        var end = new Date();
+                        var timeSpent = end - start;
+                        var cookiespenttime = parseInt(l_quiz_time) + parseInt(timeSpent);
+                        setCookie("l_quiz_time", cookiespenttime, 1);
 
-                $(".thinkblue_quiztimetaken span").text( Math.round( (parseInt(l_quiz_time) + (new Date - start)) / 1000) + " Seconds");
-            }
+                        $(".thinkblue_quiztimetaken span").text( Math.round( (parseInt(l_quiz_time) + (new Date - start)) / 1000) + " Seconds");
+                    }
 
-            var myVar = setInterval( myTimer , 1000);
-            
-            $(window).bind("beforeunload", function(){
-                clearInterval(myVar);
+                    var myVar = setInterval( myTimer , 1000);
+                    
+                    $(window).bind("beforeunload", function(){
+                        clearInterval(myVar);
+                    });
+                });
             });
-            </script>';
+            ');
 
             $output .= html_writer::tag('div', 'Time taken: <span></span>',
                 array('class' => 'thinkblue_quiztimetaken hidden'));
