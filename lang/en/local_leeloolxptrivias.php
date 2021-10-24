@@ -35,6 +35,7 @@ $string['quiz_type_lang'] = 'Quiz Type';
 $string['discover_lang'] = 'Discover';
 $string['exercises_lang'] = 'Exercises/problems';
 $string['trivias_lang'] = 'Trivias';
+$string['duels_lang'] = 'Duels';
 $string['assessments_lang'] = 'Assessments/certifications';
 
 $string['nolicense'] = 'Invalid Leeloo LXP License ID';

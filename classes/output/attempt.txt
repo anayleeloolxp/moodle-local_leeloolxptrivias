@@ -1,0 +1,3193 @@
+quiz_attempt Object
+(
+    [quizobj:protected] => quiz Object
+        (
+            [course:protected] => stdClass Object
+                (
+                    [id] => 4
+                    [category] => 1
+                    [sortorder] => 10005
+                    [fullname] => Demo
+                    [shortname] => demo
+                    [idnumber] => 123
+                    [summary] => <p dir="ltr" style="text-align: left;"></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Blandit massa enim nec dui. Morbi tempus iaculis urna id volutpat lacus. Felis donec et odio pellentesque diam volutpat commodo sed egestas. Aliquet enim tortor at auctor urna nunc id cursus metus. Sed augue lacus viverra vitae congue eu consequat ac felis. Venenatis urna cursus eget nunc scelerisque viverra. Arcu dictum varius duis at consectetur lorem donec massa. Pharetra vel turpis nunc eget lorem dolor sed. Massa enim nec dui nunc mattis. Egestas dui id ornare arcu odio ut sem. Massa massa ultricies mi quis hendrerit dolor magna eget. Tincidunt dui ut ornare lectus sit amet est. Sed felis eget velit aliquet sagittis id consectetur purus ut. Ut enim blandit volutpat maecenas volutpat. Suspendisse potenti nullam ac tortor vitae purus faucibus ornare suspendisse. Tristique magna sit amet purus gravida quis blandit turpis.</p><p>Vitae suscipit tellus mauris a diam maecenas sed. Et odio pellentesque diam volutpat commodo sed egestas egestas fringilla. Nam libero justo laoreet sit amet cursus sit amet. Ullamcorper velit sed ullamcorper morbi tincidunt. Feugiat pretium nibh ipsum consequat nisl vel pretium lectus quam. Sociis natoque penatibus et magnis dis parturient. Aliquam nulla facilisi cras fermentum odio eu feugiat. Aliquet eget sit amet tellus cras. Viverra orci sagittis eu volutpat odio. Nibh sit amet commodo nulla. Sit amet luctus venenatis lectus magna fringilla urna. Aenean sed adipiscing diam donec. Massa tincidunt nunc pulvinar sapien et ligula ullamcorper. Amet nisl suscipit adipiscing bibendum est ultricies integer quis. Morbi leo urna molestie at elementum eu facilisis sed. Non sodales neque sodales ut. Posuere morbi leo urna molestie.</p><br><p></p>
+                    [summaryformat] => 1
+                    [format] => topics
+                    [showgrades] => 1
+                    [newsitems] => 5
+                    [startdate] => 1616731200
+                    [enddate] => 1648267200
+                    [relativedatesmode] => 0
+                    [marker] => 0
+                    [maxbytes] => 0
+                    [legacyfiles] => 0
+                    [showreports] => 0
+                    [visible] => 1
+                    [visibleold] => 1
+                    [groupmode] => 0
+                    [groupmodeforce] => 0
+                    [defaultgroupingid] => 0
+                    [lang] => 
+                    [calendartype] => 
+                    [theme] => 
+                    [timecreated] => 1618052980
+                    [timemodified] => 1630300693
+                    [requested] => 0
+                    [enablecompletion] => 1
+                    [completionnotify] => 0
+                    [cacherev] => 1633694308
+                )
+
+            [cm:protected] => stdClass Object
+                (
+                    [id] => 22
+                    [course] => 4
+                    [module] => 17
+                    [instance] => 1
+                    [section] => 18
+                    [idnumber] => 
+                    [added] => 1405938434
+                    [score] => 0
+                    [indent] => 0
+                    [visible] => 1
+                    [visibleoncoursepage] => 1
+                    [visibleold] => 1
+                    [groupmode] => 0
+                    [groupingid] => 0
+                    [completion] => 2
+                    [completiongradeitemnumber] => 0
+                    [completionview] => 0
+                    [completionexpected] => 0
+                    [showdescription] => 0
+                    [availability] => 
+                    [deletioninprogress] => 0
+                    [name] => Factual recall test
+                    [modname] => quiz
+                )
+
+            [quiz:protected] => stdClass Object
+                (
+                    [id] => 1
+                    [course] => 4
+                    [name] => Factual recall test
+                    [intro] => <p>A quiz to check your factual recall of the three films studied. While we are focusing on in depth understanding, your tutor needs to ensure you have throrough knowledge of events and characters involved.</p>
+                    [introformat] => 1
+                    [timeopen] => 0
+                    [timeclose] => 0
+                    [timelimit] => 0
+                    [overduehandling] => autoabandon
+                    [graceperiod] => 0
+                    [preferredbehaviour] => deferredfeedback
+                    [canredoquestions] => 0
+                    [attempts] => 0
+                    [attemptonlast] => 0
+                    [grademethod] => 1
+                    [decimalpoints] => 2
+                    [questiondecimalpoints] => -1
+                    [reviewattempt] => 69888
+                    [reviewcorrectness] => 4352
+                    [reviewmarks] => 4352
+                    [reviewspecificfeedback] => 4352
+                    [reviewgeneralfeedback] => 4352
+                    [reviewrightanswer] => 4352
+                    [reviewoverallfeedback] => 4352
+                    [questionsperpage] => 1
+                    [navmethod] => free
+                    [shuffleanswers] => 1
+                    [sumgrades] => 11.00000
+                    [grade] => 10.00000
+                    [timecreated] => 0
+                    [timemodified] => 1631001457
+                    [password] => 
+                    [subnet] => 
+                    [browsersecurity] => -
+                    [delay1] => 0
+                    [delay2] => 0
+                    [showuserpicture] => 0
+                    [showblocks] => 0
+                    [completionattemptsexhausted] => 0
+                    [completionpass] => 0
+                    [allowofflineattempts] => 0
+                    [quiztype] => trivias
+                    [difficulty] => 1
+                    [seb_requiresafeexambrowser] => 
+                    [seb_showsebtaskbar] => 
+                    [seb_showwificontrol] => 
+                    [seb_showreloadbutton] => 
+                    [seb_showtime] => 
+                    [seb_showkeyboardlayout] => 
+                    [seb_allowuserquitseb] => 
+                    [seb_quitpassword] => 
+                    [seb_linkquitseb] => 
+                    [seb_userconfirmquit] => 
+                    [seb_enableaudiocontrol] => 
+                    [seb_muteonstartup] => 
+                    [seb_allowspellchecking] => 
+                    [seb_allowreloadinexam] => 
+                    [seb_activateurlfiltering] => 
+                    [seb_filterembeddedcontent] => 
+                    [seb_expressionsallowed] => 
+                    [seb_regexallowed] => 
+                    [seb_expressionsblocked] => 
+                    [seb_regexblocked] => 
+                    [seb_allowedbrowserexamkeys] => 
+                    [seb_showsebdownloadlink] => 
+                    [seb_templateid] => 
+                    [cmid] => 22
+                )
+
+            [context:protected] => context_module Object
+                (
+                    [_id:protected] => 362
+                    [_contextlevel:protected] => 70
+                    [_instanceid:protected] => 22
+                    [_path:protected] => /1/3/351/362
+                    [_depth:protected] => 4
+                    [_locked:protected] => 0
+                )
+
+            [questions:protected] => 
+            [sections:protected] => 
+            [accessmanager:protected] => quiz_access_manager Object
+                (
+                    [quizobj:protected] => quiz Object
+ *RECURSION*
+                    [timenow:protected] => 1633776445
+                    [rules:protected] => Array
+                        (
+                            [quizaccess_openclosedate] => quizaccess_openclosedate Object
+                                (
+                                    [quiz:protected] => stdClass Object
+                                        (
+                                            [id] => 1
+                                            [course] => 4
+                                            [name] => Factual recall test
+                                            [intro] => <p>A quiz to check your factual recall of the three films studied. While we are focusing on in depth understanding, your tutor needs to ensure you have throrough knowledge of events and characters involved.</p>
+                                            [introformat] => 1
+                                            [timeopen] => 0
+                                            [timeclose] => 0
+                                            [timelimit] => 0
+                                            [overduehandling] => autoabandon
+                                            [graceperiod] => 0
+                                            [preferredbehaviour] => deferredfeedback
+                                            [canredoquestions] => 0
+                                            [attempts] => 0
+                                            [attemptonlast] => 0
+                                            [grademethod] => 1
+                                            [decimalpoints] => 2
+                                            [questiondecimalpoints] => -1
+                                            [reviewattempt] => 69888
+                                            [reviewcorrectness] => 4352
+                                            [reviewmarks] => 4352
+                                            [reviewspecificfeedback] => 4352
+                                            [reviewgeneralfeedback] => 4352
+                                            [reviewrightanswer] => 4352
+                                            [reviewoverallfeedback] => 4352
+                                            [questionsperpage] => 1
+                                            [navmethod] => free
+                                            [shuffleanswers] => 1
+                                            [sumgrades] => 11.00000
+                                            [grade] => 10.00000
+                                            [timecreated] => 0
+                                            [timemodified] => 1631001457
+                                            [password] => 
+                                            [subnet] => 
+                                            [browsersecurity] => -
+                                            [delay1] => 0
+                                            [delay2] => 0
+                                            [showuserpicture] => 0
+                                            [showblocks] => 0
+                                            [completionattemptsexhausted] => 0
+                                            [completionpass] => 0
+                                            [allowofflineattempts] => 0
+                                            [quiztype] => trivias
+                                            [difficulty] => 1
+                                            [seb_requiresafeexambrowser] => 
+                                            [seb_showsebtaskbar] => 
+                                            [seb_showwificontrol] => 
+                                            [seb_showreloadbutton] => 
+                                            [seb_showtime] => 
+                                            [seb_showkeyboardlayout] => 
+                                            [seb_allowuserquitseb] => 
+                                            [seb_quitpassword] => 
+                                            [seb_linkquitseb] => 
+                                            [seb_userconfirmquit] => 
+                                            [seb_enableaudiocontrol] => 
+                                            [seb_muteonstartup] => 
+                                            [seb_allowspellchecking] => 
+                                            [seb_allowreloadinexam] => 
+                                            [seb_activateurlfiltering] => 
+                                            [seb_filterembeddedcontent] => 
+                                            [seb_expressionsallowed] => 
+                                            [seb_regexallowed] => 
+                                            [seb_expressionsblocked] => 
+                                            [seb_regexblocked] => 
+                                            [seb_allowedbrowserexamkeys] => 
+                                            [seb_showsebdownloadlink] => 
+                                            [seb_templateid] => 
+                                            [cmid] => 22
+                                        )
+
+                                    [quizobj:protected] => quiz Object
+ *RECURSION*
+                                    [timenow:protected] => 1633776445
+                                )
+
+                        )
+
+                )
+
+            [ispreviewuser:protected] => 
+        )
+
+    [attempt:protected] => stdClass Object
+        (
+            [id] => 120
+            [quiz] => 1
+            [userid] => 8
+            [attempt] => 1
+            [uniqueid] => 120
+            [layout] => 1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0
+            [currentpage] => 5
+            [preview] => 0
+            [state] => finished
+            [timestart] => 1633775856
+            [timefinish] => 1633775892
+            [timemodified] => 1633775892
+            [timemodifiedoffline] => 0
+            [timecheckstate] => 
+            [sumgrades] => 5.00000
+        )
+
+    [quba:protected] => question_usage_by_activity Object
+        (
+            [id:protected] => 120
+            [preferredbehaviour:protected] => deferredfeedback
+            [context:protected] => context_module Object
+                (
+                    [_id:protected] => 362
+                    [_contextlevel:protected] => 70
+                    [_instanceid:protected] => 22
+                    [_path:protected] => /1/3/351/362
+                    [_depth:protected] => 4
+                    [_locked:protected] => 0
+                )
+
+            [owningcomponent:protected] => mod_quiz
+            [questionattempts:protected] => Array
+                (
+                    [1] => question_attempt Object
+                        (
+                            [id:protected] => 840
+                            [usageid:protected] => 120
+                            [slot:protected] => 1
+                            [behaviour:protected] => qbehaviour_deferredfeedback Object
+                                (
+                                    [qa:protected] => question_attempt Object
+ *RECURSION*
+                                    [question:protected] => qtype_multichoice_single_question Object
+                                        (
+                                            [answers] => Array
+                                                (
+                                                    [1] => question_answer Object
+                                                        (
+                                                            [id] => 1
+                                                            [answer] => <p>She served to remind Nash that he was getting older</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => <p>No-although age has a part to play.</p>
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [2] => question_answer Object
+                                                        (
+                                                            [id] => 2
+                                                            [answer] => <p>She was the key to Nash realising the people he saw were not real</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 1.0000000
+                                                            [feedback] => <p>Correct. She never grew older because she lived in his mind.</p><p>http://youtu.be/Yqj1DhUKJco?t=35s<a href="http://youtu.be/Yqj1DhUKJco?t=35s">http://youtu.be/Yqj1DhUKJco?t=35s</a><br></p>
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [3] => question_answer Object
+                                                        (
+                                                            [id] => 3
+                                                            [answer] => <p>She was the catalyst for the later scientific discoveries Nash made.</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => <p>No</p>
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                )
+
+                                            [shuffleanswers] => 1
+                                            [answernumbering] => abc
+                                            [showstandardinstruction] => 1
+                                            [layout] => 1
+                                            [correctfeedback] => Your answer is correct.
+                                            [correctfeedbackformat] => 1
+                                            [partiallycorrectfeedback] => Your answer is partially correct.
+                                            [partiallycorrectfeedbackformat] => 1
+                                            [incorrectfeedback] => Your answer is incorrect.
+                                            [incorrectfeedbackformat] => 1
+                                            [order:protected] => Array
+                                                (
+                                                    [0] => 2
+                                                    [1] => 1
+                                                    [2] => 3
+                                                )
+
+                                            [shownumcorrect] => 1
+                                            [id] => 1
+                                            [category] => 2
+                                            [contextid] => 351
+                                            [parent] => 0
+                                            [qtype] => qtype_multichoice Object
+                                                (
+                                                    [fileoptions:protected] => Array
+                                                        (
+                                                            [subdirs] => 1
+                                                            [maxfiles] => -1
+                                                            [maxbytes] => 0
+                                                        )
+
+                                                )
+
+                                            [name] => Little girl
+                                            [questiontext] => <p>What is the significance of the little girl in the film A Beautiful Mind?</p>
+                                            [questiontextformat] => 1
+                                            [generalfeedback] => 
+                                            [generalfeedbackformat] => 1
+                                            [defaultmark] => 1
+                                            [length] => 1
+                                            [penalty] => 0.3333333
+                                            [stamp] => schoolmaster.moodledemo.net+140721103119+HHRuf6
+                                            [version] => rockstardaddy.com+210907080129+56H70U
+                                            [hidden] => 0
+                                            [idnumber] => 
+                                            [timecreated] => 1405938679
+                                            [timemodified] => 1631001689
+                                            [createdby] => 2
+                                            [modifiedby] => 2
+                                            [hints] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [question:protected] => qtype_multichoice_single_question Object
+                                (
+                                    [answers] => Array
+                                        (
+                                            [1] => question_answer Object
+                                                (
+                                                    [id] => 1
+                                                    [answer] => <p>She served to remind Nash that he was getting older</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => <p>No-although age has a part to play.</p>
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [2] => question_answer Object
+                                                (
+                                                    [id] => 2
+                                                    [answer] => <p>She was the key to Nash realising the people he saw were not real</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 1.0000000
+                                                    [feedback] => <p>Correct. She never grew older because she lived in his mind.</p><p>http://youtu.be/Yqj1DhUKJco?t=35s<a href="http://youtu.be/Yqj1DhUKJco?t=35s">http://youtu.be/Yqj1DhUKJco?t=35s</a><br></p>
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [3] => question_answer Object
+                                                (
+                                                    [id] => 3
+                                                    [answer] => <p>She was the catalyst for the later scientific discoveries Nash made.</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => <p>No</p>
+                                                    [feedbackformat] => 1
+                                                )
+
+                                        )
+
+                                    [shuffleanswers] => 1
+                                    [answernumbering] => abc
+                                    [showstandardinstruction] => 1
+                                    [layout] => 1
+                                    [correctfeedback] => Your answer is correct.
+                                    [correctfeedbackformat] => 1
+                                    [partiallycorrectfeedback] => Your answer is partially correct.
+                                    [partiallycorrectfeedbackformat] => 1
+                                    [incorrectfeedback] => Your answer is incorrect.
+                                    [incorrectfeedbackformat] => 1
+                                    [order:protected] => Array
+                                        (
+                                            [0] => 2
+                                            [1] => 1
+                                            [2] => 3
+                                        )
+
+                                    [shownumcorrect] => 1
+                                    [id] => 1
+                                    [category] => 2
+                                    [contextid] => 351
+                                    [parent] => 0
+                                    [qtype] => qtype_multichoice Object
+                                        (
+                                            [fileoptions:protected] => Array
+                                                (
+                                                    [subdirs] => 1
+                                                    [maxfiles] => -1
+                                                    [maxbytes] => 0
+                                                )
+
+                                        )
+
+                                    [name] => Little girl
+                                    [questiontext] => <p>What is the significance of the little girl in the film A Beautiful Mind?</p>
+                                    [questiontextformat] => 1
+                                    [generalfeedback] => 
+                                    [generalfeedbackformat] => 1
+                                    [defaultmark] => 1
+                                    [length] => 1
+                                    [penalty] => 0.3333333
+                                    [stamp] => schoolmaster.moodledemo.net+140721103119+HHRuf6
+                                    [version] => rockstardaddy.com+210907080129+56H70U
+                                    [hidden] => 0
+                                    [idnumber] => 
+                                    [timecreated] => 1405938679
+                                    [timemodified] => 1631001689
+                                    [createdby] => 2
+                                    [modifiedby] => 2
+                                    [hints] => Array
+                                        (
+                                        )
+
+                                )
+
+                            [questioninitialised:protected] => 1
+                            [variant:protected] => 1
+                            [maxmark:protected] => 2
+                            [minfraction:protected] => 0
+                            [maxfraction:protected] => 1
+                            [questionsummary:protected] => What is the significance of the little girl in the film A Beautiful Mind?
+: She was the key to Nash realising the people he saw were not real
+; She served to remind Nash that he was getting older
+; She was the catalyst for the later scientific discoveries Nash made.
+
+                            [responsesummary:protected] => She was the key to Nash realising the people he saw were not real
+
+                            [timemodified] => 1633775892
+                            [rightanswer:protected] => She was the key to Nash realising the people he saw were not real
+
+                            [steps:protected] => Array
+                                (
+                                    [0] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1641
+                                            [state:question_attempt_step:private] => question_state_todo Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 
+                                            [timecreated:question_attempt_step:private] => 1633775856
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [_order] => 2,1,3
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                    [1] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1649
+                                            [state:question_attempt_step:private] => question_state_complete Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 
+                                            [timecreated:question_attempt_step:private] => 1633775864
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [answer] => 0
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                    [2] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1661
+                                            [state:question_attempt_step:private] => question_state_gradedright Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 1
+                                            [timecreated:question_attempt_step:private] => 1633775892
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [-finish] => 1
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [autosavedstep:protected] => 
+                            [flagged:protected] => 0
+                            [observer:protected] => question_engine_unit_of_work Object
+                                (
+                                    [quba:protected] => question_usage_by_activity Object
+ *RECURSION*
+                                    [modified:protected] => 
+                                    [attemptsadded:protected] => Array
+                                        (
+                                        )
+
+                                    [attemptsmodified:protected] => Array
+                                        (
+                                        )
+
+                                    [attemptsdeleted:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsadded:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsmodified:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsdeleted:protected] => Array
+                                        (
+                                        )
+
+                                    [metadataadded:protected] => Array
+                                        (
+                                        )
+
+                                    [metadatamodified:protected] => Array
+                                        (
+                                        )
+
+                                )
+
+                        )
+
+                    [2] => question_attempt Object
+                        (
+                            [id:protected] => 841
+                            [usageid:protected] => 120
+                            [slot:protected] => 2
+                            [behaviour:protected] => qbehaviour_deferredfeedback Object
+                                (
+                                    [qa:protected] => question_attempt Object
+ *RECURSION*
+                                    [question:protected] => qtype_match_question Object
+                                        (
+                                            [shufflestems] => 1
+                                            [correctfeedback] => Your answer is correct.
+                                            [correctfeedbackformat] => 1
+                                            [partiallycorrectfeedback] => Your answer is partially correct.
+                                            [partiallycorrectfeedbackformat] => 1
+                                            [incorrectfeedback] => Your answer is incorrect.
+                                            [incorrectfeedbackformat] => 1
+                                            [stems] => Array
+                                                (
+                                                    [1] => <p class="quote" style="margin-bottom: 0px; padding: 0px; font-weight: bold; color: rgb(0, 0, 0); font-family: verdana; font-size: 13px; font-style: italic; line-height: 16.00299835205078px;">It's only after you've lost everything that you're free to do anything.</p><p><br></p>
+                                                    [2] => <p><span style="color: rgb(0, 0, 0); font-family: verdana; font-size: 13px; font-style: italic; font-weight: bold; line-height: 16.00299835205078px;">If you're male and you're Christian and living in America, your father is your model for God. And if you never know your father, if your father bails out or dies or is never at home, what do you believe about God?</span><br></p>
+                                                    [3] => <p><span style="color: rgb(0, 0, 0); font-family: verdana; font-size: 13px; font-style: italic; font-weight: bold; line-height: 16.00299835205078px;">Then you're trapped in your lovely nest, and the things you used to own, now they own you.</span><br></p>
+                                                )
+
+                                            [stemformat] => Array
+                                                (
+                                                    [1] => 1
+                                                    [2] => 1
+                                                    [3] => 1
+                                                )
+
+                                            [choices] => Array
+                                                (
+                                                    [1] => Tyler
+                                                    [2] => The mechanic
+                                                    [3] => The Narrator
+                                                )
+
+                                            [right] => Array
+                                                (
+                                                    [1] => 1
+                                                    [2] => 2
+                                                    [3] => 3
+                                                )
+
+                                            [stemorder:protected] => Array
+                                                (
+                                                    [0] => 2
+                                                    [1] => 1
+                                                    [2] => 3
+                                                )
+
+                                            [choiceorder:protected] => Array
+                                                (
+                                                    [1] => 3
+                                                    [2] => 1
+                                                    [3] => 2
+                                                )
+
+                                            [shownumcorrect] => 1
+                                            [id] => 2
+                                            [category] => 2
+                                            [contextid] => 351
+                                            [parent] => 0
+                                            [qtype] => qtype_match Object
+                                                (
+                                                    [fileoptions:protected] => Array
+                                                        (
+                                                            [subdirs] => 1
+                                                            [maxfiles] => -1
+                                                            [maxbytes] => 0
+                                                        )
+
+                                                )
+
+                                            [name] => Quotes
+                                            [questiontext] => <p>Match the quotes to the people who said them:</p>
+                                            [questiontextformat] => 1
+                                            [generalfeedback] => 
+                                            [generalfeedbackformat] => 1
+                                            [defaultmark] => 1
+                                            [length] => 1
+                                            [penalty] => 0.3333333
+                                            [stamp] => schoolmaster.moodledemo.net+140721104809+d09jAS
+                                            [version] => rockstardaddy.com+210902052702+Bvz22B
+                                            [hidden] => 0
+                                            [idnumber] => 
+                                            [timecreated] => 1405939689
+                                            [timemodified] => 1630560422
+                                            [createdby] => 2
+                                            [modifiedby] => 2
+                                            [hints] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [question:protected] => qtype_match_question Object
+                                (
+                                    [shufflestems] => 1
+                                    [correctfeedback] => Your answer is correct.
+                                    [correctfeedbackformat] => 1
+                                    [partiallycorrectfeedback] => Your answer is partially correct.
+                                    [partiallycorrectfeedbackformat] => 1
+                                    [incorrectfeedback] => Your answer is incorrect.
+                                    [incorrectfeedbackformat] => 1
+                                    [stems] => Array
+                                        (
+                                            [1] => <p class="quote" style="margin-bottom: 0px; padding: 0px; font-weight: bold; color: rgb(0, 0, 0); font-family: verdana; font-size: 13px; font-style: italic; line-height: 16.00299835205078px;">It's only after you've lost everything that you're free to do anything.</p><p><br></p>
+                                            [2] => <p><span style="color: rgb(0, 0, 0); font-family: verdana; font-size: 13px; font-style: italic; font-weight: bold; line-height: 16.00299835205078px;">If you're male and you're Christian and living in America, your father is your model for God. And if you never know your father, if your father bails out or dies or is never at home, what do you believe about God?</span><br></p>
+                                            [3] => <p><span style="color: rgb(0, 0, 0); font-family: verdana; font-size: 13px; font-style: italic; font-weight: bold; line-height: 16.00299835205078px;">Then you're trapped in your lovely nest, and the things you used to own, now they own you.</span><br></p>
+                                        )
+
+                                    [stemformat] => Array
+                                        (
+                                            [1] => 1
+                                            [2] => 1
+                                            [3] => 1
+                                        )
+
+                                    [choices] => Array
+                                        (
+                                            [1] => Tyler
+                                            [2] => The mechanic
+                                            [3] => The Narrator
+                                        )
+
+                                    [right] => Array
+                                        (
+                                            [1] => 1
+                                            [2] => 2
+                                            [3] => 3
+                                        )
+
+                                    [stemorder:protected] => Array
+                                        (
+                                            [0] => 2
+                                            [1] => 1
+                                            [2] => 3
+                                        )
+
+                                    [choiceorder:protected] => Array
+                                        (
+                                            [1] => 3
+                                            [2] => 1
+                                            [3] => 2
+                                        )
+
+                                    [shownumcorrect] => 1
+                                    [id] => 2
+                                    [category] => 2
+                                    [contextid] => 351
+                                    [parent] => 0
+                                    [qtype] => qtype_match Object
+                                        (
+                                            [fileoptions:protected] => Array
+                                                (
+                                                    [subdirs] => 1
+                                                    [maxfiles] => -1
+                                                    [maxbytes] => 0
+                                                )
+
+                                        )
+
+                                    [name] => Quotes
+                                    [questiontext] => <p>Match the quotes to the people who said them:</p>
+                                    [questiontextformat] => 1
+                                    [generalfeedback] => 
+                                    [generalfeedbackformat] => 1
+                                    [defaultmark] => 1
+                                    [length] => 1
+                                    [penalty] => 0.3333333
+                                    [stamp] => schoolmaster.moodledemo.net+140721104809+d09jAS
+                                    [version] => rockstardaddy.com+210902052702+Bvz22B
+                                    [hidden] => 0
+                                    [idnumber] => 
+                                    [timecreated] => 1405939689
+                                    [timemodified] => 1630560422
+                                    [createdby] => 2
+                                    [modifiedby] => 2
+                                    [hints] => Array
+                                        (
+                                        )
+
+                                )
+
+                            [questioninitialised:protected] => 1
+                            [variant:protected] => 1
+                            [maxmark:protected] => 3
+                            [minfraction:protected] => 0
+                            [maxfraction:protected] => 1
+                            [questionsummary:protected] => Match the quotes to the people who said them:
+ {If you're male and you're Christian and living in America, your father is your model for God. And if you never know your father, if your father bails out or dies or is never at home, what do you believe about God?
+
+; It's only after you've lost everything that you're free to do anything.
+
+; Then you're trapped in your lovely nest, and the things you used to own, now they own you.
+
+} -> {The Narrator; Tyler; The mechanic}
+                            [responsesummary:protected] => 
+                            [timemodified] => 1633775892
+                            [rightanswer:protected] => If you're male and you're Christian and living in America, your father is your model for God. And if you never know your father, if your father bails out or dies or is never at home, what do you believe about God?
+
+ -> The mechanic; It's only after you've lost everything that you're free to do anything.
+
+ -> Tyler; Then you're trapped in your lovely nest, and the things you used to own, now they own you.
+
+ -> The Narrator
+                            [steps:protected] => Array
+                                (
+                                    [0] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1642
+                                            [state:question_attempt_step:private] => question_state_todo Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 
+                                            [timecreated:question_attempt_step:private] => 1633775856
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [_stemorder] => 2,1,3
+                                                    [_choiceorder] => 3,1,2
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                    [1] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1662
+                                            [state:question_attempt_step:private] => question_state_gaveup Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 
+                                            [timecreated:question_attempt_step:private] => 1633775892
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [-finish] => 1
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [autosavedstep:protected] => 
+                            [flagged:protected] => 0
+                            [observer:protected] => question_engine_unit_of_work Object
+                                (
+                                    [quba:protected] => question_usage_by_activity Object
+ *RECURSION*
+                                    [modified:protected] => 
+                                    [attemptsadded:protected] => Array
+                                        (
+                                        )
+
+                                    [attemptsmodified:protected] => Array
+                                        (
+                                        )
+
+                                    [attemptsdeleted:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsadded:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsmodified:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsdeleted:protected] => Array
+                                        (
+                                        )
+
+                                    [metadataadded:protected] => Array
+                                        (
+                                        )
+
+                                    [metadatamodified:protected] => Array
+                                        (
+                                        )
+
+                                )
+
+                        )
+
+                    [3] => question_attempt Object
+                        (
+                            [id:protected] => 842
+                            [usageid:protected] => 120
+                            [slot:protected] => 3
+                            [behaviour:protected] => qbehaviour_deferredfeedback Object
+                                (
+                                    [qa:protected] => question_attempt Object
+ *RECURSION*
+                                    [question:protected] => qtype_multichoice_single_question Object
+                                        (
+                                            [answers] => Array
+                                                (
+                                                    [6] => question_answer Object
+                                                        (
+                                                            [id] => 6
+                                                            [answer] => <p>The square cube law</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [7] => question_answer Object
+                                                        (
+                                                            [id] => 7
+                                                            [answer] => <p>Equinumerosity</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [8] => question_answer Object
+                                                        (
+                                                            [id] => 8
+                                                            [answer] => <p>Governing dynamics</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 1.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [9] => question_answer Object
+                                                        (
+                                                            [id] => 9
+                                                            [answer] => <p>The Pigeonhole principle</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                )
+
+                                            [shuffleanswers] => 1
+                                            [answernumbering] => abc
+                                            [showstandardinstruction] => 1
+                                            [layout] => 1
+                                            [correctfeedback] => Your answer is correct.
+                                            [correctfeedbackformat] => 1
+                                            [partiallycorrectfeedback] => Your answer is partially correct.
+                                            [partiallycorrectfeedbackformat] => 1
+                                            [incorrectfeedback] => Your answer is incorrect.
+                                            [incorrectfeedbackformat] => 1
+                                            [order:protected] => Array
+                                                (
+                                                    [0] => 7
+                                                    [1] => 6
+                                                    [2] => 9
+                                                    [3] => 8
+                                                )
+
+                                            [shownumcorrect] => 1
+                                            [id] => 4
+                                            [category] => 2
+                                            [contextid] => 351
+                                            [parent] => 0
+                                            [qtype] => qtype_multichoice Object
+                                                (
+                                                    [fileoptions:protected] => Array
+                                                        (
+                                                            [subdirs] => 1
+                                                            [maxfiles] => -1
+                                                            [maxbytes] => 0
+                                                        )
+
+                                                )
+
+                                            [name] => BMJN
+                                            [questiontext] => <p  style="margin-bottom:0cm;margin-bottom:.0001pt">In <i>A Beautiful Mind </i>what concept does John
+Nash, Jr. invent which helps to revolutionise mathematics?</p>
+                                            [questiontextformat] => 1
+                                            [generalfeedback] => 
+                                            [generalfeedbackformat] => 1
+                                            [defaultmark] => 1
+                                            [length] => 1
+                                            [penalty] => 0.3333333
+                                            [stamp] => schoolmaster.moodledemo.net+140725081041+mKBTP6
+                                            [version] => rockstardaddy.com+210902052654+Dlku15
+                                            [hidden] => 0
+                                            [idnumber] => 
+                                            [timecreated] => 1406275841
+                                            [timemodified] => 1630560414
+                                            [createdby] => 2
+                                            [modifiedby] => 2
+                                            [hints] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [question:protected] => qtype_multichoice_single_question Object
+                                (
+                                    [answers] => Array
+                                        (
+                                            [6] => question_answer Object
+                                                (
+                                                    [id] => 6
+                                                    [answer] => <p>The square cube law</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [7] => question_answer Object
+                                                (
+                                                    [id] => 7
+                                                    [answer] => <p>Equinumerosity</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [8] => question_answer Object
+                                                (
+                                                    [id] => 8
+                                                    [answer] => <p>Governing dynamics</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 1.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [9] => question_answer Object
+                                                (
+                                                    [id] => 9
+                                                    [answer] => <p>The Pigeonhole principle</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                        )
+
+                                    [shuffleanswers] => 1
+                                    [answernumbering] => abc
+                                    [showstandardinstruction] => 1
+                                    [layout] => 1
+                                    [correctfeedback] => Your answer is correct.
+                                    [correctfeedbackformat] => 1
+                                    [partiallycorrectfeedback] => Your answer is partially correct.
+                                    [partiallycorrectfeedbackformat] => 1
+                                    [incorrectfeedback] => Your answer is incorrect.
+                                    [incorrectfeedbackformat] => 1
+                                    [order:protected] => Array
+                                        (
+                                            [0] => 7
+                                            [1] => 6
+                                            [2] => 9
+                                            [3] => 8
+                                        )
+
+                                    [shownumcorrect] => 1
+                                    [id] => 4
+                                    [category] => 2
+                                    [contextid] => 351
+                                    [parent] => 0
+                                    [qtype] => qtype_multichoice Object
+                                        (
+                                            [fileoptions:protected] => Array
+                                                (
+                                                    [subdirs] => 1
+                                                    [maxfiles] => -1
+                                                    [maxbytes] => 0
+                                                )
+
+                                        )
+
+                                    [name] => BMJN
+                                    [questiontext] => <p  style="margin-bottom:0cm;margin-bottom:.0001pt">In <i>A Beautiful Mind </i>what concept does John
+Nash, Jr. invent which helps to revolutionise mathematics?</p>
+                                    [questiontextformat] => 1
+                                    [generalfeedback] => 
+                                    [generalfeedbackformat] => 1
+                                    [defaultmark] => 1
+                                    [length] => 1
+                                    [penalty] => 0.3333333
+                                    [stamp] => schoolmaster.moodledemo.net+140725081041+mKBTP6
+                                    [version] => rockstardaddy.com+210902052654+Dlku15
+                                    [hidden] => 0
+                                    [idnumber] => 
+                                    [timecreated] => 1406275841
+                                    [timemodified] => 1630560414
+                                    [createdby] => 2
+                                    [modifiedby] => 2
+                                    [hints] => Array
+                                        (
+                                        )
+
+                                )
+
+                            [questioninitialised:protected] => 1
+                            [variant:protected] => 1
+                            [maxmark:protected] => 1
+                            [minfraction:protected] => 0
+                            [maxfraction:protected] => 1
+                            [questionsummary:protected] => In _A Beautiful Mind _what concept does John Nash, Jr. invent which helps to revolutionise mathematics?
+: Equinumerosity
+; The square cube law
+; The Pigeonhole principle
+; Governing dynamics
+
+                            [responsesummary:protected] => Governing dynamics
+
+                            [timemodified] => 1633775892
+                            [rightanswer:protected] => Governing dynamics
+
+                            [steps:protected] => Array
+                                (
+                                    [0] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1643
+                                            [state:question_attempt_step:private] => question_state_todo Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 
+                                            [timecreated:question_attempt_step:private] => 1633775856
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [_order] => 7,6,9,8
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                    [1] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1650
+                                            [state:question_attempt_step:private] => question_state_complete Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 
+                                            [timecreated:question_attempt_step:private] => 1633775870
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [answer] => 3
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                    [2] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1663
+                                            [state:question_attempt_step:private] => question_state_gradedright Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 1
+                                            [timecreated:question_attempt_step:private] => 1633775892
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [-finish] => 1
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [autosavedstep:protected] => 
+                            [flagged:protected] => 0
+                            [observer:protected] => question_engine_unit_of_work Object
+                                (
+                                    [quba:protected] => question_usage_by_activity Object
+ *RECURSION*
+                                    [modified:protected] => 
+                                    [attemptsadded:protected] => Array
+                                        (
+                                        )
+
+                                    [attemptsmodified:protected] => Array
+                                        (
+                                        )
+
+                                    [attemptsdeleted:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsadded:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsmodified:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsdeleted:protected] => Array
+                                        (
+                                        )
+
+                                    [metadataadded:protected] => Array
+                                        (
+                                        )
+
+                                    [metadatamodified:protected] => Array
+                                        (
+                                        )
+
+                                )
+
+                        )
+
+                    [4] => question_attempt Object
+                        (
+                            [id:protected] => 843
+                            [usageid:protected] => 120
+                            [slot:protected] => 4
+                            [behaviour:protected] => qbehaviour_deferredfeedback Object
+                                (
+                                    [qa:protected] => question_attempt Object
+ *RECURSION*
+                                    [question:protected] => qtype_multichoice_single_question Object
+                                        (
+                                            [answers] => Array
+                                                (
+                                                    [10] => question_answer Object
+                                                        (
+                                                            [id] => 10
+                                                            [answer] => <p>She tried to steal from him</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [11] => question_answer Object
+                                                        (
+                                                            [id] => 11
+                                                            [answer] => <p>He fears she will send him back to the asylum</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [12] => question_answer Object
+                                                        (
+                                                            [id] => 12
+                                                            [answer] => <p>Spider loves her but she does not return his affections</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [13] => question_answer Object
+                                                        (
+                                                            [id] => 13
+                                                            [answer] => <p>He sees her as his father's mistress</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 1.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                )
+
+                                            [shuffleanswers] => 1
+                                            [answernumbering] => abc
+                                            [showstandardinstruction] => 1
+                                            [layout] => 1
+                                            [correctfeedback] => Your answer is correct.
+                                            [correctfeedbackformat] => 1
+                                            [partiallycorrectfeedback] => Your answer is partially correct.
+                                            [partiallycorrectfeedbackformat] => 1
+                                            [incorrectfeedback] => Your answer is incorrect.
+                                            [incorrectfeedbackformat] => 1
+                                            [order:protected] => Array
+                                                (
+                                                    [0] => 10
+                                                    [1] => 12
+                                                    [2] => 11
+                                                    [3] => 13
+                                                )
+
+                                            [shownumcorrect] => 1
+                                            [id] => 5
+                                            [category] => 2
+                                            [contextid] => 351
+                                            [parent] => 0
+                                            [qtype] => qtype_multichoice Object
+                                                (
+                                                    [fileoptions:protected] => Array
+                                                        (
+                                                            [subdirs] => 1
+                                                            [maxfiles] => -1
+                                                            [maxbytes] => 0
+                                                        )
+
+                                                )
+
+                                            [name] => SL
+                                            [questiontext] => <p>Why does Spider attempt to murder his landlady?</p>
+                                            [questiontextformat] => 1
+                                            [generalfeedback] => 
+                                            [generalfeedbackformat] => 1
+                                            [defaultmark] => 1
+                                            [length] => 1
+                                            [penalty] => 0.3333333
+                                            [stamp] => schoolmaster.moodledemo.net+140725081804+zGO1Fq
+                                            [version] => schoolmaster.moodledemo.net+140725081804+NfdjtC
+                                            [hidden] => 0
+                                            [idnumber] => 
+                                            [timecreated] => 1406276284
+                                            [timemodified] => 1406276284
+                                            [createdby] => 2
+                                            [modifiedby] => 2
+                                            [hints] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [question:protected] => qtype_multichoice_single_question Object
+                                (
+                                    [answers] => Array
+                                        (
+                                            [10] => question_answer Object
+                                                (
+                                                    [id] => 10
+                                                    [answer] => <p>She tried to steal from him</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [11] => question_answer Object
+                                                (
+                                                    [id] => 11
+                                                    [answer] => <p>He fears she will send him back to the asylum</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [12] => question_answer Object
+                                                (
+                                                    [id] => 12
+                                                    [answer] => <p>Spider loves her but she does not return his affections</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [13] => question_answer Object
+                                                (
+                                                    [id] => 13
+                                                    [answer] => <p>He sees her as his father's mistress</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 1.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                        )
+
+                                    [shuffleanswers] => 1
+                                    [answernumbering] => abc
+                                    [showstandardinstruction] => 1
+                                    [layout] => 1
+                                    [correctfeedback] => Your answer is correct.
+                                    [correctfeedbackformat] => 1
+                                    [partiallycorrectfeedback] => Your answer is partially correct.
+                                    [partiallycorrectfeedbackformat] => 1
+                                    [incorrectfeedback] => Your answer is incorrect.
+                                    [incorrectfeedbackformat] => 1
+                                    [order:protected] => Array
+                                        (
+                                            [0] => 10
+                                            [1] => 12
+                                            [2] => 11
+                                            [3] => 13
+                                        )
+
+                                    [shownumcorrect] => 1
+                                    [id] => 5
+                                    [category] => 2
+                                    [contextid] => 351
+                                    [parent] => 0
+                                    [qtype] => qtype_multichoice Object
+                                        (
+                                            [fileoptions:protected] => Array
+                                                (
+                                                    [subdirs] => 1
+                                                    [maxfiles] => -1
+                                                    [maxbytes] => 0
+                                                )
+
+                                        )
+
+                                    [name] => SL
+                                    [questiontext] => <p>Why does Spider attempt to murder his landlady?</p>
+                                    [questiontextformat] => 1
+                                    [generalfeedback] => 
+                                    [generalfeedbackformat] => 1
+                                    [defaultmark] => 1
+                                    [length] => 1
+                                    [penalty] => 0.3333333
+                                    [stamp] => schoolmaster.moodledemo.net+140725081804+zGO1Fq
+                                    [version] => schoolmaster.moodledemo.net+140725081804+NfdjtC
+                                    [hidden] => 0
+                                    [idnumber] => 
+                                    [timecreated] => 1406276284
+                                    [timemodified] => 1406276284
+                                    [createdby] => 2
+                                    [modifiedby] => 2
+                                    [hints] => Array
+                                        (
+                                        )
+
+                                )
+
+                            [questioninitialised:protected] => 1
+                            [variant:protected] => 1
+                            [maxmark:protected] => 1
+                            [minfraction:protected] => 0
+                            [maxfraction:protected] => 1
+                            [questionsummary:protected] => Why does Spider attempt to murder his landlady?
+: She tried to steal from him
+; Spider loves her but she does not return his affections
+; He fears she will send him back to the asylum
+; He sees her as his father's mistress
+
+                            [responsesummary:protected] => He sees her as his father's mistress
+
+                            [timemodified] => 1633775892
+                            [rightanswer:protected] => He sees her as his father's mistress
+
+                            [steps:protected] => Array
+                                (
+                                    [0] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1644
+                                            [state:question_attempt_step:private] => question_state_todo Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 
+                                            [timecreated:question_attempt_step:private] => 1633775856
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [_order] => 10,12,11,13
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                    [1] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1652
+                                            [state:question_attempt_step:private] => question_state_complete Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 
+                                            [timecreated:question_attempt_step:private] => 1633775884
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [answer] => 3
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                    [2] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1664
+                                            [state:question_attempt_step:private] => question_state_gradedright Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 1
+                                            [timecreated:question_attempt_step:private] => 1633775892
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [-finish] => 1
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [autosavedstep:protected] => 
+                            [flagged:protected] => 0
+                            [observer:protected] => question_engine_unit_of_work Object
+                                (
+                                    [quba:protected] => question_usage_by_activity Object
+ *RECURSION*
+                                    [modified:protected] => 
+                                    [attemptsadded:protected] => Array
+                                        (
+                                        )
+
+                                    [attemptsmodified:protected] => Array
+                                        (
+                                        )
+
+                                    [attemptsdeleted:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsadded:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsmodified:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsdeleted:protected] => Array
+                                        (
+                                        )
+
+                                    [metadataadded:protected] => Array
+                                        (
+                                        )
+
+                                    [metadatamodified:protected] => Array
+                                        (
+                                        )
+
+                                )
+
+                        )
+
+                    [5] => question_attempt Object
+                        (
+                            [id:protected] => 844
+                            [usageid:protected] => 120
+                            [slot:protected] => 5
+                            [behaviour:protected] => qbehaviour_deferredfeedback Object
+                                (
+                                    [qa:protected] => question_attempt Object
+ *RECURSION*
+                                    [question:protected] => qtype_multichoice_single_question Object
+                                        (
+                                            [answers] => Array
+                                                (
+                                                    [14] => question_answer Object
+                                                        (
+                                                            [id] => 14
+                                                            [answer] => They buy it from a local store
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [15] => question_answer Object
+                                                        (
+                                                            [id] => 15
+                                                            [answer] => They grow it
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [16] => question_answer Object
+                                                        (
+                                                            [id] => 16
+                                                            [answer] => They find it in a warehouse by accident
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [17] => question_answer Object
+                                                        (
+                                                            [id] => 17
+                                                            [answer] => They steal it from a plastic surgery clinic
+                                                            [answerformat] => 1
+                                                            [fraction] => 1.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                )
+
+                                            [shuffleanswers] => 1
+                                            [answernumbering] => abc
+                                            [showstandardinstruction] => 1
+                                            [layout] => 1
+                                            [correctfeedback] => Your answer is correct.
+                                            [correctfeedbackformat] => 1
+                                            [partiallycorrectfeedback] => Your answer is partially correct.
+                                            [partiallycorrectfeedbackformat] => 1
+                                            [incorrectfeedback] => Your answer is incorrect.
+                                            [incorrectfeedbackformat] => 1
+                                            [order:protected] => Array
+                                                (
+                                                    [0] => 15
+                                                    [1] => 17
+                                                    [2] => 16
+                                                    [3] => 14
+                                                )
+
+                                            [shownumcorrect] => 1
+                                            [id] => 6
+                                            [category] => 2
+                                            [contextid] => 351
+                                            [parent] => 0
+                                            [qtype] => qtype_multichoice Object
+                                                (
+                                                    [fileoptions:protected] => Array
+                                                        (
+                                                            [subdirs] => 1
+                                                            [maxfiles] => -1
+                                                            [maxbytes] => 0
+                                                        )
+
+                                                )
+
+                                            [name] => FCS
+                                            [questiontext] => <p  style="margin-bottom:0cm;margin-bottom:.0001pt">In <i>Fight Club&nbsp;</i>how does the film's leading
+duo obtain the material to make soap?</p>
+                                            [questiontextformat] => 1
+                                            [generalfeedback] => 
+                                            [generalfeedbackformat] => 1
+                                            [defaultmark] => 1
+                                            [length] => 1
+                                            [penalty] => 0.3333333
+                                            [stamp] => schoolmaster.moodledemo.net+140725082206+oaICYi
+                                            [version] => schoolmaster.moodledemo.net+140725083246+U7giT8
+                                            [hidden] => 0
+                                            [idnumber] => 
+                                            [timecreated] => 1406276526
+                                            [timemodified] => 1406277166
+                                            [createdby] => 2
+                                            [modifiedby] => 2
+                                            [hints] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [question:protected] => qtype_multichoice_single_question Object
+                                (
+                                    [answers] => Array
+                                        (
+                                            [14] => question_answer Object
+                                                (
+                                                    [id] => 14
+                                                    [answer] => They buy it from a local store
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [15] => question_answer Object
+                                                (
+                                                    [id] => 15
+                                                    [answer] => They grow it
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [16] => question_answer Object
+                                                (
+                                                    [id] => 16
+                                                    [answer] => They find it in a warehouse by accident
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [17] => question_answer Object
+                                                (
+                                                    [id] => 17
+                                                    [answer] => They steal it from a plastic surgery clinic
+                                                    [answerformat] => 1
+                                                    [fraction] => 1.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                        )
+
+                                    [shuffleanswers] => 1
+                                    [answernumbering] => abc
+                                    [showstandardinstruction] => 1
+                                    [layout] => 1
+                                    [correctfeedback] => Your answer is correct.
+                                    [correctfeedbackformat] => 1
+                                    [partiallycorrectfeedback] => Your answer is partially correct.
+                                    [partiallycorrectfeedbackformat] => 1
+                                    [incorrectfeedback] => Your answer is incorrect.
+                                    [incorrectfeedbackformat] => 1
+                                    [order:protected] => Array
+                                        (
+                                            [0] => 15
+                                            [1] => 17
+                                            [2] => 16
+                                            [3] => 14
+                                        )
+
+                                    [shownumcorrect] => 1
+                                    [id] => 6
+                                    [category] => 2
+                                    [contextid] => 351
+                                    [parent] => 0
+                                    [qtype] => qtype_multichoice Object
+                                        (
+                                            [fileoptions:protected] => Array
+                                                (
+                                                    [subdirs] => 1
+                                                    [maxfiles] => -1
+                                                    [maxbytes] => 0
+                                                )
+
+                                        )
+
+                                    [name] => FCS
+                                    [questiontext] => <p  style="margin-bottom:0cm;margin-bottom:.0001pt">In <i>Fight Club&nbsp;</i>how does the film's leading
+duo obtain the material to make soap?</p>
+                                    [questiontextformat] => 1
+                                    [generalfeedback] => 
+                                    [generalfeedbackformat] => 1
+                                    [defaultmark] => 1
+                                    [length] => 1
+                                    [penalty] => 0.3333333
+                                    [stamp] => schoolmaster.moodledemo.net+140725082206+oaICYi
+                                    [version] => schoolmaster.moodledemo.net+140725083246+U7giT8
+                                    [hidden] => 0
+                                    [idnumber] => 
+                                    [timecreated] => 1406276526
+                                    [timemodified] => 1406277166
+                                    [createdby] => 2
+                                    [modifiedby] => 2
+                                    [hints] => Array
+                                        (
+                                        )
+
+                                )
+
+                            [questioninitialised:protected] => 1
+                            [variant:protected] => 1
+                            [maxmark:protected] => 1
+                            [minfraction:protected] => 0
+                            [maxfraction:protected] => 1
+                            [questionsummary:protected] => In _Fight Club _how does the film's leading duo obtain the material to make soap?
+: They grow it; They steal it from a plastic surgery clinic; They find it in a warehouse by accident; They buy it from a local store
+                            [responsesummary:protected] => They steal it from a plastic surgery clinic
+                            [timemodified] => 1633775892
+                            [rightanswer:protected] => They steal it from a plastic surgery clinic
+                            [steps:protected] => Array
+                                (
+                                    [0] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1645
+                                            [state:question_attempt_step:private] => question_state_todo Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 
+                                            [timecreated:question_attempt_step:private] => 1633775856
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [_order] => 15,17,16,14
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                    [1] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1651
+                                            [state:question_attempt_step:private] => question_state_complete Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 
+                                            [timecreated:question_attempt_step:private] => 1633775876
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [answer] => 1
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                    [2] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1665
+                                            [state:question_attempt_step:private] => question_state_gradedright Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 1
+                                            [timecreated:question_attempt_step:private] => 1633775892
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [-finish] => 1
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [autosavedstep:protected] => 
+                            [flagged:protected] => 0
+                            [observer:protected] => question_engine_unit_of_work Object
+                                (
+                                    [quba:protected] => question_usage_by_activity Object
+ *RECURSION*
+                                    [modified:protected] => 
+                                    [attemptsadded:protected] => Array
+                                        (
+                                        )
+
+                                    [attemptsmodified:protected] => Array
+                                        (
+                                        )
+
+                                    [attemptsdeleted:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsadded:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsmodified:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsdeleted:protected] => Array
+                                        (
+                                        )
+
+                                    [metadataadded:protected] => Array
+                                        (
+                                        )
+
+                                    [metadatamodified:protected] => Array
+                                        (
+                                        )
+
+                                )
+
+                        )
+
+                    [6] => question_attempt Object
+                        (
+                            [id:protected] => 845
+                            [usageid:protected] => 120
+                            [slot:protected] => 6
+                            [behaviour:protected] => qbehaviour_deferredfeedback Object
+                                (
+                                    [qa:protected] => question_attempt Object
+ *RECURSION*
+                                    [question:protected] => qtype_multichoice_single_question Object
+                                        (
+                                            [answers] => Array
+                                                (
+                                                    [18] => question_answer Object
+                                                        (
+                                                            [id] => 18
+                                                            [answer] => <p>Dave Bayer</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 1.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [19] => question_answer Object
+                                                        (
+                                                            [id] => 19
+                                                            [answer] => <p>John Nash Jr</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [20] => question_answer Object
+                                                        (
+                                                            [id] => 20
+                                                            [answer] => <p>Stephen Hawking</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [21] => question_answer Object
+                                                        (
+                                                            [id] => 21
+                                                            [answer] => <p>Reinhart Selten</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                )
+
+                                            [shuffleanswers] => 1
+                                            [answernumbering] => abc
+                                            [showstandardinstruction] => 1
+                                            [layout] => 1
+                                            [correctfeedback] => Your answer is correct.
+                                            [correctfeedbackformat] => 1
+                                            [partiallycorrectfeedback] => Your answer is partially correct.
+                                            [partiallycorrectfeedbackformat] => 1
+                                            [incorrectfeedback] => Your answer is incorrect.
+                                            [incorrectfeedbackformat] => 1
+                                            [order:protected] => Array
+                                                (
+                                                    [0] => 20
+                                                    [1] => 18
+                                                    [2] => 21
+                                                    [3] => 19
+                                                )
+
+                                            [shownumcorrect] => 1
+                                            [id] => 7
+                                            [category] => 2
+                                            [contextid] => 351
+                                            [parent] => 0
+                                            [qtype] => qtype_multichoice Object
+                                                (
+                                                    [fileoptions:protected] => Array
+                                                        (
+                                                            [subdirs] => 1
+                                                            [maxfiles] => -1
+                                                            [maxbytes] => 0
+                                                        )
+
+                                                )
+
+                                            [name] => BMLC
+                                            [questiontext] => <p  style="margin-bottom:0cm;margin-bottom:.0001pt">Who was the
+lead consultant on the equations that appear in<i>A Beautiful Mind</i>?</p>
+                                            [questiontextformat] => 1
+                                            [generalfeedback] => 
+                                            [generalfeedbackformat] => 1
+                                            [defaultmark] => 1
+                                            [length] => 1
+                                            [penalty] => 0.3333333
+                                            [stamp] => schoolmaster.moodledemo.net+140725082528+YoHsTN
+                                            [version] => schoolmaster.moodledemo.net+140725082528+177kya
+                                            [hidden] => 0
+                                            [idnumber] => 
+                                            [timecreated] => 1406276728
+                                            [timemodified] => 1406276728
+                                            [createdby] => 2
+                                            [modifiedby] => 2
+                                            [hints] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [question:protected] => qtype_multichoice_single_question Object
+                                (
+                                    [answers] => Array
+                                        (
+                                            [18] => question_answer Object
+                                                (
+                                                    [id] => 18
+                                                    [answer] => <p>Dave Bayer</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 1.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [19] => question_answer Object
+                                                (
+                                                    [id] => 19
+                                                    [answer] => <p>John Nash Jr</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [20] => question_answer Object
+                                                (
+                                                    [id] => 20
+                                                    [answer] => <p>Stephen Hawking</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [21] => question_answer Object
+                                                (
+                                                    [id] => 21
+                                                    [answer] => <p>Reinhart Selten</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                        )
+
+                                    [shuffleanswers] => 1
+                                    [answernumbering] => abc
+                                    [showstandardinstruction] => 1
+                                    [layout] => 1
+                                    [correctfeedback] => Your answer is correct.
+                                    [correctfeedbackformat] => 1
+                                    [partiallycorrectfeedback] => Your answer is partially correct.
+                                    [partiallycorrectfeedbackformat] => 1
+                                    [incorrectfeedback] => Your answer is incorrect.
+                                    [incorrectfeedbackformat] => 1
+                                    [order:protected] => Array
+                                        (
+                                            [0] => 20
+                                            [1] => 18
+                                            [2] => 21
+                                            [3] => 19
+                                        )
+
+                                    [shownumcorrect] => 1
+                                    [id] => 7
+                                    [category] => 2
+                                    [contextid] => 351
+                                    [parent] => 0
+                                    [qtype] => qtype_multichoice Object
+                                        (
+                                            [fileoptions:protected] => Array
+                                                (
+                                                    [subdirs] => 1
+                                                    [maxfiles] => -1
+                                                    [maxbytes] => 0
+                                                )
+
+                                        )
+
+                                    [name] => BMLC
+                                    [questiontext] => <p  style="margin-bottom:0cm;margin-bottom:.0001pt">Who was the
+lead consultant on the equations that appear in<i>A Beautiful Mind</i>?</p>
+                                    [questiontextformat] => 1
+                                    [generalfeedback] => 
+                                    [generalfeedbackformat] => 1
+                                    [defaultmark] => 1
+                                    [length] => 1
+                                    [penalty] => 0.3333333
+                                    [stamp] => schoolmaster.moodledemo.net+140725082528+YoHsTN
+                                    [version] => schoolmaster.moodledemo.net+140725082528+177kya
+                                    [hidden] => 0
+                                    [idnumber] => 
+                                    [timecreated] => 1406276728
+                                    [timemodified] => 1406276728
+                                    [createdby] => 2
+                                    [modifiedby] => 2
+                                    [hints] => Array
+                                        (
+                                        )
+
+                                )
+
+                            [questioninitialised:protected] => 1
+                            [variant:protected] => 1
+                            [maxmark:protected] => 1
+                            [minfraction:protected] => 0
+                            [maxfraction:protected] => 1
+                            [questionsummary:protected] => Who was the lead consultant on the equations that appear in_A Beautiful Mind_?
+: Stephen Hawking
+; Dave Bayer
+; Reinhart Selten
+; John Nash Jr
+
+                            [responsesummary:protected] => 
+                            [timemodified] => 1633775892
+                            [rightanswer:protected] => Dave Bayer
+
+                            [steps:protected] => Array
+                                (
+                                    [0] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1646
+                                            [state:question_attempt_step:private] => question_state_todo Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 
+                                            [timecreated:question_attempt_step:private] => 1633775856
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [_order] => 20,18,21,19
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                    [1] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1666
+                                            [state:question_attempt_step:private] => question_state_gaveup Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 
+                                            [timecreated:question_attempt_step:private] => 1633775892
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [-finish] => 1
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [autosavedstep:protected] => 
+                            [flagged:protected] => 0
+                            [observer:protected] => question_engine_unit_of_work Object
+                                (
+                                    [quba:protected] => question_usage_by_activity Object
+ *RECURSION*
+                                    [modified:protected] => 
+                                    [attemptsadded:protected] => Array
+                                        (
+                                        )
+
+                                    [attemptsmodified:protected] => Array
+                                        (
+                                        )
+
+                                    [attemptsdeleted:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsadded:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsmodified:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsdeleted:protected] => Array
+                                        (
+                                        )
+
+                                    [metadataadded:protected] => Array
+                                        (
+                                        )
+
+                                    [metadatamodified:protected] => Array
+                                        (
+                                        )
+
+                                )
+
+                        )
+
+                    [7] => question_attempt Object
+                        (
+                            [id:protected] => 846
+                            [usageid:protected] => 120
+                            [slot:protected] => 7
+                            [behaviour:protected] => qbehaviour_deferredfeedback Object
+                                (
+                                    [qa:protected] => question_attempt Object
+ *RECURSION*
+                                    [question:protected] => qtype_multichoice_single_question Object
+                                        (
+                                            [answers] => Array
+                                                (
+                                                    [22] => question_answer Object
+                                                        (
+                                                            [id] => 22
+                                                            [answer] => <p>$2 million</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [23] => question_answer Object
+                                                        (
+                                                            [id] => 23
+                                                            [answer] => <p>$10 million</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 1.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [24] => question_answer Object
+                                                        (
+                                                            [id] => 24
+                                                            [answer] => <p>$30 million</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [25] => question_answer Object
+                                                        (
+                                                            [id] => 25
+                                                            [answer] => <p>$23 million</p>
+                                                            [answerformat] => 1
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => 
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                )
+
+                                            [shuffleanswers] => 1
+                                            [answernumbering] => abc
+                                            [showstandardinstruction] => 1
+                                            [layout] => 1
+                                            [correctfeedback] => Your answer is correct.
+                                            [correctfeedbackformat] => 1
+                                            [partiallycorrectfeedback] => Your answer is partially correct.
+                                            [partiallycorrectfeedbackformat] => 1
+                                            [incorrectfeedback] => Your answer is incorrect.
+                                            [incorrectfeedbackformat] => 1
+                                            [order:protected] => Array
+                                                (
+                                                    [0] => 25
+                                                    [1] => 23
+                                                    [2] => 24
+                                                    [3] => 22
+                                                )
+
+                                            [shownumcorrect] => 1
+                                            [id] => 8
+                                            [category] => 2
+                                            [contextid] => 351
+                                            [parent] => 0
+                                            [qtype] => qtype_multichoice Object
+                                                (
+                                                    [fileoptions:protected] => Array
+                                                        (
+                                                            [subdirs] => 1
+                                                            [maxfiles] => -1
+                                                            [maxbytes] => 0
+                                                        )
+
+                                                )
+
+                                            [name] => SB
+                                            [questiontext] => <p  style="margin-bottom:0cm;margin-bottom:.0001pt">What was the
+budget for David Cronenberg's<i>Spider</i>?</p>
+                                            [questiontextformat] => 1
+                                            [generalfeedback] => 
+                                            [generalfeedbackformat] => 1
+                                            [defaultmark] => 1
+                                            [length] => 1
+                                            [penalty] => 0.3333333
+                                            [stamp] => schoolmaster.moodledemo.net+140725082735+b3ug4F
+                                            [version] => schoolmaster.moodledemo.net+140725082735+UVB4p0
+                                            [hidden] => 0
+                                            [idnumber] => 
+                                            [timecreated] => 1406276855
+                                            [timemodified] => 1406276855
+                                            [createdby] => 2
+                                            [modifiedby] => 2
+                                            [hints] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [question:protected] => qtype_multichoice_single_question Object
+                                (
+                                    [answers] => Array
+                                        (
+                                            [22] => question_answer Object
+                                                (
+                                                    [id] => 22
+                                                    [answer] => <p>$2 million</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [23] => question_answer Object
+                                                (
+                                                    [id] => 23
+                                                    [answer] => <p>$10 million</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 1.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [24] => question_answer Object
+                                                (
+                                                    [id] => 24
+                                                    [answer] => <p>$30 million</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [25] => question_answer Object
+                                                (
+                                                    [id] => 25
+                                                    [answer] => <p>$23 million</p>
+                                                    [answerformat] => 1
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => 
+                                                    [feedbackformat] => 1
+                                                )
+
+                                        )
+
+                                    [shuffleanswers] => 1
+                                    [answernumbering] => abc
+                                    [showstandardinstruction] => 1
+                                    [layout] => 1
+                                    [correctfeedback] => Your answer is correct.
+                                    [correctfeedbackformat] => 1
+                                    [partiallycorrectfeedback] => Your answer is partially correct.
+                                    [partiallycorrectfeedbackformat] => 1
+                                    [incorrectfeedback] => Your answer is incorrect.
+                                    [incorrectfeedbackformat] => 1
+                                    [order:protected] => Array
+                                        (
+                                            [0] => 25
+                                            [1] => 23
+                                            [2] => 24
+                                            [3] => 22
+                                        )
+
+                                    [shownumcorrect] => 1
+                                    [id] => 8
+                                    [category] => 2
+                                    [contextid] => 351
+                                    [parent] => 0
+                                    [qtype] => qtype_multichoice Object
+                                        (
+                                            [fileoptions:protected] => Array
+                                                (
+                                                    [subdirs] => 1
+                                                    [maxfiles] => -1
+                                                    [maxbytes] => 0
+                                                )
+
+                                        )
+
+                                    [name] => SB
+                                    [questiontext] => <p  style="margin-bottom:0cm;margin-bottom:.0001pt">What was the
+budget for David Cronenberg's<i>Spider</i>?</p>
+                                    [questiontextformat] => 1
+                                    [generalfeedback] => 
+                                    [generalfeedbackformat] => 1
+                                    [defaultmark] => 1
+                                    [length] => 1
+                                    [penalty] => 0.3333333
+                                    [stamp] => schoolmaster.moodledemo.net+140725082735+b3ug4F
+                                    [version] => schoolmaster.moodledemo.net+140725082735+UVB4p0
+                                    [hidden] => 0
+                                    [idnumber] => 
+                                    [timecreated] => 1406276855
+                                    [timemodified] => 1406276855
+                                    [createdby] => 2
+                                    [modifiedby] => 2
+                                    [hints] => Array
+                                        (
+                                        )
+
+                                )
+
+                            [questioninitialised:protected] => 1
+                            [variant:protected] => 1
+                            [maxmark:protected] => 1
+                            [minfraction:protected] => 0
+                            [maxfraction:protected] => 1
+                            [questionsummary:protected] => What was the budget for David Cronenberg's_Spider_?
+: $23 million
+; $10 million
+; $30 million
+; $2 million
+
+                            [responsesummary:protected] => 
+                            [timemodified] => 1633775892
+                            [rightanswer:protected] => $10 million
+
+                            [steps:protected] => Array
+                                (
+                                    [0] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1647
+                                            [state:question_attempt_step:private] => question_state_todo Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 
+                                            [timecreated:question_attempt_step:private] => 1633775856
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [_order] => 25,23,24,22
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                    [1] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1667
+                                            [state:question_attempt_step:private] => question_state_gaveup Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 
+                                            [timecreated:question_attempt_step:private] => 1633775892
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [-finish] => 1
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [autosavedstep:protected] => 
+                            [flagged:protected] => 0
+                            [observer:protected] => question_engine_unit_of_work Object
+                                (
+                                    [quba:protected] => question_usage_by_activity Object
+ *RECURSION*
+                                    [modified:protected] => 
+                                    [attemptsadded:protected] => Array
+                                        (
+                                        )
+
+                                    [attemptsmodified:protected] => Array
+                                        (
+                                        )
+
+                                    [attemptsdeleted:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsadded:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsmodified:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsdeleted:protected] => Array
+                                        (
+                                        )
+
+                                    [metadataadded:protected] => Array
+                                        (
+                                        )
+
+                                    [metadatamodified:protected] => Array
+                                        (
+                                        )
+
+                                )
+
+                        )
+
+                    [8] => question_attempt Object
+                        (
+                            [id:protected] => 847
+                            [usageid:protected] => 120
+                            [slot:protected] => 8
+                            [behaviour:protected] => qbehaviour_deferredfeedback Object
+                                (
+                                    [qa:protected] => question_attempt Object
+ *RECURSION*
+                                    [question:protected] => qtype_numerical_question Object
+                                        (
+                                            [answers] => Array
+                                                (
+                                                    [67] => qtype_numerical_answer Object
+                                                        (
+                                                            [tolerance] => 100
+                                                            [tolerancetype] => 2
+                                                            [id] => 67
+                                                            [answer] => 1
+                                                            [answerformat] => 2
+                                                            [fraction] => 1.0000000
+                                                            [feedback] => <p dir="ltr" style="text-align: left;">asd</p>
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [68] => qtype_numerical_answer Object
+                                                        (
+                                                            [tolerance] => 0
+                                                            [tolerancetype] => 2
+                                                            [id] => 68
+                                                            [answer] => 2
+                                                            [answerformat] => 2
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => <p dir="ltr" style="text-align: left;">asd</p>
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                    [69] => qtype_numerical_answer Object
+                                                        (
+                                                            [tolerance] => 0
+                                                            [tolerancetype] => 2
+                                                            [id] => 69
+                                                            [answer] => 3
+                                                            [answerformat] => 2
+                                                            [fraction] => 0.0000000
+                                                            [feedback] => <p dir="ltr" style="text-align: left;">asd</p>
+                                                            [feedbackformat] => 1
+                                                        )
+
+                                                )
+
+                                            [unitdisplay] => 3
+                                            [unitgradingtype] => 0
+                                            [unitpenalty] => 0.1000000
+                                            [ap] => qtype_numerical_answer_processor Object
+                                                (
+                                                    [units:protected] => Array
+                                                        (
+                                                        )
+
+                                                    [decsep:protected] => .
+                                                    [thousandssep:protected] => ,
+                                                    [unitsbefore:protected] => 
+                                                    [regex:protected] => 
+                                                )
+
+                                            [shownumcorrect] => 
+                                            [id] => 27
+                                            [category] => 2
+                                            [contextid] => 351
+                                            [parent] => 0
+                                            [qtype] => qtype_numerical Object
+                                                (
+                                                    [fileoptions:protected] => Array
+                                                        (
+                                                            [subdirs] => 1
+                                                            [maxfiles] => -1
+                                                            [maxbytes] => 0
+                                                        )
+
+                                                )
+
+                                            [name] => asd
+                                            [questiontext] => <p dir="ltr" style="text-align: left;">asd</p>
+                                            [questiontextformat] => 1
+                                            [generalfeedback] => <p dir="ltr" style="text-align: left;">asd</p>
+                                            [generalfeedbackformat] => 1
+                                            [defaultmark] => 1
+                                            [length] => 1
+                                            [penalty] => 0.3333333
+                                            [stamp] => rockstardaddy.com+210902145533+ETsYiJ
+                                            [version] => rockstardaddy.com+210902145604+xhZMW7
+                                            [hidden] => 0
+                                            [idnumber] => 
+                                            [timecreated] => 1630594533
+                                            [timemodified] => 1630594564
+                                            [createdby] => 2
+                                            [modifiedby] => 2
+                                            [hints] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [question:protected] => qtype_numerical_question Object
+                                (
+                                    [answers] => Array
+                                        (
+                                            [67] => qtype_numerical_answer Object
+                                                (
+                                                    [tolerance] => 100
+                                                    [tolerancetype] => 2
+                                                    [id] => 67
+                                                    [answer] => 1
+                                                    [answerformat] => 2
+                                                    [fraction] => 1.0000000
+                                                    [feedback] => <p dir="ltr" style="text-align: left;">asd</p>
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [68] => qtype_numerical_answer Object
+                                                (
+                                                    [tolerance] => 0
+                                                    [tolerancetype] => 2
+                                                    [id] => 68
+                                                    [answer] => 2
+                                                    [answerformat] => 2
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => <p dir="ltr" style="text-align: left;">asd</p>
+                                                    [feedbackformat] => 1
+                                                )
+
+                                            [69] => qtype_numerical_answer Object
+                                                (
+                                                    [tolerance] => 0
+                                                    [tolerancetype] => 2
+                                                    [id] => 69
+                                                    [answer] => 3
+                                                    [answerformat] => 2
+                                                    [fraction] => 0.0000000
+                                                    [feedback] => <p dir="ltr" style="text-align: left;">asd</p>
+                                                    [feedbackformat] => 1
+                                                )
+
+                                        )
+
+                                    [unitdisplay] => 3
+                                    [unitgradingtype] => 0
+                                    [unitpenalty] => 0.1000000
+                                    [ap] => qtype_numerical_answer_processor Object
+                                        (
+                                            [units:protected] => Array
+                                                (
+                                                )
+
+                                            [decsep:protected] => .
+                                            [thousandssep:protected] => ,
+                                            [unitsbefore:protected] => 
+                                            [regex:protected] => 
+                                        )
+
+                                    [shownumcorrect] => 
+                                    [id] => 27
+                                    [category] => 2
+                                    [contextid] => 351
+                                    [parent] => 0
+                                    [qtype] => qtype_numerical Object
+                                        (
+                                            [fileoptions:protected] => Array
+                                                (
+                                                    [subdirs] => 1
+                                                    [maxfiles] => -1
+                                                    [maxbytes] => 0
+                                                )
+
+                                        )
+
+                                    [name] => asd
+                                    [questiontext] => <p dir="ltr" style="text-align: left;">asd</p>
+                                    [questiontextformat] => 1
+                                    [generalfeedback] => <p dir="ltr" style="text-align: left;">asd</p>
+                                    [generalfeedbackformat] => 1
+                                    [defaultmark] => 1
+                                    [length] => 1
+                                    [penalty] => 0.3333333
+                                    [stamp] => rockstardaddy.com+210902145533+ETsYiJ
+                                    [version] => rockstardaddy.com+210902145604+xhZMW7
+                                    [hidden] => 0
+                                    [idnumber] => 
+                                    [timecreated] => 1630594533
+                                    [timemodified] => 1630594564
+                                    [createdby] => 2
+                                    [modifiedby] => 2
+                                    [hints] => Array
+                                        (
+                                        )
+
+                                )
+
+                            [questioninitialised:protected] => 1
+                            [variant:protected] => 1
+                            [maxmark:protected] => 1
+                            [minfraction:protected] => 0
+                            [maxfraction:protected] => 1
+                            [questionsummary:protected] => asd
+
+                            [responsesummary:protected] => 
+                            [timemodified] => 1633775892
+                            [rightanswer:protected] => 1
+                            [steps:protected] => Array
+                                (
+                                    [0] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1648
+                                            [state:question_attempt_step:private] => question_state_todo Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 
+                                            [timecreated:question_attempt_step:private] => 1633775856
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [_separators] => .$,
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                    [1] => question_attempt_step_read_only Object
+                                        (
+                                            [id:question_attempt_step:private] => 1668
+                                            [state:question_attempt_step:private] => question_state_gaveup Object
+                                                (
+                                                )
+
+                                            [fraction:question_attempt_step:private] => 
+                                            [timecreated:question_attempt_step:private] => 1633775892
+                                            [userid:question_attempt_step:private] => 8
+                                            [data:question_attempt_step:private] => Array
+                                                (
+                                                    [-finish] => 1
+                                                )
+
+                                            [files:question_attempt_step:private] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [autosavedstep:protected] => 
+                            [flagged:protected] => 0
+                            [observer:protected] => question_engine_unit_of_work Object
+                                (
+                                    [quba:protected] => question_usage_by_activity Object
+ *RECURSION*
+                                    [modified:protected] => 
+                                    [attemptsadded:protected] => Array
+                                        (
+                                        )
+
+                                    [attemptsmodified:protected] => Array
+                                        (
+                                        )
+
+                                    [attemptsdeleted:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsadded:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsmodified:protected] => Array
+                                        (
+                                        )
+
+                                    [stepsdeleted:protected] => Array
+                                        (
+                                        )
+
+                                    [metadataadded:protected] => Array
+                                        (
+                                        )
+
+                                    [metadatamodified:protected] => Array
+                                        (
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+            [observer:protected] => question_engine_unit_of_work Object
+                (
+                    [quba:protected] => question_usage_by_activity Object
+ *RECURSION*
+                    [modified:protected] => 
+                    [attemptsadded:protected] => Array
+                        (
+                        )
+
+                    [attemptsmodified:protected] => Array
+                        (
+                        )
+
+                    [attemptsdeleted:protected] => Array
+                        (
+                        )
+
+                    [stepsadded:protected] => Array
+                        (
+                        )
+
+                    [stepsmodified:protected] => Array
+                        (
+                        )
+
+                    [stepsdeleted:protected] => Array
+                        (
+                        )
+
+                    [metadataadded:protected] => Array
+                        (
+                        )
+
+                    [metadatamodified:protected] => Array
+                        (
+                        )
+
+                )
+
+        )
+
+    [slots:protected] => Array
+        (
+            [1] => stdClass Object
+                (
+                    [slot] => 1
+                    [id] => 1
+                    [requireprevious] => 0
+                    [questionid] => 1
+                    [includingsubcategories] => 
+                    [section] => stdClass Object
+                        (
+                            [id] => 1
+                            [quizid] => 1
+                            [firstslot] => 1
+                            [heading] => 
+                            [shufflequestions] => 0
+                            [lastslot] => 8
+                        )
+
+                    [firstinsection] => 1
+                )
+
+            [2] => stdClass Object
+                (
+                    [slot] => 2
+                    [id] => 2
+                    [requireprevious] => 0
+                    [questionid] => 2
+                    [includingsubcategories] => 
+                    [section] => stdClass Object
+                        (
+                            [id] => 1
+                            [quizid] => 1
+                            [firstslot] => 1
+                            [heading] => 
+                            [shufflequestions] => 0
+                            [lastslot] => 8
+                        )
+
+                    [firstinsection] => 
+                )
+
+            [3] => stdClass Object
+                (
+                    [slot] => 3
+                    [id] => 3
+                    [requireprevious] => 0
+                    [questionid] => 4
+                    [includingsubcategories] => 
+                    [section] => stdClass Object
+                        (
+                            [id] => 1
+                            [quizid] => 1
+                            [firstslot] => 1
+                            [heading] => 
+                            [shufflequestions] => 0
+                            [lastslot] => 8
+                        )
+
+                    [firstinsection] => 
+                )
+
+            [4] => stdClass Object
+                (
+                    [slot] => 4
+                    [id] => 4
+                    [requireprevious] => 0
+                    [questionid] => 5
+                    [includingsubcategories] => 
+                    [section] => stdClass Object
+                        (
+                            [id] => 1
+                            [quizid] => 1
+                            [firstslot] => 1
+                            [heading] => 
+                            [shufflequestions] => 0
+                            [lastslot] => 8
+                        )
+
+                    [firstinsection] => 
+                )
+
+            [5] => stdClass Object
+                (
+                    [slot] => 5
+                    [id] => 5
+                    [requireprevious] => 0
+                    [questionid] => 6
+                    [includingsubcategories] => 
+                    [section] => stdClass Object
+                        (
+                            [id] => 1
+                            [quizid] => 1
+                            [firstslot] => 1
+                            [heading] => 
+                            [shufflequestions] => 0
+                            [lastslot] => 8
+                        )
+
+                    [firstinsection] => 
+                )
+
+            [6] => stdClass Object
+                (
+                    [slot] => 6
+                    [id] => 6
+                    [requireprevious] => 0
+                    [questionid] => 7
+                    [includingsubcategories] => 
+                    [section] => stdClass Object
+                        (
+                            [id] => 1
+                            [quizid] => 1
+                            [firstslot] => 1
+                            [heading] => 
+                            [shufflequestions] => 0
+                            [lastslot] => 8
+                        )
+
+                    [firstinsection] => 
+                )
+
+            [7] => stdClass Object
+                (
+                    [slot] => 7
+                    [id] => 7
+                    [requireprevious] => 0
+                    [questionid] => 8
+                    [includingsubcategories] => 
+                    [section] => stdClass Object
+                        (
+                            [id] => 1
+                            [quizid] => 1
+                            [firstslot] => 1
+                            [heading] => 
+                            [shufflequestions] => 0
+                            [lastslot] => 8
+                        )
+
+                    [firstinsection] => 
+                )
+
+            [8] => stdClass Object
+                (
+                    [slot] => 8
+                    [id] => 26
+                    [requireprevious] => 0
+                    [questionid] => 27
+                    [includingsubcategories] => 
+                    [section] => stdClass Object
+                        (
+                            [id] => 1
+                            [quizid] => 1
+                            [firstslot] => 1
+                            [heading] => 
+                            [shufflequestions] => 0
+                            [lastslot] => 8
+                        )
+
+                    [firstinsection] => 
+                )
+
+        )
+
+    [sections:protected] => Array
+        (
+            [0] => stdClass Object
+                (
+                    [id] => 1
+                    [quizid] => 1
+                    [firstslot] => 1
+                    [heading] => 
+                    [shufflequestions] => 0
+                    [lastslot] => 8
+                )
+
+        )
+
+    [pagelayout:protected] => Array
+        (
+            [0] => Array
+                (
+                    [0] => 1
+                )
+
+            [1] => Array
+                (
+                    [0] => 2
+                )
+
+            [2] => Array
+                (
+                    [0] => 3
+                )
+
+            [3] => Array
+                (
+                    [0] => 4
+                )
+
+            [4] => Array
+                (
+                    [0] => 5
+                )
+
+            [5] => Array
+                (
+                    [0] => 6
+                )
+
+            [6] => Array
+                (
+                    [0] => 7
+                )
+
+            [7] => Array
+                (
+                    [0] => 8
+                )
+
+        )
+
+    [questionnumbers:protected] => Array
+        (
+            [1] => 1
+            [2] => 2
+            [3] => 3
+            [4] => 4
+            [5] => 5
+            [6] => 6
+            [7] => 7
+            [8] => 8
+        )
+
+    [questionpages:protected] => Array
+        (
+            [1] => 0
+            [2] => 1
+            [3] => 2
+            [4] => 3
+            [5] => 4
+            [6] => 5
+            [7] => 6
+            [8] => 7
+        )
+
+    [reviewoptions:protected] => mod_quiz_display_options Object
+        (
+            [attempt] => 1
+            [overallfeedback] => 1
+            [readonly] => 1
+            [clearwrong] => 
+            [correctness] => 1
+            [marks] => 2
+            [markdp] => 2
+            [flags] => 2
+            [feedback] => 1
+            [numpartscorrect] => 1
+            [generalfeedback] => 1
+            [rightanswer] => 1
+            [manualcomment] => 1
+            [manualcommentlink] => 
+            [questionreviewlink] => moodle_url Object
+                (
+                    [scheme:protected] => https
+                    [host:protected] => rockstardaddy.com
+                    [port:protected] => 
+                    [user:protected] => 
+                    [pass:protected] => 
+                    [path:protected] => /moodle-testing/mod/quiz/reviewquestion.php
+                    [slashargument:protected] => 
+                    [anchor:protected] => 
+                    [params:protected] => Array
+                        (
+                            [attempt] => 120
+                        )
+
+                )
+
+            [history] => 0
+            [extrainfocontent] => 
+            [extrahistorycontent] => 
+            [editquestionparams] => Array
+                (
+                )
+
+            [context] => 
+        )
+
+)

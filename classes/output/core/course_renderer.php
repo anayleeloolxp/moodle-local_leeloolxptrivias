@@ -80,19 +80,24 @@ class course_renderer extends \core_course_renderer {
         $onclick = htmlspecialchars_decode($mod->onclick, ENT_QUOTES);
 
         if( $mod->modname == 'quiz' ){
-            global $DB;
+            global $DB, $CFG;
             $quizid = $mod->get_course_module_record()->instance;
             $quizdata = $DB->get_record('quiz', array('id' => $quizid), '*', MUST_EXIST);
 
             if( isset($quizdata->quiztype) ){
+                //$url .= '&quiztype='.$quizdata->quiztype;
                 if( $quizdata->quiztype == 'discover' ){
-                    $iconsrc = $mod->get_icon_url().'?discover';
+                    $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Discover_on.png';
+                    $url .= '&autostart=1';
                 }else if( $quizdata->quiztype == 'exercises' ){
                     $iconsrc = $mod->get_icon_url().'?exercises';
                 }else if( $quizdata->quiztype == 'trivias' ){
-                    $iconsrc = $mod->get_icon_url().'?trivias';
+                    $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Trivia_on.png';
+                    $url .= '&autostart=1';
                 }else if( $quizdata->quiztype == 'assessments' ){
                     $iconsrc = $mod->get_icon_url().'?assessments';
+                }else if( $quizdata->quiztype == 'duels' ){
+                    $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Duelos_on.png';
                 } else {
                     $iconsrc = $mod->get_icon_url().'?default';
                 }

@@ -1,0 +1,11 @@
+Array
+(
+    [email] => dGVzdHVzZXJAbGVlbG9vbHhwLmNvbQ==
+    [score] => 1
+    [moodlequizid] => 159
+    [courseid] => 3
+    [lquizid] => 39
+    [lquizisopp] => 1
+    [lquiztime] => 21
+    [activityid] => 490
+)

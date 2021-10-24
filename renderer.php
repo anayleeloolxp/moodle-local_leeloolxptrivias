@@ -84,7 +84,7 @@ class local_leeloolxptrivias_mod_quiz_renderer extends mod_quiz_renderer {
 
         if( isset($quiz->quiztype) && !is_siteadmin() ){
             
-            if( $quiz->quiztype == 'trivias' ){
+            if( $quiz->quiztype == 'duels' ){
 
                 global $CFG;
                 require_once($CFG->dirroot . '/lib/filelib.php');
@@ -261,7 +261,7 @@ class local_leeloolxptrivias_mod_quiz_renderer extends mod_quiz_renderer {
         
                         });');
         
-                        echo 'The trivia dynamics';
+                        echo 'The Duels dynamics';
 
                     }
                     
@@ -572,6 +572,8 @@ class local_leeloolxptrivias_course_renderer extends core_course_renderer {
                     $iconsrc = $mod->get_icon_url().'?exercises';
                 }else if( $quizdata->quiztype == 'trivias' ){
                     $iconsrc = $mod->get_icon_url().'?trivias';
+                }else if( $quizdata->quiztype == 'duels' ){
+                    $iconsrc = $mod->get_icon_url().'?duels';
                 }else if( $quizdata->quiztype == 'assessments' ){
                     $iconsrc = $mod->get_icon_url().'?assessments';
                 } else {

@@ -74,7 +74,7 @@ class observer {
         $quizdata = $DB->get_record('quiz', array('id' => $quizid));
 
         if( isset( $quizdata->quiztype ) ){
-            if( $quizdata->quiztype == 'trivias' ){
+            if( $quizdata->quiztype == 'duels' ){
 
                 $userdata = $DB->get_record('user', array('id' => $userid));
 

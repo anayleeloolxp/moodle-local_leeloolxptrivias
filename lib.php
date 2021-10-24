@@ -106,6 +106,7 @@ function local_leeloolxptrivias_coursemodule_standard_elements ($formwrapper, $m
             'discover' => get_string ('discover_lang', 'local_leeloolxptrivias'),
             'exercises' => get_string ('exercises_lang', 'local_leeloolxptrivias'),
             'trivias' => get_string ('trivias_lang', 'local_leeloolxptrivias'),
+            'duels' => get_string ('duels_lang', 'local_leeloolxptrivias'),
             'assessments' => get_string ('assessments_lang', 'local_leeloolxptrivias')
         );
         $mform->addElement('select', 'quiztype', get_string ('quiz_type_lang', 'local_leeloolxptrivias'), $options);

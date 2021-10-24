@@ -1,0 +1,144 @@
+mod_quiz\event\attempt_submitted Object
+(
+    [data:protected] => Array
+        (
+            [eventname] => \mod_quiz\event\attempt_submitted
+            [component] => mod_quiz
+            [action] => submitted
+            [target] => attempt
+            [objecttable] => quiz_attempts
+            [objectid] => 106
+            [crud] => u
+            [edulevel] => 2
+            [contextid] => 759
+            [contextlevel] => 70
+            [contextinstanceid] => 489
+            [userid] => 4
+            [courseid] => 3
+            [relateduserid] => 4
+            [anonymous] => 0
+            [other] => Array
+                (
+                    [submitterid] => 4
+                    [quizid] => 158
+                )
+
+            [timecreated] => 1634681644
+        )
+
+    [logextra:protected] => 
+    [context:protected] => context_module Object
+        (
+            [_id:protected] => 759
+            [_contextlevel:protected] => 70
+            [_instanceid:protected] => 489
+            [_path:protected] => /1/43/46/759
+            [_depth:protected] => 4
+            [_locked:protected] => 0
+        )
+
+    [triggered:core\event\base:private] => 1
+    [dispatched:core\event\base:private] => 
+    [restored:core\event\base:private] => 
+    [recordsnapshots:core\event\base:private] => Array
+        (
+            [quiz] => Array
+                (
+                    [158] => stdClass Object
+                        (
+                            [id] => 158
+                            [course] => 3
+                            [name] => Trivia: Un vistazo a la industria musical
+                            [intro] => 
+                            [introformat] => 1
+                            [timeopen] => 0
+                            [timeclose] => 0
+                            [timelimit] => 0
+                            [overduehandling] => autosubmit
+                            [graceperiod] => 0
+                            [preferredbehaviour] => deferredfeedback
+                            [canredoquestions] => 0
+                            [attempts] => 0
+                            [attemptonlast] => 0
+                            [grademethod] => 1
+                            [decimalpoints] => 2
+                            [questiondecimalpoints] => -1
+                            [reviewattempt] => 69888
+                            [reviewcorrectness] => 4352
+                            [reviewmarks] => 4352
+                            [reviewspecificfeedback] => 4352
+                            [reviewgeneralfeedback] => 4352
+                            [reviewrightanswer] => 4352
+                            [reviewoverallfeedback] => 4352
+                            [questionsperpage] => 1
+                            [navmethod] => free
+                            [shuffleanswers] => 1
+                            [sumgrades] => 10.00000
+                            [grade] => 10.00000
+                            [timecreated] => 1634170286
+                            [timemodified] => 1634170286
+                            [password] => 
+                            [subnet] => 
+                            [browsersecurity] => -
+                            [delay1] => 0
+                            [delay2] => 0
+                            [showuserpicture] => 0
+                            [showblocks] => 0
+                            [completionattemptsexhausted] => 0
+                            [completionpass] => 0
+                            [allowofflineattempts] => 0
+                            [quiztype] => trivias
+                            [seb_requiresafeexambrowser] => 
+                            [seb_showsebtaskbar] => 
+                            [seb_showwificontrol] => 
+                            [seb_showreloadbutton] => 
+                            [seb_showtime] => 
+                            [seb_showkeyboardlayout] => 
+                            [seb_allowuserquitseb] => 
+                            [seb_quitpassword] => 
+                            [seb_linkquitseb] => 
+                            [seb_userconfirmquit] => 
+                            [seb_enableaudiocontrol] => 
+                            [seb_muteonstartup] => 
+                            [seb_allowspellchecking] => 
+                            [seb_allowreloadinexam] => 
+                            [seb_activateurlfiltering] => 
+                            [seb_filterembeddedcontent] => 
+                            [seb_expressionsallowed] => 
+                            [seb_regexallowed] => 
+                            [seb_expressionsblocked] => 
+                            [seb_regexblocked] => 
+                            [seb_allowedbrowserexamkeys] => 
+                            [seb_showsebdownloadlink] => 
+                            [seb_templateid] => 
+                            [cmid] => 489
+                        )
+
+                )
+
+            [quiz_attempts] => Array
+                (
+                    [106] => stdClass Object
+                        (
+                            [id] => 106
+                            [quiz] => 158
+                            [userid] => 4
+                            [attempt] => 12
+                            [uniqueid] => 110
+                            [layout] => 1,0,2,0,3,0,4,0,5,0,6,0,7,0
+                            [currentpage] => 0
+                            [preview] => 0
+                            [state] => finished
+                            [timestart] => 1634681629
+                            [timefinish] => 1634681644
+                            [timemodified] => 1634681644
+                            [timemodifiedoffline] => 0
+                            [timecheckstate] => 
+                            [sumgrades] => 0
+                        )
+
+                )
+
+        )
+
+)
