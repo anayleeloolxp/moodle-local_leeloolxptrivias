@@ -44,6 +44,7 @@ class observer {
     public static function attempt_submitted(\mod_quiz\event\attempt_submitted $event) {
 
         global $DB, $CFG;
+        require_once($CFG->dirroot . '/lib/filelib.php');
         $other = $event->other;
         $quizid = $other['quizid'];
         $activityid = $event->contextinstanceid;
@@ -112,8 +113,6 @@ class observer {
                 }
 
                 //$score = rand(1,100);
-
-                require_once($CFG->dirroot . '/lib/filelib.php');
 
                 $postdata = array('email' => base64_encode($userdata->email), 'score' => $score, 'moodlequizid' => $quizid, 'courseid' => $courseid, 'lquizid' => $lquizid, 'lquizisopp' => $lquizisopp, 'lquiztime' => $lquiztime, 'activityid' => $activityid);
 
