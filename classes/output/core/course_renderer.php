@@ -96,6 +96,10 @@ class course_renderer extends \core_course_renderer {
                     $url .= '&autostart=1';
                 }else if( $quizdata->quiztype == 'assessments' ){
                     $iconsrc = $mod->get_icon_url().'?assessments';
+                }else if( $quizdata->quiztype == 'quest' ){
+                    $iconsrc = $mod->get_icon_url().'?quest';
+                }else if( $quizdata->quiztype == 'mission' ){
+                    $iconsrc = $mod->get_icon_url().'?mission';
                 }else if( $quizdata->quiztype == 'duels' ){
                     $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Duelos_on.png';
                 } else {

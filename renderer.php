@@ -576,6 +576,10 @@ class local_leeloolxptrivias_course_renderer extends core_course_renderer {
                     $iconsrc = $mod->get_icon_url().'?duels';
                 }else if( $quizdata->quiztype == 'assessments' ){
                     $iconsrc = $mod->get_icon_url().'?assessments';
+                }else if( $quizdata->quiztype == 'quest' ){
+                    $iconsrc = $mod->get_icon_url().'?quest';
+                }else if( $quizdata->quiztype == 'mission' ){
+                    $iconsrc = $mod->get_icon_url().'?mission';
                 } else {
                     $iconsrc = $mod->get_icon_url().'?default';
                 }
