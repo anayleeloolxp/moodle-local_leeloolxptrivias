@@ -90,16 +90,16 @@ class course_renderer extends \core_course_renderer {
                     $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Discover_on.png';
                     $url .= '&autostart=1';
                 }else if( $quizdata->quiztype == 'exercises' ){
-                    $iconsrc = $mod->get_icon_url().'?exercises';
+                    $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Studycase_on.png';
                 }else if( $quizdata->quiztype == 'trivias' ){
                     $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Trivia_on.png';
                     $url .= '&autostart=1';
                 }else if( $quizdata->quiztype == 'assessments' ){
-                    $iconsrc = $mod->get_icon_url().'?assessments';
+                    $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Assessments_on.png';
                 }else if( $quizdata->quiztype == 'quest' ){
-                    $iconsrc = $mod->get_icon_url().'?quest';
+                    $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Quest_on.png';
                 }else if( $quizdata->quiztype == 'mission' ){
-                    $iconsrc = $mod->get_icon_url().'?mission';
+                    $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Mission_on.png';
                 }else if( $quizdata->quiztype == 'duels' ){
                     $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Duelos_on.png';
                 } else {
