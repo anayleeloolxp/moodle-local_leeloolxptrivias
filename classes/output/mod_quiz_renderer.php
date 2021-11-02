@@ -335,6 +335,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                             'scoreopponent' => 0,
                             'date' => date('Y-m-d H:i:s'),
                             'level' => $level,
+                            'activity_id' => $quiz->cmid
                         );
 
                         global $PAGE;
