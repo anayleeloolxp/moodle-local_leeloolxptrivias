@@ -242,6 +242,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         if( isset($quiz->quiztype) && !is_siteadmin() ){
 
             $reqautostart = optional_param('autostart', 0, PARAM_RAW);
+
+            $reqrematch = optional_param('rematch', 0, PARAM_INTEGER);
             
             if( $quiz->quiztype == 'duels' ){
 
@@ -285,6 +287,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         'course_id' => $quiz->course,
                         'moodlequizid' => $quiz->id,
                         'activityid' => $cm->id,
+                        'rematch' => $reqrematch,
                     );
 
                     $url = $leeloolxpurl.'/admin/sync_moodle_course/quiz_opponents_response';
@@ -379,130 +382,183 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
                         }
 
-                        $PAGE->requires->js_init_code('require(["jquery"], function ($) {
-                            $(document).ready(function () {
+                        if( $reqrematch != 0 ){
 
-                                $("body").addClass("trivia_quiz_view");
-
-                                function setCookie(cname, cvalue, exdays) {
-                                    const d = new Date();
-                                    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-                                    let expires = "expires="+ d.toUTCString();
-                                    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-                                }
-
-                                $(document).on("click",".trivia_play",function(e){	
-                                    $(".quizstartbuttondivthinkblue button").trigger("click");
-                                    $(".sWheel-title").css("visibility", "visible");
-                                });
-
-                                '.$setcookies.'
-        
-                                $(".wheel").superWheel("onFail",function(results,spinCount,now){
-                                    console.log("Spin Failed, Something wrong in wheel settings");
-                                    console.log(results);
-                                });
-
-                                $(".wheel-with-image").superWheel({
-                                    slices: '.json_encode($oppslises).',
-                                    text : {
-                                        type: "image",
-                                        color: "#d3d8ec",
-                                        size: 25,
-                                        offset : 10,
-                                        orientation: "h"
-                                        
-                                    },
-                                    slice: {
-                                        background: "#d3d8ec",
-                                        selected: {
-                                            background: "#a7b2da"
-                                        }
-                                    },                                   
-                                    line: {
-                                        width: 1,
-                                        color: "#a7b2da"
-                                    },
-                                    outer: {
-                                        width: 1,
-                                        color: "#a7b2da"
-                                    },
-                                    inner: {
-                                        width: 15,
-                                        color: "#a7b2da"
-                                    },
-                                    marker: {
-                                        background: "#a7b2da",
-                                        animate: 1
-                                    },
-                                    center: {
-                                        rotate: "false",
-                                        html: {
-                                            template: "<span class=\'trivia_play\'>PLAY!</span>"
-                                        }
-                                    },
-                                    selector: "value",
-                                });
-                            
-                                var tick = new Audio("'.$CFG->wwwroot.'/local/leeloolxptrivias/media/tick.mp3");
-                                
-                                $(document).on("click",".wheel-with-image-spin-button",function(e){	
-                                    $(".wheel-with-image").superWheel("start","value",'.$opponentstopnum.');
-                                    $(this).prop("disabled",true);
-                                });
-                                
-                                $(".wheel-with-image").superWheel("onStart",function(results){	
-                                    $(".wheel-with-image-spin-button").text("Spinning...");
-                                });
-
-                                $(".wheel-with-image").superWheel("onStep",function(results){
-                                    if (typeof tick.currentTime !== "undefined")
-                                        tick.currentTime = 0;   
-                                    tick.play();
-                                });
-
-                                $(".wheel-with-image").superWheel("onComplete",function(results){
-                                    $(".wheel-with-image-spin-button:disabled").prop("disabled",false).text("Spin");
-
+                            $PAGE->requires->js_init_code('require(["jquery"], function ($) {
+                                $(document).ready(function () {
+    
+                                    $("body").addClass("trivia_quiz_view");
+    
+                                    function setCookie(cname, cvalue, exdays) {
+                                        const d = new Date();
+                                        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                                        let expires = "expires="+ d.toUTCString();
+                                        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                                    }
+    
+                                    $(document).on("click",".trivia_play",function(e){	
+                                        $(".quizstartbuttondivthinkblue button").trigger("click");
+                                    });
+    
+                                    '.$setcookies.'
+            
+                                    $(".opponent_div").html("Rematch with '.$opponentname.'<div class=\'rematch_playdiv\'><span class=\'trivia_play\'>PLAY!</span></div>");
                                     $(".opponent_div").show();
 
-                                    var postForm = {
-                                        "useremail" : "'.$baseemail.'",
-                                        "data" : \''.json_encode($savequizdata).'\'
-                                    };
-                                      
-                                    $.ajax({
-                                        type : "POST",
-                                        url : "'.$urlsave.'",
-                                        data : postForm,
-                                        dataType : "json",
-                                        success : function(data) {
-                                            setCookie("l_quiz_isopp", '.$isopponent.', 30);
-                                            setCookie("l_quiz_id", data, 30);
-                                            console.log(data);
-                                        }
+                                    $(".quizstartbuttondivthinkblue form").submit(function(e){
+    
+                                        var postForm = {
+                                            "useremail" : "'.$baseemail.'",
+                                            "data" : \''.json_encode($savequizdata).'\'
+                                        };
+                                          
+                                        $.ajax({
+                                            type : "POST",
+                                            url : "'.$urlsave.'",
+                                            data : postForm,
+                                            dataType : "json",
+                                            success : function(data) {
+                                                setCookie("l_quiz_isopp", '.$isopponent.', 30);
+                                                setCookie("l_quiz_id", data, 30);
+                                                console.log(data);
+                                            }
+                                        });
+                                        
                                     });
-
-                                    $(".quizstartbuttondivthinkblue form").unbind("submit").submit();
                                 });
-
-                                $(".quizstartbuttondivthinkblue form").submit(function(e){
-
-                                    $(".opponent_div").html("'.$opponentname.' is your opponent.");
-
-                                    e.preventDefault();
-                                    
-                                    $(".roulette_m").css("visibility", "visible");
-                                    
-                                    $(".wheel-with-image").superWheel("start","value",'.$opponentstopnum.');  	
-                                    
+                                
+                                $(window).on("load", function(){
+                                    $(".trivia_play").css("visibility", "visible");
                                 });
-                            });
-                            
-                            $(window).on("load", function(){
-                                $(".trivia_play").css("visibility", "visible");
-                            });
-                        });');
+                            });');
+
+                        }else{
+                            $PAGE->requires->js_init_code('require(["jquery"], function ($) {
+                                $(document).ready(function () {
+    
+                                    $("body").addClass("trivia_quiz_view");
+    
+                                    function setCookie(cname, cvalue, exdays) {
+                                        const d = new Date();
+                                        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                                        let expires = "expires="+ d.toUTCString();
+                                        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                                    }
+    
+                                    $(document).on("click",".trivia_play",function(e){	
+                                        $(".quizstartbuttondivthinkblue button").trigger("click");
+                                        $(".sWheel-title").css("visibility", "visible");
+                                    });
+    
+                                    '.$setcookies.'
+            
+                                    $(".wheel").superWheel("onFail",function(results,spinCount,now){
+                                        console.log("Spin Failed, Something wrong in wheel settings");
+                                        console.log(results);
+                                    });
+    
+                                    $(".wheel-with-image").superWheel({
+                                        slices: '.json_encode($oppslises).',
+                                        text : {
+                                            type: "image",
+                                            color: "#d3d8ec",
+                                            size: 25,
+                                            offset : 10,
+                                            orientation: "h"
+                                            
+                                        },
+                                        slice: {
+                                            background: "#d3d8ec",
+                                            selected: {
+                                                background: "#a7b2da"
+                                            }
+                                        },                                   
+                                        line: {
+                                            width: 1,
+                                            color: "#a7b2da"
+                                        },
+                                        outer: {
+                                            width: 1,
+                                            color: "#a7b2da"
+                                        },
+                                        inner: {
+                                            width: 15,
+                                            color: "#a7b2da"
+                                        },
+                                        marker: {
+                                            background: "#a7b2da",
+                                            animate: 1
+                                        },
+                                        center: {
+                                            rotate: "false",
+                                            html: {
+                                                template: "<span class=\'trivia_play\'>PLAY!</span>"
+                                            }
+                                        },
+                                        selector: "value",
+                                    });
+                                
+                                    var tick = new Audio("'.$CFG->wwwroot.'/local/leeloolxptrivias/media/tick.mp3");
+                                    
+                                    $(document).on("click",".wheel-with-image-spin-button",function(e){	
+                                        $(".wheel-with-image").superWheel("start","value",'.$opponentstopnum.');
+                                        $(this).prop("disabled",true);
+                                    });
+                                    
+                                    $(".wheel-with-image").superWheel("onStart",function(results){	
+                                        $(".wheel-with-image-spin-button").text("Spinning...");
+                                    });
+    
+                                    $(".wheel-with-image").superWheel("onStep",function(results){
+                                        if (typeof tick.currentTime !== "undefined")
+                                            tick.currentTime = 0;   
+                                        tick.play();
+                                    });
+    
+                                    $(".wheel-with-image").superWheel("onComplete",function(results){
+                                        $(".wheel-with-image-spin-button:disabled").prop("disabled",false).text("Spin");
+    
+                                        $(".opponent_div").show();
+    
+                                        var postForm = {
+                                            "useremail" : "'.$baseemail.'",
+                                            "data" : \''.json_encode($savequizdata).'\'
+                                        };
+                                          
+                                        $.ajax({
+                                            type : "POST",
+                                            url : "'.$urlsave.'",
+                                            data : postForm,
+                                            dataType : "json",
+                                            success : function(data) {
+                                                setCookie("l_quiz_isopp", '.$isopponent.', 30);
+                                                setCookie("l_quiz_id", data, 30);
+                                                console.log(data);
+                                            }
+                                        });
+    
+                                        $(".quizstartbuttondivthinkblue form").unbind("submit").submit();
+                                    });
+    
+                                    $(".quizstartbuttondivthinkblue form").submit(function(e){
+    
+                                        $(".opponent_div").html("'.$opponentname.' is your opponent.");
+    
+                                        e.preventDefault();
+                                        
+                                        $(".roulette_m").css("visibility", "visible");
+                                        
+                                        $(".wheel-with-image").superWheel("start","value",'.$opponentstopnum.');  	
+                                        
+                                    });
+                                });
+                                
+                                $(window).on("load", function(){
+                                    $(".trivia_play").css("visibility", "visible");
+                                });
+                            });');
+                        }
+                        
                     }
                 }
             }elseif( ($quiz->quiztype == 'trivias' || $quiz->quiztype == 'discover') && $reqautostart == 1 ){

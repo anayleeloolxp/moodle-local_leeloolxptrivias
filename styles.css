@@ -586,3 +586,7 @@ table.answer {
 span.pagespan {
     text-align: right;
 }
+.rematch_playdiv {
+    width: max-content;
+    margin: 0 auto;
+}
