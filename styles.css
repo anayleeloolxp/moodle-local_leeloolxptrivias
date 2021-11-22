@@ -382,6 +382,9 @@ span.trivia_play {
     min-width: 56%;
     min-height: 56%;
 }
+.trivia_play{
+    /*visibility: hidden;*/
+}
 .loaderonly #page-wrapper > * {
     display: none !important;
 }
