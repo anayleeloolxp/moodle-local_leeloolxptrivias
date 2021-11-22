@@ -426,10 +426,6 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                         
                                     });
                                 });
-                                
-                                $(window).on("load", function(){
-                                    $(".trivia_play").css("visibility", "visible");
-                                });
                             });');
 
                         }else{
@@ -551,10 +547,6 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                         $(".wheel-with-image").superWheel("start","value",'.$opponentstopnum.');  	
                                         
                                     });
-                                });
-                                
-                                $(window).on("load", function(){
-                                    $(".trivia_play").css("visibility", "visible");
                                 });
                             });');
                         }
