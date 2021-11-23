@@ -402,7 +402,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
     
                                     '.$setcookies.'
             
-                                    $(".opponent_div").html("Rematch with '.$opponentname.'<div class=\'rematch_playdiv\'><span class=\'trivia_play\'>PLAY!</span></div>");
+                                    $(".opponent_div").html("Rematch with '.$opponentname.'<div class=\'rematch_playdiv\'><div class=\'wheel-with-image superWheel _0\' style=\'font-size: 25px;width: 500px;height: 500px;\'><div class=\'sWheel-wrapper\' style=\'width: 500px; height: 500px; font-size: 100%;\'><div class=\'sWheel-inner\'><div class=\'sWheel\'><div class=\'sWheel-bg-layer\'></div></div><div class=\'sWheel-center\'><div class=\'sw-center-html\' style=\'width: 30%; height: 30%;\'><span class=\'trivia_play\'>PLAY!</span></div></div></div></div></div></div>");
                                     $(".opponent_div").show();
 
                                     $(".quizstartbuttondivthinkblue form").submit(function(e){
