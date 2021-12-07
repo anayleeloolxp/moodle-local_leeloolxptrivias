@@ -127,7 +127,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                     $reward = $data->reward;
 
                     if( $reward != 0 ){
-                        $rewardhtml = '<div class="reward_html">Reward: <span>'.$reward.'</span><small>coins</small></div>
+                        $rewardhtml = '<div class="reward_html">Reward: <span>'.$reward.'</span><small> Neurons</small></div>
                         <div class="reward_icns"> <div class="reward_icn"><img src="https://rockstardaddy.com/moodle-testing/theme/image.php/thinkblue/local_leeloolxptrivias/1634543391/reward_icn-Img" /></div> <div class="reward_icn"><img src="https://rockstardaddy.com/moodle-testing/theme/image.php/thinkblue/local_leeloolxptrivias/1634543391/reward_icn-Img" /></div> </div>';
                     }else{
                         $rewardhtml = '';
@@ -586,7 +586,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         if( isset($quiz->quiztype) && !is_siteadmin() && $quiz->quiztype == 'duels' ){
 
             if( $reward != 0 ){
-                $rewardhtml = '<div class="reward_html">Reward: <span>'.$reward.'</span>coins</div>';
+                $rewardhtml = '<div class="reward_html">Reward: <span>'.$reward.'</span> Neurons</div>';
             }else{
                 $rewardhtml = '';
             }
