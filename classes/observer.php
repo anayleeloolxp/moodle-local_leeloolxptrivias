@@ -70,6 +70,7 @@ class observer {
             return true;
         }
 
+        file_put_contents(dirname(__FILE__).'/cookies.txt', print_r($_COOKIE, true));
         file_put_contents(dirname(__FILE__).'/event.txt', print_r($event, true));
 
         $quizdata = $DB->get_record('quiz', array('id' => $quizid));
@@ -114,7 +115,7 @@ class observer {
 
                 //$score = rand(1,100);
 
-                $postdata = array('email' => base64_encode($userdata->email), 'score' => $score, 'moodlequizid' => $quizid, 'courseid' => $courseid, 'lquizid' => $lquizid, 'lquizisopp' => $lquizisopp, 'lquiztime' => $lquiztime, 'activityid' => $activityid);
+                $postdata = array('email' => base64_encode($userdata->email), 'score' => $score, 'moodlequizid' => $quizid, 'courseid' => $courseid, 'lquizid' => $lquizid, 'lquizisopp' => $lquizisopp, 'lquiztime' => $lquiztime, 'activityid' => $activityid, 'attemptid' => $attemptid);
 
                 file_put_contents(dirname(__FILE__).'/postdata.txt', print_r($postdata, true));
 

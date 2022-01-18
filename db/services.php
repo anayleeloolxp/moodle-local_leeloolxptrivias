@@ -15,18 +15,26 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin version and other meta-data are defined here.
+ * Leeloo LXP Vimeo external functions and service definitions.
  *
- * @package     local_leeloolxptrivias
+ * @package    local_leeloolxptrivias
+ * @category   external
  * @copyright  2020 Leeloo LXP (https://leeloolxp.com)
- * @author     Leeloo LXP <info@leeloolxp.com>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @since      Moodle 3.0
  */
 
-defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die;
 
-$plugin->component = 'local_leeloolxptrivias';
-$plugin->release = '1.0.0';
-$plugin->version = 2021100903;
-$plugin->requires = 2019052000;
-$plugin->maturity = MATURITY_STABLE;
+$functions = array(
+
+    'local_leeloolxptrivias_getquiz' => array(
+        'classname' => 'local_leeloolxptrivias_external',
+        'methodname' => 'getquiz',
+        'description' => 'Get data of quiz',
+        'type' => 'read',
+        'capabilities' => 'local/leeloolxptrivias:view',
+        'services' => array(MOODLE_OFFICIAL_MOBILE_SERVICE),
+    ),
+
+);

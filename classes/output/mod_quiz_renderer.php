@@ -349,7 +349,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
                         $setcookies = 'setCookie("l_quiz_isopp", 0, 1);
                         setCookie("l_quiz_time", 0, 1);
-                        setCookie("l_quiz_id", 0, 1);';
+                        setCookie("l_quiz_id", 0, 1);
+                        setCookie("m_attempt_id", 0, 30);';
 
                         if( isset( $attemptlast->state ) ){
                             if( $attemptlast->state == 'inprogress' ){
@@ -357,7 +358,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
                                 $setcookies = 'setCookie("l_quiz_isopp", '.$l_quiz_isopp.', 1);
                                 setCookie("l_quiz_time", '.$timelastatempt.', 1);
-                                setCookie("l_quiz_id", '.$l_quiz_id.', 1);';
+                                setCookie("l_quiz_id", '.$l_quiz_id.', 1);
+                                setCookie("m_attempt_id", 0, 30);';
 
                             }
                         }
@@ -775,8 +777,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                 $leeloolxpurl = $infoleeloolxp->data->install_url;
 
                 $url = $leeloolxpurl.'/admin/sync_moodle_course/savetriviadata';
+                $saveattemptidurl = $leeloolxpurl.'/admin/sync_moodle_course/saveattemptid';
                 //$PAGE->requires->css('/local/leeloolxptrivias/css/trivia.css');
-
                 $this->page->requires->js_init_code('require(["jquery"], function ($) {
                     $(document).ready(function () {
 
@@ -794,9 +796,43 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                             }
                             return "";
                         }
+
+                        function setCookie(cname, cvalue, exdays) {
+                            const d = new Date();
+                            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                            let expires = "expires="+ d.toUTCString();
+                            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                        }
             
                         var l_quiz_time = getCookie("l_quiz_time");
                         var l_quiz_isopp = getCookie("l_quiz_isopp");
+                        var l_quiz_id = getCookie("l_quiz_id");
+
+                        var m_attempt_id = getCookie("m_attempt_id");
+
+                        if( m_attempt_id == 0 ){
+                            var postForm = {
+                                "useremail" : "'.$baseemail.'",
+                                "l_quiz_id" : l_quiz_id,
+                                "attemptid" : "'.$attemptobj->get_attempt()->id.'",
+                            };
+    
+                            var postdata = {
+                                "data" : window.btoa(JSON.stringify(postForm))
+                            }
+                            
+                            $.ajax({
+                                type : "POST",
+                                url : "'.$saveattemptidurl.'",
+                                data : postdata,
+                                success : function(data) {
+                                    setCookie("m_attempt_id", data, 30);
+                                    console.log(data);
+                                }
+                            });
+                        }
+                        
+
 
                         function save_trivia_time(){
                             var postForm = {
