@@ -84,6 +84,7 @@ class local_leeloolxptrivias_external extends external_api {
         $opponentemail = '';
         $sentopponents = '';
         $baseemail = '';
+        $leeloolxpurl = '';
 
         $l_quiz_isopp = 0;
         $l_quiz_time = 0;
@@ -215,7 +216,8 @@ class local_leeloolxptrivias_external extends external_api {
                             'activity_id' => $cmid
                         );
 
-                        $attemptlast = end($viewobj->attempts);
+                        $attemptlast = $DB->get_record_sql('SELECT state FROM {quiz_attempts} WHERE quiz = ? and userid = ? ORDER BY id DESC', [$quiz->id, $USER->id]);
+
                         $hidespinner = '';
 
                         $l_quiz_isopp = 0;
@@ -278,6 +280,7 @@ class local_leeloolxptrivias_external extends external_api {
         $data['l_quiz_id'] = $l_quiz_id;
         $data['savequizdata'] = $savequizdata;
         $data['urlsave'] = $urlsave;
+        $data['leeloolxpurl'] = $leeloolxpurl;
         
 
         $result = array();
@@ -341,6 +344,7 @@ class local_leeloolxptrivias_external extends external_api {
                         'urlsave' => new external_value(PARAM_RAW, 'urlsave'),
                         'saveattemptidurl' => new external_value(PARAM_RAW, 'saveattemptidurl'),
                         'isinprogress' => new external_value(PARAM_TEXT, 'isinprogress'),
+                        'leeloolxpurl' => new external_value(PARAM_TEXT, 'leeloolxpurl'),
                     )
                 )
             )
