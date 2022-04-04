@@ -66,11 +66,13 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             $PAGE->add_body_class('trivia_review');
         }
 
-        global $USER;
+        global $USER, $DB;
 
+        $baseemail = base64_encode($USER->email);
             
         if( $attemptobj->get_quiz()->quiztype == 'duels' && !is_siteadmin()){
             $triva_review = '';
+            $triva_spinner = '';
             global $CFG;
             require_once($CFG->dirroot . '/lib/filelib.php');
             $leeloolxplicense = get_config('local_leeloolxptrivias')->license;
@@ -102,11 +104,14 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             if( $false == 0 ){
 
                 $postdata = array(
-                    'id' => base64_encode($_COOKIE['l_quiz_id']),
-                    'activityid' => $attemptobj->get_quiz()->cmid
+                    'useremail' => base64_encode($USER->email),
+                    'attemptId' => $attemptobj->get_attempt()->id,
+                    'cmId' => $attemptobj->get_quiz()->cmid
                 );
 
                 $url = $leeloolxpurl.'/admin/sync_moodle_course/gettriviadata';
+
+                $urlsavescore = $leeloolxpurl.'/admin/sync_moodle_course/attempt_save_score';
 
                 $curl = new curl;
 
@@ -119,38 +124,338 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                 $outputopp = $curl->post($url, $postdata, $options);
 
                 $infoopp = json_decode($outputopp);
+                //print_r($infoopp);
 
                 if( $infoopp ){
                     $data = $infoopp->data;
 
-                    //print_r($data);
-                    $reward = $data->reward;
-
-                    if( $reward != 0 ){
-                        $rewardhtml = '<div class="reward_html">Reward: <span>'.$reward.'</span><small> Neurons</small></div>
-                        <div class="reward_icns"> <div class="reward_icn"><img src="https://rockstardaddy.com/moodle-testing/theme/image.php/thinkblue/local_leeloolxptrivias/1634543391/reward_icn-Img" /></div> <div class="reward_icn"><img src="https://rockstardaddy.com/moodle-testing/theme/image.php/thinkblue/local_leeloolxptrivias/1634543391/reward_icn-Img" /></div> </div>';
-                    }else{
-                        $rewardhtml = '';
+                    $userwinnerclass = '';
+                    $oppwinnerclass = '';
+                    if( $data->winner == $data->user_email ){
+                        $userwinnerclass = 'iswinner';
+                    }elseif( $data->winner == $data->opponent_email ){
+                        $oppwinnerclass = 'iswinner';
                     }
-
-                    /*$usershtml = '<div class="trivia_users">
-                    <div class="triviauser1">'.$data->user.' <b>Score</b>: '.$data->scoreuser.' <b>Time</b>: '.$data->usertime.' seconds</div>
-                    <div class="triviauser2">'.$data->opponent.' <b>Score</b>: '.$data->scoreopponent.' <b>Time</b>: '.$data->opponenttime.' seconds</div>
-                    </div>';*/
 
                     $usershtml = '
                     <div class="trivia_users">
-                    <div class="trivia_user triviauser1"> <div class="user_img"><img src="'.$data->userimage.'" /></div> <div class="user_name"><span>1</span> <small>'.$data->user.'</small></div> <div class="user_scrore"><b>'.$data->scoreuser.'</b> <small>'.$data->usertime.' seconds</small></div> </div>
-                    <div class="trivia_user triviauser2"> <div class="user_img"><img src="'.$data->oppimage.'" /></div> <div class="user_name"><span>2</span> <small>'.$data->opponent.'</small></div> <div class="user_scrore"><b>'.$data->scoreopponent.'</b> <small>'.$data->opponenttime.' seconds</small></div> </div>
+                    <div class="trivia_user triviauser1 '.$userwinnerclass.'"> <div class="user_img"><img src="'.$data->userimage.'" /></div> <div class="user_name"><span>1</span> <div class="resultuserdetail"><small>'.$data->user.'</small><span class="teamname">'.$data->userteam.'</span></div></div> <div class="user_scrore"><b>'.$data->userpoints.'</b> <small>points</small></div> </div>
+                    <div class="trivia_user triviauser2 '.$oppwinnerclass.'"> <div class="user_img"><img src="'.$data->oppimage.'" /></div> <div class="user_name"><span>2</span> <div class="resultuserdetail"><small>'.$data->opponent.'</small><span class="teamname">'.$data->oppteam.'</span></div></div> <div class="user_scrore"><b>'.$data->opppoints.'</b> <small>points</small></div> </div>
                     </div>';
 
                     if( $data->winner == '0' ){
+                        $class_win = 'waiting_outer';
                         $triva_review .= '<div class="triva_review_inner waiting"><h2>Waiting!</h2>'.$rewardhtml.$usershtml.'</div>';
                     }elseif( $USER->email == $data->winner ){
+                        $class_win = 'winner_outer';
                         $triva_review .= '<div class="triva_review_inner winner"><h2>You Won!</h2>'.$rewardhtml.$usershtml.'</div>';
                     }else{
+                        $class_win = 'losser_outer';
                         $triva_review .= '<div class="triva_review_inner losser"><h2>You Lost!</h2>'.$rewardhtml.$usershtml.'</div>';
                     }
+
+                    if( $USER->email == $data->user_email ){
+                        $timetaken = $data->usertime;
+                        $isopp = 0;
+                        $attackdefencetext = 'Attack';
+                        $attackdefencepoints = $data->attacks;
+                    }else{
+                        $timetaken = $data->opponenttime;
+                        $isopp = 1;
+                        $attackdefencetext = 'Defence';
+                        $attackdefencepoints = $data->defences;
+                    }
+
+                    if( $data->userpoints == '' && $isopp == 0){
+                        $spinerfor = 'user';
+                        $showpointsspinner = 1;
+                    }elseif( $data->opppoints == '' && $isopp == 1 ){
+                        $spinerfor = 'opp';
+                        $showpointsspinner = 1;
+                    }else{
+                        $spinerfor = '';
+                        $showpointsspinner = 0;
+                    }
+
+                    $hidereviewclass = '';
+                    if( $showpointsspinner == 1 ){
+                        $attemptdifficultysum = $DB->get_records_sql('SELECT qa.id, qd.difficulty FROM {question_attempts} qa left join {tb_question_diff} qd on qa.questionid = qd.questionid WHERE questionusageid = ?', [$attemptobj->get_attempt()->id]);
+
+                        $countquestions = count($attemptdifficultysum);
+
+                        $quizmaxtime = 0;
+
+                        foreach($attemptdifficultysum as $quizquestion){
+
+                            if( !$quizquestion->difficulty ){
+                                $questiondiff = 1;
+                            }else{
+                                $questiondiff = $quizquestion->difficulty;
+                            }
+
+                            if( $questiondiff == 3 ){
+                                $questiontime = 15;
+                            }elseif( $questiondiff == 2 ){
+                                $questiontime = 10;
+                            }else{
+                                $questiontime = 5;
+                            }
+
+                            $quizmaxtime = $quizmaxtime+$questiontime;
+
+
+                        }
+
+                        $hidereviewclass = 'visibility: hidden;';
+                        global $PAGE, $CFG;
+                        $PAGE->requires->js(new moodle_url('/local/leeloolxptrivias/js/jquery.superwheel.min.js'));
+    
+                        $luckmin = $data->luck - 9;
+                        if( $luckmin < 1 ){
+                            $luckmin = 1;
+                            $luckmax = 10;
+                        }else{
+                            $luckmax = $data->luck;
+                        }
+
+                        $slices = array();
+                        
+                        $key = 0;
+                        for ($x = $luckmin; $x <= $luckmax; $x++) {
+                            $slices[$key]['text'] = $x;
+                            $slices[$key]['value'] = $x;
+                            $slices[$key]['message'] = $x;
+                            $slices[$key]['backgroundtext'] = '#a7b2da';
+                            $key++;
+                        }
+
+                        $PAGE->requires->js_init_code('require(["jquery"], function ($) {
+                            $(document).ready(function () {
+    
+                                $(".wheel-standard").superWheel({
+                                    slices: '.json_encode($slices).',
+                                    text : {
+                                        color: "#303030",
+                                    },
+                                    line: {
+                                        width: 10,
+                                        color: "#303030"
+                                    },
+                                    outer: {
+                                        width: 14,
+                                        color: "#303030"
+                                    },
+                                    inner: {
+                                        width: 15,
+                                        color: "#303030"
+                                    },
+                                    marker: {
+                                        background: "#00BCD4",
+                                        animate: 1
+                                    },
+                                    selector: "value",
+                                });
+                            
+                                var tick = new Audio("'.$CFG->wwwroot.'/local/leeloolxptrivias/media/tick.mp3");
+                                
+                                $(document).on("click",".wheel-standard-spin-button",function(e){
+                    
+                                    if( !$(this).hasClass("spinningDone") ){
+                                        $(".wheel-standard").superWheel("start","value",Math.floor(Math.random() * ('.$luckmax.' - '.$luckmin.' + 1) + '.$luckmin.'));
+                                        $(this).prop("disabled",true);
+                                    }
+                                    
+                                });
+
+                                $(document).on("click",".spinningDone",function(e){
+                                    location.reload();
+                                });
+                                
+                                
+                                $(".wheel-standard").superWheel("onStart",function(results){
+                                    
+                                    $(".wheel-standard-spin-button").text("Spin!").addClass("spinning");
+                                    
+                                });
+                                $(".wheel-standard").superWheel("onStep",function(results){
+                                    
+                                    if (typeof tick.currentTime !== "undefined")
+                                        tick.currentTime = 0;
+                                    tick.play();
+                                    
+                                });
+    
+                                $(".wheel-standard").superWheel("onComplete",function(results){
+
+                                    var postForm = {
+                                        "useremail" : "'.$baseemail.'",
+                                        "attemptid" : "'.$attemptobj->get_attempt()->id.'",
+                                        "isopp" : "'.$isopp.'",
+                                        "spinnerval" : results.value,
+                                        "course_id" : "'.$attemptobj->get_quiz()->course.'",
+                                        "activityid" : "'.$attemptobj->get_quiz()->cmid.'",
+                                        "quizmaxtime" : "'.$quizmaxtime.'",
+                                        "countquestions" : "'.$countquestions.'",
+                                        "attack" : "'.$data->attacks.'",
+                                        "defence" : "'.$data->defences.'",
+                                        "luck" : "'.$data->luck.'",
+                                        "will" : "'.$data->will.'",
+                                        "power" : "'.$data->power.'",
+                                        "marks" : "'.$summarydata['marks']['content'].'"
+                                    };
+                                      
+                                    $.ajax({
+                                        type : "POST",
+                                        url : "'.$urlsavescore.'",
+                                        data : postForm,
+                                        dataType : "json",
+                                        success : function(data) {
+                                            
+                                            $(".wheel-standard-spin-button").text("Ok!").addClass("spinningDone");
+                                            $(".gam-points-right").addClass("addpoint");
+                                            $(".gam-points-top").text(data);
+                                            $(".wheel-standard-spin-button").prop("disabled",false);
+                                            
+                                        }
+                                    });
+                                    
+                                });
+    
+                            });
+                        });');
+    
+                        $triva_spinner .= '
+                        <div class="modal-backdrop fade show"></div>
+                        <div class="modal fade show" id="gam_popup_spinner" tabindex="-1" role="dialog" aria-labelledby="gam_popup_spinner" aria-modal="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="gam-spinner">
+                                        <div class="gam-spinner-left">
+                                            <div class="gam-spinner-top">
+                                                <!--<div class="gam-nm-top">08<small>/10</small></div>
+                                                <div class="gam-txt-top">correct answers</div>-->
+                                                <div class="gam-nm-top">'.round(explode('/',$summarydata['marks']['content'])[0],0).'<small>/'.round(explode('/',$summarydata['marks']['content'])[1],0).'</small></div>
+                                                <div class="gam-txt-top">'.$summarydata['marks']['title'].'</div>
+                                            </div>
+                                            <div class="gam-spinner-mdl">
+                                                <main class="cd-main-content text-center">
+    
+                                                    <div class="wheel-standard"></div>
+                                                    <button type="button" class="button button-primary wheel-standard-spin-button">Spin!</button>
+                                                    
+                                                </main> <!-- cd-main-content -->
+                                                
+                                            </div>
+                                            <div class="gam-spinner-btm">'.gmdate("H:i:s", $timetaken).'</div>
+                                        </div>
+                                        <div class="gam-spinner-right">
+                                            <div class="gam-top-right">
+                                                <div class="gam-points-right">
+                                                    <div class="gam-points-top">______</div>
+                                                    <div class="gam-points-txt">points</div>
+                                                </div>
+                                            </div>
+                                            <div class="gam-btm-right">
+                                                <ul>
+                                                    <li class="active">
+                                                        <div class="gam-btm-item">
+                                                            <p>'.$attackdefencetext.'</p>
+                                                            <h3>'.$attackdefencepoints.'</h3>
+                                                        </div>
+                                                    </li>
+                                                    <li class="">
+                                                        <div class="gam-btm-item">
+                                                            <p>Luck</p>
+                                                            <h3>'.$data->luck.'</h3>
+                                                        </div>
+                                                    </li>
+                                                    <li class="">
+                                                        <div class="gam-btm-item">
+                                                            <p>Power</p>
+                                                            <h3>'.$data->power.'</h3>
+                                                        </div>
+                                                    </li>
+                                                    <li class="">
+                                                        <div class="gam-btm-item">
+                                                            <p>Will</p>
+                                                            <h3>'.$data->will.'</h3>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        ';
+                    }
+
+                    $triva_review .= '<div class="playagainDf playagaindiv '.$class_win.'">
+                        <div class="playagaininnerdiv">
+                            <a class="small_playagain" href="#">
+                                <span>New</span>
+                            </a>
+                        </div>
+                        <div class="playagaininnerdiv">
+                            <a class="trivia_playagain" href="'.$CFG->wwwroot.'/mod/quiz/view.php?id='.$attemptobj->get_quiz()->cmid.'">Play<br>Again!</a>
+                        </div>
+                        <div class="playagaininnerdiv">
+                            <a class="small_playagain" href="#">
+                                <span>Next</span>
+                            </a>
+                        </div>
+                    </div>';
+
+
+                    if( !empty( $data->current_rewards ) ){
+
+                        $allrewardshtml = '';
+
+                        foreach($data->current_rewards as $reward ){
+                            $allrewardshtml .= '<div class="item">
+                                <div class="arena-slider-item">
+                                    <span data-toggle="tooltip" data-placement="top" data-original-title="'.$reward->name.'"><img src="'.$reward->image.'"/></span>
+                                    <small>'.$reward->count.'</small>
+                                </div>
+                            </div>';
+                        }
+
+                        $triva_review .= '<div class="arena-section-TopBanner-slider">
+                            <div class="arena-slider owl-carousel">
+                                '.$allrewardshtml.'
+
+                            </div>
+                        </div>';
+
+                        global $PAGE;
+                        $PAGE->requires->js(new moodle_url('/local/leeloolxptrivias/js/owl.carousel.js'));
+
+                        $PAGE->requires->js_init_code('require(["jquery"], function ($) {
+                            $( document ).ready(function( $ ) {
+                                var owl = $(".arena-slider");
+                                owl.owlCarousel({
+                                loop: false,
+                                autoplay: true,
+                                dots: false,
+                                nav: true,
+                                center:true,
+                                responsive: {
+                                    0: {
+                                    items: 3
+                                    },
+                                    600: {
+                                    items: 5
+                                    },
+                                    1000: {
+                                    items: 11
+                                    }
+                                }
+                                })
+                            });
+                        });');
+                    }
+                    
                 }
             }
 
@@ -158,15 +463,14 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
             /*$triva_review .= '<div class="playagaindiv"><div class="playagaininnerdiv"><a class="trivia_playagain" href="'.$CFG->wwwroot.'/mod/quiz/view.php?id='.$attemptobj->get_quiz()->cmid.'">Play Again!</a></div></div>';*/
 
-            $triva_review .= '<div class="playagaindiv"><div class="playagaininnerdiv"><a class="trivia_playagain" href="'.$CFG->wwwroot.'/mod/quiz/view.php?id='.$attemptobj->get_quiz()->cmid.'">Play<br>Again!</a></div></div>';
-
             $output = '';
             $output .= $this->header();
-            $output .= $triva_review;
-            //$output .= $this->review_summary_table($summarydata, $page);
-            /*$output .= $this->review_form($page, $showall, $displayoptions,
+            $output .= '<div class="triva_spinner_outer">'.$triva_spinner.'</div>';
+            $output .= '<div class="triva_review_outer" style="'.$hidereviewclass.'">'.$triva_review.'</div>';
+            /* $output .= $this->review_summary_table($summarydata, $page);
+            $output .= $this->review_form($page, $showall, $displayoptions,
                     $this->questions($attemptobj, true, $slots, $page, $showall, $displayoptions),
-                    $attemptobj);*/
+                    $attemptobj); */
     
             $output .= $this->review_next_navigation($attemptobj, $page, $lastpage, $showall);
             $output .= $this->footer();
@@ -881,6 +1185,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         $output .= html_writer::tag('div', '<span class="timerspan"></span><span class="pagespan">'.$crr_page.'/'.$total_page.'</span>',
                 array('class' => 'thinkblue_quiztimetaken top_timer hidden'));
         $output .= $this->attempt_form($attemptobj, $page, $slots, $id, $nextpage);
+
         $output .= $this->footer();
         return $output;
     }

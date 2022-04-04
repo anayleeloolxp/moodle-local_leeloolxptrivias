@@ -52,10 +52,18 @@ class observer {
         $courseid = $event->courseid;
         $lquizid = $_COOKIE['l_quiz_id'];
         $lquizisopp = $_COOKIE['l_quiz_isopp'];
-        $lquiztime = round($_COOKIE['l_quiz_time']/1000);
 
         $attemptid = $event->objectid;
         $cmid = $event->contextinstanceid;
+
+        $attemptobj = quiz_create_attempt_handling_errors($attemptid, $cmid);
+        $attempt = $attemptobj->get_attempt();
+
+        if( isset($_COOKIE['l_quiz_time']) && isset($_COOKIE['l_quiz_time']) != '' ){
+            $lquiztime = round($_COOKIE['l_quiz_time']/1000);
+        }else{
+            $lquiztime = 0;
+        }
 
         $admins = get_admins(); 
         $isadmin = false; 
@@ -79,10 +87,6 @@ class observer {
             if( $quizdata->quiztype == 'duels' ){
 
                 $userdata = $DB->get_record('user', array('id' => $userid));
-
-                $attemptobj = quiz_create_attempt_handling_errors($attemptid, $cmid);
-
-                $attempt = $attemptobj->get_attempt();
 
                 $score = $attempt->sumgrades + 0;
 

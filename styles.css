@@ -7,6 +7,7 @@
  *
  */
  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
  .superWheel{position:relative;max-width:100%;margin:4em auto 1em;font-size:25px;font-weight:700}.superWheel,.superWheel *{box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.sWheel-wrapper{position:relative}.superWheel .sWheel-inner{display:block;overflow:hidden;width:100%;height:100%;position:relative}.superWheel .sWheel{border-radius:100%;overflow:hidden}.superWheel .sWheel,.superWheel .sWheel>.sWheel-bg-layer,.superWheel .sWheel>.sWheel-txt-wrap,.superWheel .sWheel>.sWheel-txt-wrap>.sWheel-txt{position:absolute;top:0;left:0;width:100%;height:100%}.superWheel .sWheel>.sWheel-txt-wrap>.sWheel-txt,.superWheel .sWheel>.sWheel-bg-layer{margin:0 auto;border-radius:100%;padding:0;list-style:none;overflow:hidden;color:#ecf0f1}.superWheel .sWheel>.sWheel-txt-wrap,.superWheel .sWheel>.sWheel-bg-layer{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.superWheel .sWheel .sWheel-child .sWheel-inside{display:table;-webkit-transform:rotate(0) skew(-45deg);transform:rotate(0) skew(-45deg);width:50%;height:50%;-webkit-transform-origin:0 0;transform-origin:0 0;text-align:right;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;overflow:hidden}.superWheel .sWheel .sWheel-child .sWheel-inside>div{display:table-cell;vertical-align:middle;width:100%;height:100%;-webkit-transform:rotate(25deg);transform:rotate(25deg);-webkit-transform-origin:115% 25%;transform-origin:115% 25%;padding-right:40px;font-size:18px;font-weight:700}.superWheel .sWheel>.sWheel-bg-layer>div{overflow:hidden;position:absolute;top:50%;left:50%;width:100%;height:100%;-webkit-transform-origin:0 0;transform-origin:0 0;border:1px solid transparent;background-color:#404040}.superWheel .sWheel>.sWheel-bg-layer>div:nth-child(odd){background-color:#616161}.superWheel .sWheel>.sWheel-txt-wrap>.sWheel-txt>div{position:absolute;top:50%;left:50%;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;line-height:1.2em;max-height:23.4em;-webkit-transform-origin:0 0;transform-origin:0 1px;width:50%;padding-right:6%;font-weight:700;font-size:100%;cursor:default;color:#fff;text-align:right}.superWheel .sWheel>.sWheel-txt-wrap>.sWheel-txt>div img{max-width:25%;border-radius:50%}.superWheel .sWheel-center{width:100%;height:100%;border-radius:100%;text-align:center}.superWheel .sWheel-center>.sw-center-empty,.superWheel .sWheel-center>.sw-center-html{max-width:100%;position:absolute;top:50%;left:50%;-webkit-transform:translateY(-50%);transform:translateX(-50%) translateY(-50%);z-index:2}.superWheel .sWheel-center>.sw-center-empty{position:absolute}.superWheel .sWheel-center>img{max-width:100%;width:200px;position:relative;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.superWheel .sWheel-center>div{position:absolute;top:0;left:0;width:100%;height:100%;background:transparent!important}.superWheel .sWheel-marker{border-spacing:90px;width:16%;height:14%;position:absolute;left:50%;top:-18%;margin-top:7%;margin-left:-8%;-webkit-transition:.2 rotate linear;transition:.2 rotate linear;z-index:1;display:block;-webkit-transform:rotate(0deg);transform:rotate(0deg);-webkit-transform-origin:50% 35%;transform-origin:50% 35%}.superWheel .sWheel-marker>svg{height:100%;display:block;text-align:center;margin:0 auto}.superWheel .rotate{-webkit-transform:rotate(100deg);transform:rotate(100deg)}.sWheel>.sWheel-bg-layer>svg{margin:0 auto;border-radius:50%;display:block;width:100%;height:100%;-webkit-transform:rotate(0deg);transform:rotate(0deg)}@-webkit-keyframes animateColor{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}@keyframes animateColor{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
 
 
@@ -25,8 +26,6 @@
     margin: 0 0 50px;
     font-size: 80px;
     color: #a7b2da;
-    font-weight: 800;
-    text-transform: uppercase;
 }
 .trivia_question div.que .info span.qno {
     font-weight: 800;
@@ -126,38 +125,34 @@
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
-    margin: 0 0 50px;
+    margin: 0 0 40px;
 }
 .trivia_question.path-mod-quiz #mod_quiz_navblock .qnbutton {
-    width: 50px;
-    height: 60px;
+    width: 35px;
+    height: 40px;
     background: #e0e4ec !important;
     color: #a7b2da !important;
     border-radius: 6px;
-    font-size: 24px;
+    font-size: 18px;
     margin: 0 5px;
     font-weight: 400;
     text-decoration: none !important;
     border: none !important;
     text-shadow: none;
     box-shadow: none !important;
-    font-family: 'Oswald', sans-serif;
+    font-family: "Kaushan Script",cursive;
 }
 .trivia_question.path-mod-quiz #mod_quiz_navblock .qnbutton.thispage {
     background: #a7b2da !important;
     color: #fff !important;
-    font-size: 36px;
-    font-weight: 800;
+    font-size: 24px;
+    font-weight: normal;
     border: none;
 }
-/* .trivia_question.path-mod-quiz #mod_quiz_navblock .qnbutton.answersaved {
-    color: #6d6d6d !important;
-} */
 .trivia_question .top_timer {
     font-size: 28px;
-    color: #c0c3c9;
-    font-weight: 800;
-    font-family: 'Oswald', sans-serif;
+    color: #2c2c2c;
+    font-family: "Kaushan Script",cursive;
     margin: 0 0 -72px;
 }
 .trivia_question #page-wrapper #page #page-content [data-region="blocks-column"] section.block .thinkblue_quiztimetaken.hidden {
@@ -165,14 +160,17 @@
 }
 .trivia_question #page-wrapper #page #page-content [data-region="blocks-column"] section.block .othernav .endtestlink.aalink {
     margin: 0 auto;
-    color: #747474;
     font-size: 18px;
     display: inline-block;
     font-weight: 400;
-    box-shadow: none;
-    text-decoration: underline;
-    border: none;
-    background: none;
+    text-decoration: none;
+    box-shadow: 1px 3px 5px #dbdde5 inset!important;
+    background: #f5f5f6!important;
+    border-radius: 10px;
+    color: #222!important;
+    font-family: "Kaushan Script",cursive;
+    padding: 7px 15px;
+    height: 40px;
 }
 .trivia_question #page-wrapper #region-main .activity-navigation {
     display: none;
@@ -186,7 +184,6 @@
     font-size: 60px;
     color: #a7b2da;
     text-align: center;
-    text-transform: uppercase;
 }
 .reward_html {
     text-align: center;
@@ -214,9 +211,11 @@ span.trivia_play {
     line-height: 0;
     height: 100%;
     padding: 50% 0;
-    font-size: 40px;
-    color: #a7b2da;
+    font-size: 50px;
+    color: #fff;
     cursor: pointer;
+    font-family: 'Kaushan Script', cursive;
+    font-weight: normal;
 }
 .trivia_quiz_view .quizstartbuttondiv.quizstartbuttondivthinkblue {
     display: none;
@@ -227,38 +226,47 @@ span.trivia_play {
 .trivia_review #region-main.has-blocks {
     width: 100%;
 }
-.triva_review_inner h2 {
-    font-size: 72px;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 800;
-    margin: 0 0 25px;
-}
 .triva_review_inner {
     max-width: 700px;
     margin: 30px auto;
+}
+.trivia_users .trivia_user.iswinner {
+    background: #535762;
+    box-shadow: 1px 3px 5px #535762 inset;
+}
+.trivia_users .trivia_user .user_name span.teamname {
+    font-size: 14px;
+    display: block;
+    line-height: 14px;
+    font-weight: normal;
+    margin-right: 0;
+}
+.trivia_users .trivia_user.iswinner .user_name small, .trivia_users .trivia_user.iswinner .user_name, .trivia_users .trivia_user.iswinner .user_scrore>* {
+    color: white;
 }
 .trivia_users .trivia_user {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    background: #e0e4ec;
+    background: #f5f5f6;
     padding: 15px 32px;
     margin: 0 0 30px;
     border-radius: 100px;
     align-items: center;
+    box-shadow: 1px 3px 5px #dbdde5 inset;
 }
-.trivia_users .trivia_user:nth-child(1) {
+/* .trivia_users .trivia_user:nth-child(1) {
     background: #8b94b7;
-}
-.triva_review_inner.waiting .trivia_users .trivia_user:nth-child(1) {
+} */
+/* .triva_review_inner.waiting .trivia_users .trivia_user:nth-child(1) {
     background: #e0e4ec;
-}
+} */
 .trivia_users .trivia_user .user_img {
     width: 75px;
     height: 75px;
     border-radius: 50%;
     margin: 0 25px 0 0;
+    background: #fff;
     overflow: hidden;
 }
 .triva_review_inner.waiting .trivia_users .trivia_user .user_name {
@@ -276,7 +284,6 @@ span.trivia_play {
     font-size: 36px;
     line-height: 70px;
     font-weight: 800;
-    text-transform: uppercase;
     display: flex;
     align-items: center;
 }
@@ -287,11 +294,13 @@ span.trivia_play {
     font-family: 'Oswald', sans-serif;
 }
 .trivia_users .trivia_user .user_name small {
-    font-size: 36px;
-    font-weight: 700;
+    font-size: 30px;
+    font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #2c2c2c;
+    line-height: 40px;
 }
 .triva_review_inner.waiting .trivia_users .trivia_user .user_name span,
 .triva_review_inner.waiting .trivia_users .trivia_user .user_scrore {
@@ -306,7 +315,7 @@ span.trivia_play {
 }
 .trivia_users .trivia_user:nth-child(1) .user_name,
 .trivia_users .trivia_user:nth-child(1) .user_scrore>* {
-    color: #fff;
+    /* color: #fff; */
 }
 .triva_review_inner.waiting .trivia_users .trivia_user:nth-child(1) .user_name,
 .triva_review_inner.waiting .trivia_users .trivia_user:nth-child(1) .user_scrore>* {
@@ -326,14 +335,21 @@ span.trivia_play {
     width: 100%;
     object-fit: cover;
 }
+.triva_review_inner h2 {
+    font-size: 120px;
+    text-align: center;
+    margin: 0 0 55px;
+    font-family: "Kaushan Script",cursive;
+    text-shadow: 2px 4px 4px rgba(0,0,0,0.2);
+}
 .triva_review_inner.winner h2 {
-    color: #a7b2da;
+    color: #0fc2be;
 }
 .triva_review_inner.losser h2 {
-    color: red;
+    color: #c80200;
 }
 .triva_review_inner.waiting h2 {
-    color: #DBE1EB;
+    color: #565553;
 }
 .trivia_playagain {
     background: #dbe1eb;
@@ -346,27 +362,55 @@ span.trivia_play {
     margin: 60px auto;
 }
 .playagaindiv .trivia_playagain {
-    background: url([[pix:local_leeloolxptrivias|ButtonPlay]]) no-repeat center center / cover;
-    width: 354px;
-    height: 354px;
+    background: url([[pix:local_leeloolxptrivias|pay-round-img-inn2]]) no-repeat center center / cover !important;
+    width: 275px;
+    height: 275px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #556091;
+    color: #2c2c2c !important;
     font-size: 48px;
     line-height: normal;
-    font-weight: 700;
-    text-transform: uppercase;
+    font-family: "Kaushan Script",cursive;
     text-decoration: none;
 }
-/* .roulette_m {
-    display: block !important;
-} */
+.playagaininnerdiv .small_playagain {
+    background: url([[pix:local_leeloolxptrivias|pay-round-img-inn2]]) no-repeat center center / cover !important;
+    width: 170px;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2c2c2c!important;
+    font-size: 30px;
+    line-height: normal;
+    font-family: "Kaushan Script",cursive;
+    text-decoration: none;
+}
+.playagainDf {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.playagainDf .playagaininnerdiv {
+    margin: 0 50px;
+}
+.playagaindiv.waiting_outer .trivia_playagain {
+    color: #2c2c2c !important;
+}
+.playagaindiv.winner_outer .trivia_playagain {
+    color: #0fc2be !important;
+}
+.playagaindiv.losser_outer .trivia_playagain {
+    color: #c80200 !important;
+}
 .losser .reward_html, .losser .reward_icns {
     opacity: .2;
 }
 .trivia_quiz_view .trivia_info h2 {
-    font-weight: 800;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 120px;
 }
 .trivia_quiz_view .trivia_info .reward_html {
     font-weight: 600;
@@ -381,9 +425,6 @@ span.trivia_play {
     background: url([[pix:local_leeloolxptrivias|pay-round-img-inn]]) no-repeat center center / cover !important;
     min-width: 56%;
     min-height: 56%;
-}
-.trivia_play{
-    /*visibility: hidden;*/
 }
 .loaderonly #page-wrapper > * {
     display: none !important;
@@ -474,11 +515,12 @@ span.trivia_play {
     font-size: 17px;
     font-weight: 500;
     cursor: pointer;
+    margin: 0;
 }
 .trivia_question #page-wrapper #region-main .content .ablock .answer > div[class*="r"] label::before {
     content: "";
-    width: 34px;
-    height: 34px;
+    width: 24px;
+    height: 24px;
     display: inline-block;
     border: 2px solid #a7b2da;
     border-radius: 50%;
@@ -487,11 +529,11 @@ span.trivia_play {
 .trivia_question #page-wrapper #region-main .content .ablock .answer > div[class*="r"] input[type="radio"]:checked + label::after {
     content: "";
     background: #a7b2da;
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     position: absolute;
     border-radius: 50%;
-    left: 8px;
+    left: 5px;
 }
 .trivia_question #page-wrapper #region-main .content .qtext p .control .custom-select {
     width: auto;
@@ -511,8 +553,6 @@ span.trivia_play {
     object-fit: contain;
     border: none;
 }
-
-
 .trivia_question .que.ddwtos .group1 {
     background-color: #c5bbde;
     color: #19045f;
@@ -542,10 +582,6 @@ span.trivia_play {
 }
 .trivia_question .que.deferredfeedback .content .formulation.clearfix {
     background: none;
-}
-
-.path-mod-quiz footer#page-footer {
-    display: none;
 }
 .leeloolxp_quiz_type_trivias .srm-top-team-div, .leeloolxp_quiz_type_discover .srm-top-team-div, .leeloolxp_quiz_type_duels .srm-top-team-div {
     display: none;
@@ -590,3 +626,135 @@ span.pagespan {
     width: max-content;
     margin: 0 auto;
 }
+.arena-section-TopBanner-slider {
+    background-image: linear-gradient(to right, #f5f6fa,#f5f6fa,#fff,#fff,#fff,#f5f6fa,#f5f6fa);
+    box-shadow: 1px 2px 2px #dbdde5;
+    padding: 20px 0;
+    border-radius: 50%;
+    margin: 1px 0 0;
+}
+.arena-slider.owl-carousel .owl-item {
+    display: inline-block;
+    float: none;
+    vertical-align: middle;
+}
+.arena-slider.owl-carousel {
+    max-width: 75%;
+    margin: 0 auto;
+}
+.arena-slider-item span {
+    display: block;
+    width: 65px;
+    height: 65px;
+    background: #f5f5f6;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 1px 3px 5px #dbdde5 inset;
+    padding: 5px;
+}
+.center .arena-slider-item span {
+    width: 100px;
+    height: 100px;
+    background: #f5f5f6;
+    margin: 5px auto;
+    box-shadow: 1px 3px 5px #dbdde5, 1px 3px 5px #dbdde5 inset;
+    padding: 10px;
+}
+.arena-slider.owl-carousel .owl-nav button.owl-prev {
+    left: -100px;
+}
+.arena-slider.owl-carousel .owl-nav button.owl-next {
+    right: -100px;
+}
+.arena-slider.owl-carousel .owl-nav button.owl-prev span {
+    background: url([[pix:local_leeloolxptrivias|Left-arrow]]) no-repeat center center / cover !important;
+    width: 75px;
+    height: 61px;
+    display: block;
+    font-size: 0;
+}
+.arena-slider.owl-carousel .owl-nav button.owl-next span {
+    background: url([[pix:local_leeloolxptrivias|Right-arrow]]) no-repeat center center / cover !important;
+    width: 75px;
+    height: 61px;
+    display: block;
+    font-size: 0;
+}
+.arena-slider.owl-carousel .owl-nav button {
+    width: auto;
+    height: auto;
+    background: none !important;
+    box-shadow: none;
+}
+.arena-slider-item {
+    text-align: center;
+}
+.arena-slider-item small {
+    font-family: "Kaushan Script",cursive;
+    font-size: 14px;
+}
+.center .arena-slider-item small {
+    font-size: 18px;
+}
+.gam-spinner-mdl .sWheel-title {
+    visibility: visible;
+}
+.gam-spinner-mdl .wheel-standard {
+    max-width: 235px;
+    max-height: 235px;
+}
+.gam-spinner-mdl .wheel-standard .sWheel-wrapper {
+    max-width: 100%;
+    max-height: 100%;
+}
+.superWheel .sWheel>.sWheel-txt-wrap>.sWheel-txt>div {
+    font-family: "Kaushan Script",cursive;
+    font-size: 15px;
+}
+.superWheel .sWheel>.sWheel-txt-wrap>.sWheel-txt>div>div {
+    background: #fff;
+    box-shadow: 0 0 5px rgb(0,0,0,0.1);
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 50%;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    z-index: -1;
+    transform: translate(0, -50%);
+}
+.gam-spinner-mdl main.cd-main-content {
+    position: relative;
+}
+.gam-spinner-mdl main.cd-main-content button.wheel-standard-spin-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    font-family: "Kaushan Script",cursive;
+    font-size: 22px;
+    background: url([[pix:local_leeloolxptrivias|Spinbutton]]) no-repeat center center / cover !important;
+    color: #fff;
+}
+.gam-spinner-mdl main.cd-main-content button.wheel-standard-spin-button.spinningDone {
+    font-size: 25px;
+    background: url([[pix:local_leeloolxptrivias|Spinbutton1]]) no-repeat center center / cover !important;
+    color: #fff;
+}
+.gam-points-right.addpoint .gam-points-top,
+.gam-points-right.addpoint .gam-points-txt {
+    color: #303030;
+}
+
+
+
+
+
+

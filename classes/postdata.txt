@@ -1,11 +1,12 @@
 Array
 (
-    [email] => dGVzdHVzZXJAbGVlbG9vbHhwLmNvbQ==
-    [score] => 1
-    [moodlequizid] => 159
-    [courseid] => 3
-    [lquizid] => 39
-    [lquizisopp] => 1
-    [lquiztime] => 21
-    [activityid] => 490
+    [email] => YW5heUBzb2xvZGFsZXBsYXkuY29t
+    [score] => 0
+    [moodlequizid] => 156
+    [courseid] => 2
+    [lquizid] => 80
+    [lquizisopp] => 0
+    [lquiztime] => 7011
+    [activityid] => 485
+    [attemptid] => 248
 )

@@ -1,0 +1,13 @@
+Array
+(
+    [m_attempt_id] => 0
+    [moodleurl] => https://solodaleplay.com
+    [leeloolxpssourl] => https://leeloolxp.com/solodaleplay/login/?token=kIZp0o27EuixEgXS2UD5
+    [jsession_id] => 56ed8a89f2d25c921f260491e88b2caf
+    [license_key] => 479926367
+    [MoodleSession] => 0ba4e5d22d913bc62f20471c4a46b3f2
+    [popuptlt] => anay@solodaleplay.com
+    [l_quiz_isopp] => 0
+    [l_quiz_id] => 80
+    [l_quiz_time] => 7011004
+)

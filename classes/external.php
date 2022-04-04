@@ -194,7 +194,7 @@ class local_leeloolxptrivias_external extends external_api {
                         $lquizid = $infoopp->data->quizid_autoincrement;
 
                         $reward = $infoopp->reward;
-                        $timelastatempt = $infoopp->timelastatempt*1000;
+                        $timelastatempt = $infoopp->timelastatempt*10000;
                         $l_quiz_isopp = $infoopp->l_quiz_isopp;
                         $l_quiz_id = $infoopp->l_quiz_id;
 
@@ -248,8 +248,9 @@ class local_leeloolxptrivias_external extends external_api {
                             $oppslises[$inc]['value'] = $inc;
                             $oppslises[$inc]['name'] = $opponent->name;
                             $oppslises[$inc]['backgroundtext'] = '#a7b2da';
-                            $sentopponents = $inc;
+                            
                             $inc++;
+                            $sentopponents = $inc;
                         }
                     }
                 }
