@@ -436,7 +436,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                 var owl = $(".arena-slider");
                                 owl.owlCarousel({
                                 loop: false,
-                                autoplay: true,
+                                autoplay: false,
                                 dots: false,
                                 nav: true,
                                 center:true,
