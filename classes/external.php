@@ -175,6 +175,9 @@ class local_leeloolxptrivias_external extends external_api {
                         'CURLOPT_RETURNTRANSFER' => true,
                         'CURLOPT_HEADER' => false,
                         'CURLOPT_POST' => count($postdata),
+                        'CURLOPT_HTTPHEADER' => array(
+                            'LeelooLXPToken: '.get_config('local_leeloolxpapi')->leelooapitoken.''
+                        )
                     );
 
                     $outputopp = $curl->post($url, $postdata, $options);

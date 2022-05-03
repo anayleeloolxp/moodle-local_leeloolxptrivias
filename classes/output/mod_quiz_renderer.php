@@ -119,6 +119,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                     'CURLOPT_RETURNTRANSFER' => true,
                     'CURLOPT_HEADER' => false,
                     'CURLOPT_POST' => count($postdata),
+                    'CURLOPT_HTTPHEADER' => array(
+                        'LeelooLXPToken: '.get_config('local_leeloolxpapi')->leelooapitoken.''
+                    )
                 );
 
                 $outputopp = $curl->post($url, $postdata, $options);
@@ -301,7 +304,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                         "luck" : "'.$data->luck.'",
                                         "will" : "'.$data->will.'",
                                         "power" : "'.$data->power.'",
-                                        "marks" : "'.$summarydata['marks']['content'].'"
+                                        "marks" : "'.$summarydata['marks']['content'].'",
+                                        "installlogintoken": "'.$_COOKIE['installlogintoken'].'"
                                     };
                                       
                                     $.ajax({
@@ -604,6 +608,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         'CURLOPT_RETURNTRANSFER' => true,
                         'CURLOPT_HEADER' => false,
                         'CURLOPT_POST' => count($postdata),
+                        'CURLOPT_HTTPHEADER' => array(
+                            'LeelooLXPToken: '.get_config('local_leeloolxpapi')->leelooapitoken.''
+                        )
                     );
 
                     $outputopp = $curl->post($url, $postdata, $options);
@@ -715,7 +722,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
     
                                         var postForm = {
                                             "useremail" : "'.$baseemail.'",
-                                            "data" : \''.json_encode($savequizdata).'\'
+                                            "data" : \''.json_encode($savequizdata).'\',
+                                            "installlogintoken": "'.$_COOKIE['installlogintoken'].'"
                                         };
                                           
                                         $.ajax({
@@ -824,7 +832,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
     
                                         var postForm = {
                                             "useremail" : "'.$baseemail.'",
-                                            "data" : \''.json_encode($savequizdata).'\'
+                                            "data" : \''.json_encode($savequizdata).'\',
+                                            "installlogintoken": "'.$_COOKIE['installlogintoken'].'"
                                         };
                                           
                                         $.ajax({
@@ -1122,7 +1131,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                             };
     
                             var postdata = {
-                                "data" : window.btoa(JSON.stringify(postForm))
+                                "data" : window.btoa(JSON.stringify(postForm)),
+                                "installlogintoken": "'.$_COOKIE['installlogintoken'].'"
                             }
                             
                             $.ajax({
@@ -1148,7 +1158,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                             };
 
                             var postdata = {
-                                "data" : window.btoa(JSON.stringify(postForm))
+                                "data" : window.btoa(JSON.stringify(postForm)),
+                                "installlogintoken": "'.$_COOKIE['installlogintoken'].'"
                             }
                             
                             $.ajax({
