@@ -888,10 +888,11 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                 $PAGE->requires->js_init_code('require(["jquery"], function ($) {
                     $(document).ready(function () {
 
-                        $("body").addClass("loaderonly");
-
-                        $(".quizstartbuttondiv button").trigger("click");
-                        
+                        if ($(".quizstartbuttondiv button").length) {
+                            $("body").addClass("loaderonly");
+                            $(".quizstartbuttondiv button").trigger("click");
+                        }
+                       
                     });
                 });');    
             }
