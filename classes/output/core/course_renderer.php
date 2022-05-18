@@ -155,6 +155,8 @@ class course_renderer extends \core_course_renderer {
             COMPLETION_COMPLETE_PASS,
         ];
 
+        $completeclass = '';
+
         $hascompletion = $completioninfo->is_enabled($mod);
         if ($hascompletion) {
             $completeclass = 'activityincomplete';
