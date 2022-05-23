@@ -63,10 +63,11 @@ class local_leeloolxptrivias_external extends external_api {
      * @since Moodle 3.0
      * @throws moodle_exception
      */
-    public static function getquiz($cmId,$id) {
+    public static function getquiz($cmId, $id) {
         global $DB, $CFG;
 
-        $params = self::validate_parameters(self::getquiz_parameters(),
+        $params = self::validate_parameters(
+            self::getquiz_parameters(),
             array(
                 'cmId' => $cmId,
                 'id' => $id,
@@ -115,11 +116,11 @@ class local_leeloolxptrivias_external extends external_api {
 
         $issiteadmin = is_siteadmin();
 
-        if( isset($quiz->quiztype) && !is_siteadmin() ){
+        if (isset($quiz->quiztype) && !is_siteadmin()) {
 
             $reqrematch = optional_param('rematch', 0, PARAM_INTEGER);
-            
-            if( $quiz->quiztype == 'duels' ){
+
+            if ($quiz->quiztype == 'duels') {
 
                 $spinnerhtml = '';
 
@@ -150,8 +151,8 @@ class local_leeloolxptrivias_external extends external_api {
                 } else {
                     $false = 1;
                 }
-                
-                if( $false == 0 ){
+
+                if ($false == 0) {
 
                     $baseemail = base64_encode($USER->email);
                     $postdata = array(
@@ -163,11 +164,11 @@ class local_leeloolxptrivias_external extends external_api {
                         'rematch' => $reqrematch,
                     );
 
-                    $url = $leeloolxpurl.'/admin/sync_moodle_course/quiz_opponents_response';
+                    $url = $leeloolxpurl . '/admin/sync_moodle_course/quiz_opponents_response';
 
-                    $urlsave = $leeloolxpurl.'/admin/sync_moodle_course/quiz_attempt_start';
+                    $urlsave = $leeloolxpurl . '/admin/sync_moodle_course/quiz_attempt_start';
 
-                    $saveattemptidurl = $leeloolxpurl.'/admin/sync_moodle_course/saveattemptid';
+                    $saveattemptidurl = $leeloolxpurl . '/admin/sync_moodle_course/saveattemptid';
 
                     $curl = new curl;
 
@@ -176,18 +177,18 @@ class local_leeloolxptrivias_external extends external_api {
                         'CURLOPT_HEADER' => false,
                         'CURLOPT_POST' => count($postdata),
                         'CURLOPT_HTTPHEADER' => array(
-                            'LeelooLXPToken: '.get_config('local_leeloolxpapi')->leelooapitoken.''
+                            'LeelooLXPToken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
                         )
                     );
 
                     $outputopp = $curl->post($url, $postdata, $options);
-    
+
                     $infoopp = json_decode($outputopp);
 
                     //print_r($postdata);
                     //print_r($infoopp);
 
-                    if( $infoopp ){
+                    if ($infoopp) {
 
                         $infooppdata = $infoopp->data;
                         $opponents = $infoopp->data->opponents;
@@ -197,7 +198,7 @@ class local_leeloolxptrivias_external extends external_api {
                         $lquizid = $infoopp->data->quizid_autoincrement;
 
                         $reward = $infoopp->reward;
-                        $timelastatempt = $infoopp->timelastatempt*10000;
+                        $timelastatempt = $infoopp->timelastatempt * 10000;
                         $l_quiz_isopp = $infoopp->l_quiz_isopp;
                         $l_quiz_id = $infoopp->l_quiz_id;
 
@@ -219,7 +220,7 @@ class local_leeloolxptrivias_external extends external_api {
                             'activity_id' => $cmid
                         );
 
-                        $attemptlast = $DB->get_record_sql('SELECT state FROM {quiz_attempts} WHERE quiz = ? and userid = ? ORDER BY id DESC', [$quiz->id, $USER->id]);
+                        $attemptlast = $DB->get_record_sql("SELECT state FROM {quiz_attempts} WHERE quiz = ? and userid = ? ORDER BY id DESC", [$quiz->id, $USER->id]);
 
                         $hidespinner = '';
 
@@ -227,8 +228,8 @@ class local_leeloolxptrivias_external extends external_api {
                         $l_quiz_time = 0;
                         $l_quiz_id = 0;
 
-                        if( isset( $attemptlast->state ) ){
-                            if( $attemptlast->state == 'inprogress' ){
+                        if (isset($attemptlast->state)) {
+                            if ($attemptlast->state == 'inprogress') {
                                 $hidespinner = 'style="display:none"';
 
                                 $l_quiz_isopp = $l_quiz_isopp;
@@ -236,32 +237,30 @@ class local_leeloolxptrivias_external extends external_api {
                                 $l_quiz_id = $l_quiz_id;
 
                                 $isinprogress = 1;
-
                             }
                         }
-                        
+
                         $inc = 0;
-                        foreach( $opponents as $opponent ){
-                            if( $opponent->email == $opponentemail ){
+                        foreach ($opponents as $opponent) {
+                            if ($opponent->email == $opponentemail) {
                                 $opponentname = $opponent->name;
-                                $opponentstopnum = $inc+1;
+                                $opponentstopnum = $inc + 1;
                             }
 
                             $oppslises[$inc]['image'] = $opponent->image;
                             $oppslises[$inc]['value'] = $inc;
                             $oppslises[$inc]['name'] = $opponent->name;
                             $oppslises[$inc]['backgroundtext'] = '#a7b2da';
-                            
+
                             $inc++;
                             $sentopponents = $inc;
                         }
                     }
                 }
-
             }
         }
 
-        
+
 
         $data = array();
         $data['is_siteadmin'] = $issiteadmin;
@@ -270,7 +269,7 @@ class local_leeloolxptrivias_external extends external_api {
         $data['oppslises'] = $oppslises;
         $data['baseemail'] = $baseemail;
         $data['saveattemptidurl'] = $saveattemptidurl;
-        
+
         $data['opponentname'] = $opponentname;
         $data['opponentstopnum'] = $opponentstopnum;
         $data['opponentemail'] = $opponentemail;
@@ -285,7 +284,7 @@ class local_leeloolxptrivias_external extends external_api {
         $data['savequizdata'] = $savequizdata;
         $data['urlsave'] = $urlsave;
         $data['leeloolxpurl'] = $leeloolxpurl;
-        
+
 
         $result = array();
         $result['status'] = true;
@@ -354,5 +353,4 @@ class local_leeloolxptrivias_external extends external_api {
             )
         );
     }
-
 }

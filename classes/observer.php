@@ -59,39 +59,39 @@ class observer {
         $attemptobj = quiz_create_attempt_handling_errors($attemptid, $cmid);
         $attempt = $attemptobj->get_attempt();
 
-        if( isset($_COOKIE['l_quiz_time']) && isset($_COOKIE['l_quiz_time']) != '' ){
-            $lquiztime = round($_COOKIE['l_quiz_time']/1000);
-        }else{
+        if (isset($_COOKIE['l_quiz_time']) && isset($_COOKIE['l_quiz_time']) != '') {
+            $lquiztime = round($_COOKIE['l_quiz_time'] / 1000);
+        } else {
             $lquiztime = 0;
         }
 
-        $admins = get_admins(); 
-        $isadmin = false; 
+        $admins = get_admins();
+        $isadmin = false;
         foreach ($admins as $admin) {
             if ($userid == $admin->id) {
-                $isadmin = true; 
-                break; 
-            } 
+                $isadmin = true;
+                break;
+            }
         }
 
-        if( $isadmin ) {
+        if ($isadmin) {
             return true;
         }
 
-        file_put_contents(dirname(__FILE__).'/cookies.txt', print_r($_COOKIE, true));
-        file_put_contents(dirname(__FILE__).'/event.txt', print_r($event, true));
+        file_put_contents(dirname(__FILE__) . '/cookies.txt', print_r($_COOKIE, true));
+        file_put_contents(dirname(__FILE__) . '/event.txt', print_r($event, true));
 
         $quizdata = $DB->get_record('quiz', array('id' => $quizid));
 
-        if( isset( $quizdata->quiztype ) ){
-            if( $quizdata->quiztype == 'duels' ){
+        if (isset($quizdata->quiztype)) {
+            if ($quizdata->quiztype == 'duels') {
 
                 $userdata = $DB->get_record('user', array('id' => $userid));
 
                 $score = $attempt->sumgrades + 0;
 
                 $useremail = $userdata->email;
-                
+
                 $leeloolxplicense = get_config('local_leeloolxptrivias')->license;
 
                 $url = 'https://leeloolxp.com/api_moodle.php/?action=page_info';
@@ -121,7 +121,7 @@ class observer {
 
                 $postdata = array('email' => base64_encode($userdata->email), 'score' => $score, 'moodlequizid' => $quizid, 'courseid' => $courseid, 'lquizid' => $lquizid, 'lquizisopp' => $lquizisopp, 'lquiztime' => $lquiztime, 'activityid' => $activityid, 'attemptid' => $attemptid);
 
-                file_put_contents(dirname(__FILE__).'/postdata.txt', print_r($postdata, true));
+                file_put_contents(dirname(__FILE__) . '/postdata.txt', print_r($postdata, true));
 
                 //file_put_contents(dirname(__FILE__).'/leeloolxpurl.txt', print_r($leeloolxpurl, true));
 
@@ -137,7 +137,7 @@ class observer {
 
                     'CURLOPT_POST' => count($postdata),
                     'CURLOPT_HTTPHEADER' => array(
-                        'LeelooLXPToken: '.get_config('local_leeloolxpapi')->leelooapitoken.''
+                        'LeelooLXPToken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
                     )
 
                 );
@@ -146,7 +146,6 @@ class observer {
                     //file_put_contents(dirname(__FILE__).'/output.txt', print_r($output, true));
                     return true;
                 }
-
             }
         }
 
@@ -154,26 +153,25 @@ class observer {
     }
 
     /**
-    * Triggered when course completed.
-    *
-    * @param \core\event\question_updated $event
-    */
-   public static function question_updated(\core\event\question_updated $event) {
+     * Triggered when course completed.
+     *
+     * @param \core\event\question_updated $event
+     */
+    public static function question_updated(\core\event\question_updated $event) {
 
         global $DB;
         $questionid = $event->objectid;
-        
+
         $questiondata = $DB->get_record('tb_question_diff', array('questionid' => $questionid));
-        if( $questiondata ){
-            $cookiename = 'question_difficulty_'.$questionid;
+        if ($questiondata) {
+            $cookiename = 'question_difficulty_' . $questionid;
             $questiondifficulty = $_COOKIE[$cookiename];
             $DB->execute("update {tb_question_diff} set difficulty = ? where questionid = ?", [$questiondifficulty, $questionid]);
-        }else{
-            $cookiename = 'question_difficulty_'.$questionid;
+        } else {
+            $cookiename = 'question_difficulty_' . $questionid;
             $questiondifficulty = $_COOKIE[$cookiename];
             $DB->execute("INSERT INTO {tb_question_diff} (questionid, difficulty) VALUES (?, ?)", [$questionid, $questiondifficulty]);
         }
         return true;
     }
-       
 }

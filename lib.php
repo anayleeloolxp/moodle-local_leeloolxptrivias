@@ -34,13 +34,13 @@ function local_leeloolxptrivias_before_footer() {
     if (strpos($PAGE->pagetype, 'question-type-') !== false) {
         $questionid = optional_param('id', 0, PARAM_INT);
 
-        if( $questionid != 0 ){
+        if ($questionid != 0) {
 
             $questiondata = $DB->get_record('tb_question_diff', array('questionid' => $questionid));
 
-            if( $questiondata ){
+            if ($questiondata) {
                 $difficultyval = $questiondata->difficulty;
-            }else{
+            } else {
                 $difficultyval = 1;
             }
 
@@ -48,17 +48,17 @@ function local_leeloolxptrivias_before_footer() {
             $selectedtwo = '';
             $selectedthree = '';
 
-            if( $difficultyval == 1 ){
+            if ($difficultyval == 1) {
                 $selectedone = 'selected';
             }
-            if( $difficultyval == 2 ){
+            if ($difficultyval == 2) {
                 $selectedtwo = 'selected';
             }
-            if( $difficultyval == 3 ){
+            if ($difficultyval == 3) {
                 $selectedthree = 'selected';
             }
 
-            $difficulty_field = '<div id="fitem_id_difficulty" class="form-group row  fitem   "><div class="col-md-3 col-form-label d-flex pb-0 pr-md-0"><label class="d-inline word-break " for="id_difficulty">Difficulty</label><div class="ml-1 ml-md-auto d-flex align-items-center align-self-start"></div></div><div class="col-md-9 form-inline align-items-start felement" data-fieldtype="select"><select class="custom-select" name="difficulty" id="id_difficulty"><option value="1" '.$selectedone.'>1</option><option value="2" '.$selectedtwo.'>2</option><option value="3" '.$selectedthree.'>3</option></select><div class="form-control-feedback invalid-feedback" id="id_error_difficulty"></div></div></div>';
+            $difficulty_field = '<div id="fitem_id_difficulty" class="form-group row  fitem   "><div class="col-md-3 col-form-label d-flex pb-0 pr-md-0"><label class="d-inline word-break " for="id_difficulty">Difficulty</label><div class="ml-1 ml-md-auto d-flex align-items-center align-self-start"></div></div><div class="col-md-9 form-inline align-items-start felement" data-fieldtype="select"><select class="custom-select" name="difficulty" id="id_difficulty"><option value="1" ' . $selectedone . '>1</option><option value="2" ' . $selectedtwo . '>2</option><option value="3" ' . $selectedthree . '>3</option></select><div class="form-control-feedback invalid-feedback" id="id_error_difficulty"></div></div></div>';
 
             $PAGE->requires->js_init_code('require(["jquery"], function ($) {
                 $(document).ready(function () {
@@ -70,19 +70,18 @@ function local_leeloolxptrivias_before_footer() {
                         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
                     }
 
-                    setCookie("question_difficulty_'.$questionid.'", '.$difficultyval.', 1);
+                    setCookie("question_difficulty_' . $questionid . '", ' . $difficultyval . ', 1);
 
-                    var diff_field = \''.$difficulty_field.'\';
+                    var diff_field = \'' . $difficulty_field . '\';
                     $(diff_field).insertAfter("#fitem_id_name");
 
                     $("#id_difficulty").change(function () {
                         var selectedValue = $(this).val();
-                        setCookie("question_difficulty_'.$questionid.'", selectedValue, 1);
+                        setCookie("question_difficulty_' . $questionid . '", selectedValue, 1);
                     });
 
                 });
             });');
-
         }
     }
 }
@@ -93,24 +92,24 @@ function local_leeloolxptrivias_before_footer() {
  * @param formwrapper $formwrapper The formwrapper.
  * @param mform $mform The mform.
  */
-function local_leeloolxptrivias_coursemodule_standard_elements ($formwrapper, $mform){
+function local_leeloolxptrivias_coursemodule_standard_elements($formwrapper, $mform) {
     $modulename = $formwrapper->get_current()->modulename;
-    
+
     if ($modulename == 'quiz') {
 
         // get_string ( 'leeloo_text' , 'local_leeloolxptrivias' );
 
-        $mform->addElement('header', 'leeloo_fields', get_string ('leeloo_fields_lang', 'local_leeloolxptrivias'));
-        
+        $mform->addElement('header', 'leeloo_fields', get_string('leeloo_fields_lang', 'local_leeloolxptrivias'));
+
         $options = array(
-            'discover' => get_string ('discover_lang', 'local_leeloolxptrivias'),
-            'exercises' => get_string ('exercises_lang', 'local_leeloolxptrivias'),
-            'trivias' => get_string ('trivias_lang', 'local_leeloolxptrivias'),
-            'duels' => get_string ('duels_lang', 'local_leeloolxptrivias'),
-            'assessments' => get_string ('assessments_lang', 'local_leeloolxptrivias'),
-            'quest' => get_string ('quest_lang', 'local_leeloolxptrivias'),
-            'mission' => get_string ('mission_lang', 'local_leeloolxptrivias')
+            'discover' => get_string('discover_lang', 'local_leeloolxptrivias'),
+            'exercises' => get_string('exercises_lang', 'local_leeloolxptrivias'),
+            'trivias' => get_string('trivias_lang', 'local_leeloolxptrivias'),
+            'duels' => get_string('duels_lang', 'local_leeloolxptrivias'),
+            'assessments' => get_string('assessments_lang', 'local_leeloolxptrivias'),
+            'quest' => get_string('quest_lang', 'local_leeloolxptrivias'),
+            'mission' => get_string('mission_lang', 'local_leeloolxptrivias')
         );
-        $mform->addElement('select', 'quiztype', get_string ('quiz_type_lang', 'local_leeloolxptrivias'), $options);
-    }    
+        $mform->addElement('select', 'quiztype', get_string('quiz_type_lang', 'local_leeloolxptrivias'), $options);
+    }
 }

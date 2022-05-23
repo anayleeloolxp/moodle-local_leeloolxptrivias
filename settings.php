@@ -31,9 +31,12 @@ if ($hassiteconfig) {
 
     $ADMIN->add('localplugins', $settings);
 
-    $setting = new admin_setting_configtext('local_leeloolxptrivias/license',
+    $setting = new admin_setting_configtext(
+        'local_leeloolxptrivias/license',
         get_string('license', 'local_leeloolxptrivias'),
-        get_string('license', 'local_leeloolxptrivias'), 1);
+        get_string('license', 'local_leeloolxptrivias'),
+        1
+    );
 
     $settings->add($setting);
 }

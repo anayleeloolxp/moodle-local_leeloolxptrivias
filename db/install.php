@@ -33,12 +33,12 @@ function xmldb_local_leeloolxptrivias_install() {
     global $DB;
     $dbman = $DB->get_manager();
     $table = new xmldb_table('quiz');
-    $field = new xmldb_field('quiztype'); // You'll have to look up the definition to see 
+    $field = new xmldb_field('quiztype'); // You'll have to look up the definition to see
     $field->set_attributes(XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, null, '', 'id');
 
     if (!$dbman->field_exists($table, $field)) {
         $dbman->add_field($table, $field);
     }
-    
+
     return true;
 }

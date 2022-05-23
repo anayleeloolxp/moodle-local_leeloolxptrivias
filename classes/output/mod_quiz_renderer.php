@@ -21,6 +21,7 @@
  * @author     Leeloo LXP <info@leeloolxp.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 namespace local_leeloolxptrivias\output;
 
 use moodle_url;
@@ -56,12 +57,18 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
      * @param array $summarydata contains all table data
      * @return $output containing html data.
      */
-    public function review_page(quiz_attempt $attemptobj, $slots, $page, $showall,
-                                $lastpage, mod_quiz_display_options $displayoptions,
-                                $summarydata) {
+    public function review_page(
+        quiz_attempt $attemptobj,
+        $slots,
+        $page,
+        $showall,
+        $lastpage,
+        mod_quiz_display_options $displayoptions,
+        $summarydata
+    ) {
 
-        
-        if($attemptobj->get_quiz()->quiztype == 'duels' && !is_siteadmin()){
+
+        if ($attemptobj->get_quiz()->quiztype == 'duels' && !is_siteadmin()) {
             global $PAGE;
             $PAGE->add_body_class('trivia_review');
         }
@@ -69,8 +76,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         global $USER, $DB;
 
         $baseemail = base64_encode($USER->email);
-            
-        if( $attemptobj->get_quiz()->quiztype == 'duels' && !is_siteadmin()){
+
+        if ($attemptobj->get_quiz()->quiztype == 'duels' && !is_siteadmin()) {
             $triva_review = '';
             $triva_spinner = '';
             global $CFG;
@@ -100,8 +107,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             } else {
                 $false = 1;
             }
-            
-            if( $false == 0 ){
+
+            if ($false == 0) {
 
                 $postdata = array(
                     'useremail' => base64_encode($USER->email),
@@ -109,9 +116,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                     'cmId' => $attemptobj->get_quiz()->cmid
                 );
 
-                $url = $leeloolxpurl.'/admin/sync_moodle_course/gettriviadata';
+                $url = $leeloolxpurl . '/admin/sync_moodle_course/gettriviadata';
 
-                $urlsavescore = $leeloolxpurl.'/admin/sync_moodle_course/attempt_save_score';
+                $urlsavescore = $leeloolxpurl . '/admin/sync_moodle_course/attempt_save_score';
 
                 $curl = new curl;
 
@@ -120,7 +127,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                     'CURLOPT_HEADER' => false,
                     'CURLOPT_POST' => count($postdata),
                     'CURLOPT_HTTPHEADER' => array(
-                        'LeelooLXPToken: '.get_config('local_leeloolxpapi')->leelooapitoken.''
+                        'LeelooLXPToken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
                     )
                 );
 
@@ -129,100 +136,98 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                 $infoopp = json_decode($outputopp);
                 //print_r($infoopp);
 
-                if( $infoopp ){
+                if ($infoopp) {
                     $data = $infoopp->data;
 
                     $userwinnerclass = '';
                     $oppwinnerclass = '';
-                    if( $data->winner == $data->user_email ){
+                    if ($data->winner == $data->user_email) {
                         $userwinnerclass = 'iswinner';
-                    }elseif( $data->winner == $data->opponent_email ){
+                    } elseif ($data->winner == $data->opponent_email) {
                         $oppwinnerclass = 'iswinner';
                     }
 
                     $usershtml = '
                     <div class="trivia_users">
-                    <div class="trivia_user triviauser1 '.$userwinnerclass.'"> <div class="user_img"><img src="'.$data->userimage.'" /></div> <div class="user_name"><span>1</span> <div class="resultuserdetail"><small>'.$data->user.'</small><span class="teamname">'.$data->userteam.'</span></div></div> <div class="user_scrore"><b>'.$data->userpoints.'</b> <small>points</small></div> </div>
-                    <div class="trivia_user triviauser2 '.$oppwinnerclass.'"> <div class="user_img"><img src="'.$data->oppimage.'" /></div> <div class="user_name"><span>2</span> <div class="resultuserdetail"><small>'.$data->opponent.'</small><span class="teamname">'.$data->oppteam.'</span></div></div> <div class="user_scrore"><b>'.$data->opppoints.'</b> <small>points</small></div> </div>
+                    <div class="trivia_user triviauser1 ' . $userwinnerclass . '"> <div class="user_img"><img src="' . $data->userimage . '" /></div> <div class="user_name"><span>1</span> <div class="resultuserdetail"><small>' . $data->user . '</small><span class="teamname">' . $data->userteam . '</span></div></div> <div class="user_scrore"><b>' . $data->userpoints . '</b> <small>points</small></div> </div>
+                    <div class="trivia_user triviauser2 ' . $oppwinnerclass . '"> <div class="user_img"><img src="' . $data->oppimage . '" /></div> <div class="user_name"><span>2</span> <div class="resultuserdetail"><small>' . $data->opponent . '</small><span class="teamname">' . $data->oppteam . '</span></div></div> <div class="user_scrore"><b>' . $data->opppoints . '</b> <small>points</small></div> </div>
                     </div>';
 
-                    if( $data->winner == '0' ){
+                    if ($data->winner == '0') {
                         $class_win = 'waiting_outer';
-                        $triva_review .= '<div class="triva_review_inner waiting"><h2>Waiting!</h2>'.$rewardhtml.$usershtml.'</div>';
-                    }elseif( $USER->email == $data->winner ){
+                        $triva_review .= '<div class="triva_review_inner waiting"><h2>Waiting!</h2>' . $rewardhtml . $usershtml . '</div>';
+                    } elseif ($USER->email == $data->winner) {
                         $class_win = 'winner_outer';
-                        $triva_review .= '<div class="triva_review_inner winner"><h2>You Won!</h2>'.$rewardhtml.$usershtml.'</div>';
-                    }else{
+                        $triva_review .= '<div class="triva_review_inner winner"><h2>You Won!</h2>' . $rewardhtml . $usershtml . '</div>';
+                    } else {
                         $class_win = 'losser_outer';
-                        $triva_review .= '<div class="triva_review_inner losser"><h2>You Lost!</h2>'.$rewardhtml.$usershtml.'</div>';
+                        $triva_review .= '<div class="triva_review_inner losser"><h2>You Lost!</h2>' . $rewardhtml . $usershtml . '</div>';
                     }
 
-                    if( $USER->email == $data->user_email ){
+                    if ($USER->email == $data->user_email) {
                         $timetaken = $data->usertime;
                         $isopp = 0;
                         $attackdefencetext = 'Attack';
                         $attackdefencepoints = $data->attacks;
-                    }else{
+                    } else {
                         $timetaken = $data->opponenttime;
                         $isopp = 1;
                         $attackdefencetext = 'Defence';
                         $attackdefencepoints = $data->defences;
                     }
 
-                    if( $data->userpoints == '' && $isopp == 0){
+                    if ($data->userpoints == '' && $isopp == 0) {
                         $spinerfor = 'user';
                         $showpointsspinner = 1;
-                    }elseif( $data->opppoints == '' && $isopp == 1 ){
+                    } elseif ($data->opppoints == '' && $isopp == 1) {
                         $spinerfor = 'opp';
                         $showpointsspinner = 1;
-                    }else{
+                    } else {
                         $spinerfor = '';
                         $showpointsspinner = 0;
                     }
 
                     $hidereviewclass = '';
-                    if( $showpointsspinner == 1 ){
-                        $attemptdifficultysum = $DB->get_records_sql('SELECT qa.id, qd.difficulty FROM {question_attempts} qa left join {tb_question_diff} qd on qa.questionid = qd.questionid WHERE questionusageid = ?', [$attemptobj->get_attempt()->id]);
+                    if ($showpointsspinner == 1) {
+                        $attemptdifficultysum = $DB->get_records_sql("SELECT qa.id, qd.difficulty FROM {question_attempts} qa left join {tb_question_diff} qd on qa.questionid = qd.questionid WHERE questionusageid = ?", [$attemptobj->get_attempt()->id]);
 
                         $countquestions = count($attemptdifficultysum);
 
                         $quizmaxtime = 0;
 
-                        foreach($attemptdifficultysum as $quizquestion){
+                        foreach ($attemptdifficultysum as $quizquestion) {
 
-                            if( !$quizquestion->difficulty ){
+                            if (!$quizquestion->difficulty) {
                                 $questiondiff = 1;
-                            }else{
+                            } else {
                                 $questiondiff = $quizquestion->difficulty;
                             }
 
-                            if( $questiondiff == 3 ){
+                            if ($questiondiff == 3) {
                                 $questiontime = 15;
-                            }elseif( $questiondiff == 2 ){
+                            } elseif ($questiondiff == 2) {
                                 $questiontime = 10;
-                            }else{
+                            } else {
                                 $questiontime = 5;
                             }
 
-                            $quizmaxtime = $quizmaxtime+$questiontime;
-
-
+                            $quizmaxtime = $quizmaxtime + $questiontime;
                         }
 
                         $hidereviewclass = 'visibility: hidden;';
                         global $PAGE, $CFG;
                         $PAGE->requires->js(new moodle_url('/local/leeloolxptrivias/js/jquery.superwheel.min.js'));
-    
+
                         $luckmin = $data->luck - 9;
-                        if( $luckmin < 1 ){
+                        if ($luckmin < 1) {
                             $luckmin = 1;
                             $luckmax = 10;
-                        }else{
+                        } else {
                             $luckmax = $data->luck;
                         }
 
                         $slices = array();
-                        
+
                         $key = 0;
                         for ($x = $luckmin; $x <= $luckmax; $x++) {
                             $slices[$key]['text'] = $x;
@@ -234,9 +239,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
                         $PAGE->requires->js_init_code('require(["jquery"], function ($) {
                             $(document).ready(function () {
-    
+
                                 $(".wheel-standard").superWheel({
-                                    slices: '.json_encode($slices).',
+                                    slices: ' . json_encode($slices) . ',
                                     text : {
                                         color: "#303030",
                                     },
@@ -258,76 +263,76 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                     },
                                     selector: "value",
                                 });
-                            
-                                var tick = new Audio("'.$CFG->wwwroot.'/local/leeloolxptrivias/media/tick.mp3");
-                                
+
+                                var tick = new Audio("' . $CFG->wwwroot . '/local/leeloolxptrivias/media/tick.mp3");
+
                                 $(document).on("click",".wheel-standard-spin-button",function(e){
-                    
+
                                     if( !$(this).hasClass("spinningDone") ){
-                                        $(".wheel-standard").superWheel("start","value",Math.floor(Math.random() * ('.$luckmax.' - '.$luckmin.' + 1) + '.$luckmin.'));
+                                        $(".wheel-standard").superWheel("start","value",Math.floor(Math.random() * (' . $luckmax . ' - ' . $luckmin . ' + 1) + ' . $luckmin . '));
                                         $(this).prop("disabled",true);
                                     }
-                                    
+
                                 });
 
                                 $(document).on("click",".spinningDone",function(e){
                                     location.reload();
                                 });
-                                
-                                
+
+
                                 $(".wheel-standard").superWheel("onStart",function(results){
-                                    
+
                                     $(".wheel-standard-spin-button").text("Spin!").addClass("spinning");
-                                    
+
                                 });
                                 $(".wheel-standard").superWheel("onStep",function(results){
-                                    
+
                                     if (typeof tick.currentTime !== "undefined")
                                         tick.currentTime = 0;
                                     tick.play();
-                                    
+
                                 });
-    
+
                                 $(".wheel-standard").superWheel("onComplete",function(results){
 
                                     var postForm = {
-                                        "useremail" : "'.$baseemail.'",
-                                        "attemptid" : "'.$attemptobj->get_attempt()->id.'",
-                                        "isopp" : "'.$isopp.'",
+                                        "useremail" : "' . $baseemail . '",
+                                        "attemptid" : "' . $attemptobj->get_attempt()->id . '",
+                                        "isopp" : "' . $isopp . '",
                                         "spinnerval" : results.value,
-                                        "course_id" : "'.$attemptobj->get_quiz()->course.'",
-                                        "activityid" : "'.$attemptobj->get_quiz()->cmid.'",
-                                        "quizmaxtime" : "'.$quizmaxtime.'",
-                                        "countquestions" : "'.$countquestions.'",
-                                        "attack" : "'.$data->attacks.'",
-                                        "defence" : "'.$data->defences.'",
-                                        "luck" : "'.$data->luck.'",
-                                        "will" : "'.$data->will.'",
-                                        "power" : "'.$data->power.'",
-                                        "marks" : "'.$summarydata['marks']['content'].'",
-                                        "installlogintoken": "'.$_COOKIE['installlogintoken'].'"
+                                        "course_id" : "' . $attemptobj->get_quiz()->course . '",
+                                        "activityid" : "' . $attemptobj->get_quiz()->cmid . '",
+                                        "quizmaxtime" : "' . $quizmaxtime . '",
+                                        "countquestions" : "' . $countquestions . '",
+                                        "attack" : "' . $data->attacks . '",
+                                        "defence" : "' . $data->defences . '",
+                                        "luck" : "' . $data->luck . '",
+                                        "will" : "' . $data->will . '",
+                                        "power" : "' . $data->power . '",
+                                        "marks" : "' . $summarydata['marks']['content'] . '",
+                                        "installlogintoken": "' . $_COOKIE['installlogintoken'] . '"
                                     };
-                                      
+
                                     $.ajax({
                                         type : "POST",
-                                        url : "'.$urlsavescore.'",
+                                        url : "' . $urlsavescore . '",
                                         data : postForm,
                                         dataType : "json",
                                         success : function(data) {
-                                            
+
                                             $(".wheel-standard-spin-button").text("Ok!").addClass("spinningDone");
                                             $(".gam-points-right").addClass("addpoint");
                                             $(".gam-points-top").text(data);
                                             $(".wheel-standard-spin-button").prop("disabled",false);
-                                            
+
                                         }
                                     });
-                                    
+
                                 });
-    
+
                             });
                         });');
-    
+
                         $triva_spinner .= '
                         <div class="modal-backdrop fade show"></div>
                         <div class="modal fade show" id="gam_popup_spinner" tabindex="-1" role="dialog" aria-labelledby="gam_popup_spinner" aria-modal="true">
@@ -338,19 +343,19 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                             <div class="gam-spinner-top">
                                                 <!--<div class="gam-nm-top">08<small>/10</small></div>
                                                 <div class="gam-txt-top">correct answers</div>-->
-                                                <div class="gam-nm-top">'.round(explode('/',$summarydata['marks']['content'])[0],0).'<small>/'.round(explode('/',$summarydata['marks']['content'])[1],0).'</small></div>
-                                                <div class="gam-txt-top">'.$summarydata['marks']['title'].'</div>
+                                                <div class="gam-nm-top">' . round(explode('/', $summarydata['marks']['content'])[0], 0) . '<small>/' . round(explode('/', $summarydata['marks']['content'])[1], 0) . '</small></div>
+                                                <div class="gam-txt-top">' . $summarydata['marks']['title'] . '</div>
                                             </div>
                                             <div class="gam-spinner-mdl">
                                                 <main class="cd-main-content text-center">
-    
+
                                                     <div class="wheel-standard"></div>
                                                     <button type="button" class="button button-primary wheel-standard-spin-button">Spin!</button>
-                                                    
+
                                                 </main> <!-- cd-main-content -->
-                                                
+
                                             </div>
-                                            <div class="gam-spinner-btm">'.gmdate("H:i:s", $timetaken).'</div>
+                                            <div class="gam-spinner-btm">' . gmdate("H:i:s", $timetaken) . '</div>
                                         </div>
                                         <div class="gam-spinner-right">
                                             <div class="gam-top-right">
@@ -363,26 +368,26 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                                 <ul>
                                                     <li class="active">
                                                         <div class="gam-btm-item">
-                                                            <p>'.$attackdefencetext.'</p>
-                                                            <h3>'.$attackdefencepoints.'</h3>
+                                                            <p>' . $attackdefencetext . '</p>
+                                                            <h3>' . $attackdefencepoints . '</h3>
                                                         </div>
                                                     </li>
                                                     <li class="">
                                                         <div class="gam-btm-item">
                                                             <p>Luck</p>
-                                                            <h3>'.$data->luck.'</h3>
+                                                            <h3>' . $data->luck . '</h3>
                                                         </div>
                                                     </li>
                                                     <li class="">
                                                         <div class="gam-btm-item">
                                                             <p>Power</p>
-                                                            <h3>'.$data->power.'</h3>
+                                                            <h3>' . $data->power . '</h3>
                                                         </div>
                                                     </li>
                                                     <li class="">
                                                         <div class="gam-btm-item">
                                                             <p>Will</p>
-                                                            <h3>'.$data->will.'</h3>
+                                                            <h3>' . $data->will . '</h3>
                                                         </div>
                                                     </li>
                                                 </ul>
@@ -395,14 +400,14 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         ';
                     }
 
-                    $triva_review .= '<div class="playagainDf playagaindiv '.$class_win.'">
+                    $triva_review .= '<div class="playagainDf playagaindiv ' . $class_win . '">
                         <div class="playagaininnerdiv">
                             <a class="small_playagain" href="#">
                                 <span>New</span>
                             </a>
                         </div>
                         <div class="playagaininnerdiv">
-                            <a class="trivia_playagain" href="'.$CFG->wwwroot.'/mod/quiz/view.php?id='.$attemptobj->get_quiz()->cmid.'">Play<br>Again!</a>
+                            <a class="trivia_playagain" href="' . $CFG->wwwroot . '/mod/quiz/view.php?id=' . $attemptobj->get_quiz()->cmid . '">Play<br>Again!</a>
                         </div>
                         <div class="playagaininnerdiv">
                             <a class="small_playagain" href="#">
@@ -412,22 +417,22 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                     </div>';
 
 
-                    if( !empty( $data->current_rewards ) ){
+                    if (!empty($data->current_rewards)) {
 
                         $allrewardshtml = '';
 
-                        foreach($data->current_rewards as $reward ){
+                        foreach ($data->current_rewards as $reward) {
                             $allrewardshtml .= '<div class="item">
                                 <div class="arena-slider-item">
-                                    <span data-toggle="tooltip" data-placement="top" data-original-title="'.$reward->name.'"><img src="'.$reward->image.'"/></span>
-                                    <small>'.$reward->count.'</small>
+                                    <span data-toggle="tooltip" data-placement="top" data-original-title="' . $reward->name . '"><img src="' . $reward->image . '"/></span>
+                                    <small>' . $reward->count . '</small>
                                 </div>
                             </div>';
                         }
 
                         $triva_review .= '<div class="arena-section-TopBanner-slider">
                             <div class="arena-slider owl-carousel">
-                                '.$allrewardshtml.'
+                                ' . $allrewardshtml . '
 
                             </div>
                         </div>';
@@ -459,7 +464,6 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                             });
                         });');
                     }
-                    
                 }
             }
 
@@ -469,29 +473,32 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
             $output = '';
             $output .= $this->header();
-            $output .= '<div class="triva_spinner_outer">'.$triva_spinner.'</div>';
-            $output .= '<div class="triva_review_outer" style="'.$hidereviewclass.'">'.$triva_review.'</div>';
+            $output .= '<div class="triva_spinner_outer">' . $triva_spinner . '</div>';
+            $output .= '<div class="triva_review_outer" style="' . $hidereviewclass . '">' . $triva_review . '</div>';
             /* $output .= $this->review_summary_table($summarydata, $page);
             $output .= $this->review_form($page, $showall, $displayoptions,
                     $this->questions($attemptobj, true, $slots, $page, $showall, $displayoptions),
                     $attemptobj); */
-    
+
             $output .= $this->review_next_navigation($attemptobj, $page, $lastpage, $showall);
             $output .= $this->footer();
-
-        }else{
+        } else {
             $output = '';
             $output .= $this->header();
             $output .= $this->review_summary_table($summarydata, $page);
-            $output .= $this->review_form($page, $showall, $displayoptions,
-                    $this->questions($attemptobj, true, $slots, $page, $showall, $displayoptions),
-                    $attemptobj);
-    
+            $output .= $this->review_form(
+                $page,
+                $showall,
+                $displayoptions,
+                $this->questions($attemptobj, true, $slots, $page, $showall, $displayoptions),
+                $attemptobj
+            );
+
             //$output .= $this->review_next_navigation($attemptobj, $page, $lastpage, $showall);
             $output .= $this->footer();
         }
 
-        
+
         return $output;
     }
 
@@ -547,13 +554,13 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
         global $USER, $PAGE;
 
-        if( isset($quiz->quiztype) && !is_siteadmin() ){
+        if (isset($quiz->quiztype) && !is_siteadmin()) {
 
             $reqautostart = optional_param('autostart', 0, PARAM_RAW);
 
             $reqrematch = optional_param('rematch', 0, PARAM_INTEGER);
-            
-            if( $quiz->quiztype == 'duels' ){
+
+            if ($quiz->quiztype == 'duels') {
 
                 $spinnerhtml = '';
                 $reward = 0;
@@ -585,8 +592,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                 } else {
                     $false = 1;
                 }
-                
-                if( $false == 0 ){
+
+                if ($false == 0) {
 
                     $baseemail = base64_encode($USER->email);
                     $postdata = array(
@@ -598,9 +605,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         'rematch' => $reqrematch,
                     );
 
-                    $url = $leeloolxpurl.'/admin/sync_moodle_course/quiz_opponents_response';
+                    $url = $leeloolxpurl . '/admin/sync_moodle_course/quiz_opponents_response';
 
-                    $urlsave = $leeloolxpurl.'/admin/sync_moodle_course/quiz_attempt_start';
+                    $urlsave = $leeloolxpurl . '/admin/sync_moodle_course/quiz_attempt_start';
 
                     $curl = new curl;
 
@@ -609,18 +616,18 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         'CURLOPT_HEADER' => false,
                         'CURLOPT_POST' => count($postdata),
                         'CURLOPT_HTTPHEADER' => array(
-                            'LeelooLXPToken: '.get_config('local_leeloolxpapi')->leelooapitoken.''
+                            'LeelooLXPToken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
                         )
                     );
 
                     $outputopp = $curl->post($url, $postdata, $options);
-    
+
                     $infoopp = json_decode($outputopp);
 
                     //print_r($postdata);
                     //print_r($infoopp);
 
-                    if( $infoopp ){
+                    if ($infoopp) {
 
                         $infooppdata = $infoopp->data;
                         $opponents = $infoopp->data->opponents;
@@ -630,7 +637,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         $lquizid = $infoopp->data->quizid_autoincrement;
 
                         $reward = $infoopp->reward;
-                        $timelastatempt = $infoopp->timelastatempt*1000;
+                        $timelastatempt = $infoopp->timelastatempt * 1000;
                         $l_quiz_isopp = $infoopp->l_quiz_isopp;
                         $l_quiz_id = $infoopp->l_quiz_id;
 
@@ -663,27 +670,26 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         setCookie("l_quiz_id", 0, 1);
                         setCookie("m_attempt_id", 0, 30);';
 
-                        if( isset( $attemptlast->state ) ){
-                            if( $attemptlast->state == 'inprogress' ){
+                        if (isset($attemptlast->state)) {
+                            if ($attemptlast->state == 'inprogress') {
                                 $hidespinner = 'style="display:none"';
 
-                                $setcookies = 'setCookie("l_quiz_isopp", '.$l_quiz_isopp.', 1);
-                                setCookie("l_quiz_time", '.$timelastatempt.', 1);
-                                setCookie("l_quiz_id", '.$l_quiz_id.', 1);
+                                $setcookies = 'setCookie("l_quiz_isopp", ' . $l_quiz_isopp . ', 1);
+                                setCookie("l_quiz_time", ' . $timelastatempt . ', 1);
+                                setCookie("l_quiz_id", ' . $l_quiz_id . ', 1);
                                 setCookie("m_attempt_id", 0, 30);';
-
                             }
                         }
-                        $spinnerhtml .= '<div class="roulette_m" '.$hidespinner.'><main class="cd-main-content text-center">
+                        $spinnerhtml .= '<div class="roulette_m" ' . $hidespinner . '><main class="cd-main-content text-center">
                             <div class="wheel-with-image"></div>
                             <!--<button type="button" class="button button-primary wheel-with-image-spin-button">Spin</button>-->
                         </main> <!-- cd-main-content -->';
 
                         $spinnerhtml .= '<div class="opponent_div" style="display:none"></div></div>';
-        
+
                         $oppslises = array();
-                        foreach( $opponents as $key=>$opponent ){
-                            if( $opponent->email == $opponentemail ){
+                        foreach ($opponents as $key => $opponent) {
+                            if ($opponent->email == $opponentemail) {
                                 $opponentname = $opponent->name;
                                 $opponentstopnum = $key;
                             }
@@ -692,97 +698,95 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                             $oppslises[$key]['value'] = $key;
                             $oppslises[$key]['message'] = $opponent->name;
                             $oppslises[$key]['backgroundtext'] = '#a7b2da';
-
                         }
 
-                        if( $reqrematch != 0 ){
+                        if ($reqrematch != 0) {
 
                             $PAGE->requires->js_init_code('require(["jquery"], function ($) {
                                 $(document).ready(function () {
-    
+
                                     $("body").addClass("trivia_quiz_view");
-    
+
                                     function setCookie(cname, cvalue, exdays) {
                                         const d = new Date();
                                         d.setTime(d.getTime() + (exdays*24*60*60*1000));
                                         let expires = "expires="+ d.toUTCString();
                                         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
                                     }
-    
-                                    $(document).on("click",".trivia_play",function(e){	
+
+                                    $(document).on("click",".trivia_play",function(e){
                                         $(".quizstartbuttondivthinkblue button").trigger("click");
                                     });
-    
-                                    '.$setcookies.'
-            
-                                    $(".opponent_div").html("Rematch with '.$opponentname.'<div class=\'rematch_playdiv\'><div class=\'wheel-with-image superWheel _0\' style=\'font-size: 25px;width: 500px;height: 500px;\'><div class=\'sWheel-wrapper\' style=\'width: 500px; height: 500px; font-size: 100%;\'><div class=\'sWheel-inner\'><div class=\'sWheel\'><div class=\'sWheel-bg-layer\'></div></div><div class=\'sWheel-center\'><div class=\'sw-center-html\' style=\'width: 30%; height: 30%;\'><span class=\'trivia_play\'>PLAY!</span></div></div></div></div></div></div>");
+
+                                    ' . $setcookies . '
+
+                                    $(".opponent_div").html("Rematch with ' . $opponentname . '<div class=\'rematch_playdiv\'><div class=\'wheel-with-image superWheel _0\' style=\'font-size: 25px;width: 500px;height: 500px;\'><div class=\'sWheel-wrapper\' style=\'width: 500px; height: 500px; font-size: 100%;\'><div class=\'sWheel-inner\'><div class=\'sWheel\'><div class=\'sWheel-bg-layer\'></div></div><div class=\'sWheel-center\'><div class=\'sw-center-html\' style=\'width: 30%; height: 30%;\'><span class=\'trivia_play\'>PLAY!</span></div></div></div></div></div></div>");
                                     $(".opponent_div").show();
 
                                     $(".quizstartbuttondivthinkblue form").submit(function(e){
-    
+
                                         var postForm = {
-                                            "useremail" : "'.$baseemail.'",
-                                            "data" : \''.json_encode($savequizdata).'\',
-                                            "installlogintoken": "'.$_COOKIE['installlogintoken'].'"
+                                            "useremail" : "' . $baseemail . '",
+                                            "data" : \'' . json_encode($savequizdata) . '\',
+                                            "installlogintoken": "' . $_COOKIE['installlogintoken'] . '"
                                         };
-                                          
+
                                         $.ajax({
                                             type : "POST",
-                                            url : "'.$urlsave.'",
+                                            url : "' . $urlsave . '",
                                             data : postForm,
                                             dataType : "json",
                                             success : function(data) {
-                                                setCookie("l_quiz_isopp", '.$isopponent.', 30);
+                                                setCookie("l_quiz_isopp", ' . $isopponent . ', 30);
                                                 setCookie("l_quiz_id", data, 30);
                                                 console.log(data);
                                             }
                                         });
-                                        
+
                                     });
                                 });
                             });');
-
-                        }else{
+                        } else {
                             $PAGE->requires->js_init_code('require(["jquery"], function ($) {
                                 $(document).ready(function () {
-    
+
                                     $("body").addClass("trivia_quiz_view");
-    
+
                                     function setCookie(cname, cvalue, exdays) {
                                         const d = new Date();
                                         d.setTime(d.getTime() + (exdays*24*60*60*1000));
                                         let expires = "expires="+ d.toUTCString();
                                         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
                                     }
-    
-                                    $(document).on("click",".trivia_play",function(e){	
+
+                                    $(document).on("click",".trivia_play",function(e){
                                         $(".quizstartbuttondivthinkblue button").trigger("click");
                                         $(".sWheel-title").css("visibility", "visible");
                                     });
-    
-                                    '.$setcookies.'
-            
+
+                                    ' . $setcookies . '
+
                                     $(".wheel").superWheel("onFail",function(results,spinCount,now){
                                         console.log("Spin Failed, Something wrong in wheel settings");
                                         console.log(results);
                                     });
-    
+
                                     $(".wheel-with-image").superWheel({
-                                        slices: '.json_encode($oppslises).',
+                                        slices: ' . json_encode($oppslises) . ',
                                         text : {
                                             type: "image",
                                             color: "#d3d8ec",
                                             size: 25,
                                             offset : 10,
                                             orientation: "h"
-                                            
+
                                         },
                                         slice: {
                                             background: "#d3d8ec",
                                             selected: {
                                                 background: "#a7b2da"
                                             }
-                                        },                                   
+                                        },
                                         line: {
                                             width: 1,
                                             color: "#a7b2da"
@@ -807,70 +811,69 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                         },
                                         selector: "value",
                                     });
-                                
-                                    var tick = new Audio("'.$CFG->wwwroot.'/local/leeloolxptrivias/media/tick.mp3");
-                                    
-                                    $(document).on("click",".wheel-with-image-spin-button",function(e){	
-                                        $(".wheel-with-image").superWheel("start","value",'.$opponentstopnum.');
+
+                                    var tick = new Audio("' . $CFG->wwwroot . '/local/leeloolxptrivias/media/tick.mp3");
+
+                                    $(document).on("click",".wheel-with-image-spin-button",function(e){
+                                        $(".wheel-with-image").superWheel("start","value",' . $opponentstopnum . ');
                                         $(this).prop("disabled",true);
                                     });
-                                    
-                                    $(".wheel-with-image").superWheel("onStart",function(results){	
+
+                                    $(".wheel-with-image").superWheel("onStart",function(results){
                                         $(".wheel-with-image-spin-button").text("Spinning...");
                                     });
-    
+
                                     $(".wheel-with-image").superWheel("onStep",function(results){
                                         if (typeof tick.currentTime !== "undefined")
-                                            tick.currentTime = 0;   
+                                            tick.currentTime = 0;
                                         tick.play();
                                     });
-    
+
                                     $(".wheel-with-image").superWheel("onComplete",function(results){
                                         $(".wheel-with-image-spin-button:disabled").prop("disabled",false).text("Spin");
-    
+
                                         $(".opponent_div").show();
-    
+
                                         var postForm = {
-                                            "useremail" : "'.$baseemail.'",
-                                            "data" : \''.json_encode($savequizdata).'\',
-                                            "installlogintoken": "'.$_COOKIE['installlogintoken'].'"
+                                            "useremail" : "' . $baseemail . '",
+                                            "data" : \'' . json_encode($savequizdata) . '\',
+                                            "installlogintoken": "' . $_COOKIE['installlogintoken'] . '"
                                         };
-                                          
+
                                         $.ajax({
                                             type : "POST",
-                                            url : "'.$urlsave.'",
+                                            url : "' . $urlsave . '",
                                             data : postForm,
                                             dataType : "json",
                                             success : function(data) {
-                                                setCookie("l_quiz_isopp", '.$isopponent.', 30);
+                                                setCookie("l_quiz_isopp", ' . $isopponent . ', 30);
                                                 setCookie("l_quiz_id", data, 30);
                                                 console.log(data);
                                             }
                                         });
-    
+
                                         $(".quizstartbuttondivthinkblue form").unbind("submit").submit();
                                     });
-    
+
                                     $(".quizstartbuttondivthinkblue form").submit(function(e){
-    
-                                        $(".opponent_div").html("'.$opponentname.' is your opponent.");
-    
+
+                                        $(".opponent_div").html("' . $opponentname . ' is your opponent.");
+
                                         e.preventDefault();
-                                        
+
                                         $(".roulette_m").css("visibility", "visible");
-                                        
-                                        $(".wheel-with-image").superWheel("start","value",'.$opponentstopnum.');  	
-                                        
+
+                                        $(".wheel-with-image").superWheel("start","value",' . $opponentstopnum . ');
+
                                     });
                                 });
                             });');
                         }
-                        
                     }
                 }
-            }elseif( ($quiz->quiztype == 'trivias' || $quiz->quiztype == 'discover') && $reqautostart == 1 ){
+            } elseif (($quiz->quiztype == 'trivias' || $quiz->quiztype == 'discover') && $reqautostart == 1) {
 
-                if( $quiz->quiztype == 'trivias' ){
+                if ($quiz->quiztype == 'trivias') {
                     $PAGE->requires->js_init_code('require(["jquery"], function ($) {
                         function setCookie(cname, cvalue, exdays) {
                             const d = new Date();
@@ -878,11 +881,11 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                             let expires = "expires="+ d.toUTCString();
                             document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
                         }
-        
+
                         setCookie("l_quiz_isopp", 0, 1);
                         setCookie("l_quiz_time", 0, 1);
                         setCookie("l_quiz_id", 0, 1);
-                    });'); 
+                    });');
                 }
 
                 $PAGE->requires->js_init_code('require(["jquery"], function ($) {
@@ -892,29 +895,29 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                             $("body").addClass("loaderonly");
                             $(".quizstartbuttondiv button").trigger("click");
                         }
-                       
+
                     });
-                });');    
+                });');
             }
         }
 
         $output = '';
-        if( isset($quiz->quiztype) && !is_siteadmin() && $quiz->quiztype == 'duels' ){
+        if (isset($quiz->quiztype) && !is_siteadmin() && $quiz->quiztype == 'duels') {
 
-            if( $reward != 0 ){
-                $rewardhtml = '<div class="reward_html">Reward: <span>'.$reward.'</span> Neurons</div>';
-            }else{
+            if ($reward != 0) {
+                $rewardhtml = '<div class="reward_html">Reward: <span>' . $reward . '</span> Neurons</div>';
+            } else {
                 $rewardhtml = '';
             }
 
-            $output .= '<div class="trivia_info"><h2>Ready?</h2>'.$rewardhtml.'</div>';
+            $output .= '<div class="trivia_info"><h2>Ready?</h2>' . $rewardhtml . '</div>';
             $output .= $spinnerhtml;
-        }else{
+        } else {
             $output .= $this->view_information($quiz, $cm, $context, $viewobj->infomessages);
             $output .= $this->view_table($quiz, $context, $viewobj);
             $output .= $this->view_result_info($quiz, $context, $cm, $viewobj);
         }
-        
+
         $output .= $this->box($this->view_page_buttons($viewobj), 'quizattempt');
         return $output;
     }
@@ -929,21 +932,26 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
      * @param array $popupoptions the options to use if we are opening a popup.
      * @return string HTML fragment.
      */
-    public function start_attempt_button($buttontext, moodle_url $url,
-            mod_quiz_preflight_check_form $preflightcheckform = null,
-            $popuprequired = false, $popupoptions = null, $stopentry = 1) {
+    public function start_attempt_button(
+        $buttontext,
+        moodle_url $url,
+        mod_quiz_preflight_check_form $preflightcheckform = null,
+        $popuprequired = false,
+        $popupoptions = null,
+        $stopentry = 1
+    ) {
 
         if (is_string($preflightcheckform)) {
             // Calling code was not updated since the API change.
             debugging('The third argument to start_attempt_button should now be the ' .
-                    'mod_quiz_preflight_check_form from ' .
-                    'quiz_access_manager::get_preflight_check_form, not a warning message string.');
+                'mod_quiz_preflight_check_form from ' .
+                'quiz_access_manager::get_preflight_check_form, not a warning message string.');
         }
 
         $button = new single_button($url, $buttontext);
-        if( $stopentry == 1 ){
+        if ($stopentry == 1) {
             $button->class .= ' quizstartbuttondiv';
-        }else{
+        } else {
             $button->class .= ' quizstartbuttondiv quizstartbuttondivthinkblue quizstartbuttondivthinkbluemodren';
         }
 
@@ -963,9 +971,14 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             $checkform = null;
         }
 
-        $this->page->requires->js_call_amd('mod_quiz/preflightcheck', 'init',
-                array('.quizstartbuttondiv [type=submit]', get_string('startattempt', 'quiz'),
-                       '#mod_quiz_preflight_form', $popupjsoptions));
+        $this->page->requires->js_call_amd(
+            'mod_quiz/preflightcheck',
+            'init',
+            array(
+                '.quizstartbuttondiv [type=submit]', get_string('startattempt', 'quiz'),
+                '#mod_quiz_preflight_form', $popupjsoptions
+            )
+        );
 
         return $this->render($button) . $checkform;
     }
@@ -984,12 +997,12 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         $attemptlast = end($viewobj->attempts);
 
         $stopentry = 0;
-        if( isset( $attemptlast->state ) ){
-            if( $attemptlast->state == 'inprogress' ){
+        if (isset($attemptlast->state)) {
+            if ($attemptlast->state == 'inprogress') {
                 $stopentry = 1;
             }
         }
-        
+
         if (!$viewobj->quizhasquestions) {
             $output .= $this->no_questions_message($viewobj->canedit, $viewobj->editurl);
         }
@@ -997,15 +1010,23 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         $output .= $this->access_messages($viewobj->preventmessages);
 
         if ($viewobj->buttontext) {
-            $output .= $this->start_attempt_button($viewobj->buttontext,
-                    $viewobj->startattempturl, $viewobj->preflightcheckform,
-                    $viewobj->popuprequired, $viewobj->popupoptions, $stopentry);
+            $output .= $this->start_attempt_button(
+                $viewobj->buttontext,
+                $viewobj->startattempturl,
+                $viewobj->preflightcheckform,
+                $viewobj->popuprequired,
+                $viewobj->popupoptions,
+                $stopentry
+            );
         }
 
         if ($viewobj->showbacktocourse) {
-            $output .= $this->single_button($viewobj->backtocourseurl,
-                    get_string('backtocourse', 'quiz'), 'get',
-                    array('class' => 'continuebutton'));
+            $output .= $this->single_button(
+                $viewobj->backtocourseurl,
+                get_string('backtocourse', 'quiz'),
+                'get',
+                array('class' => 'continuebutton')
+            );
         }
 
         return $output;
@@ -1022,50 +1043,56 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
      * @param int $id The ID of an attempt
      * @param int $nextpage The number of the next page
      */
-    public function attempt_page($attemptobj, $page, $accessmanager, $messages, $slots, $id,
-            $nextpage) {
-        
-        
-        
+    public function attempt_page(
+        $attemptobj,
+        $page,
+        $accessmanager,
+        $messages,
+        $slots,
+        $id,
+        $nextpage
+    ) {
+
+
+
         global $DB;
         $quizid = $attemptobj->get_quiz()->id;
         $slotsarr = $DB->get_records('quiz_slots', array('quizid' => $quizid), 'slot');
-        $questionsperpage = $attemptobj->get_quiz()->questionsperpage; 
-        $total_questions = count($slotsarr); 
-        $total_page = ceil($total_questions/$questionsperpage);
+        $questionsperpage = $attemptobj->get_quiz()->questionsperpage;
+        $total_questions = count($slotsarr);
+        $total_page = ceil($total_questions / $questionsperpage);
         $crr_page = $page + 1;
 
-        if($attemptobj->get_quiz()->quiztype == 'duels' || $attemptobj->get_quiz()->quiztype == 'discover' || $attemptobj->get_quiz()->quiztype == 'trivias'){
+        if ($attemptobj->get_quiz()->quiztype == 'duels' || $attemptobj->get_quiz()->quiztype == 'discover' || $attemptobj->get_quiz()->quiztype == 'trivias') {
             global $PAGE;
             $PAGE->add_body_class('trivia_question');
 
-            $PAGE->add_body_class('leeloolxp_quiz_type_'.$attemptobj->get_quiz()->quiztype);
+            $PAGE->add_body_class('leeloolxp_quiz_type_' . $attemptobj->get_quiz()->quiztype);
 
             $PAGE->requires->js_init_code('require(["jquery"], function ($) {
                 $(document).ready(function () {
 
-                    $(".endtestlink").text("Finish '.get_string($attemptobj->get_quiz()->quiztype.'_lang', 'local_leeloolxptrivias').'");
-                    
-                });
-            });');  
+                    $(".endtestlink").text("Finish ' . get_string($attemptobj->get_quiz()->quiztype . '_lang', 'local_leeloolxptrivias') . '");
 
-            if( $attemptobj->get_quiz()->quiztype == 'trivias' ){
+                });
+            });');
+
+            if ($attemptobj->get_quiz()->quiztype == 'trivias') {
                 $PAGE->requires->js_init_code('require(["jquery"], function ($) {
                     $(window).bind("beforeunload", function(){
                         $(".thinkblue_quiztimetaken").hide();
                     });
-    
-                    $(".thinkblue_quiztimetaken").show();
-                });');  
-            }
 
+                    $(".thinkblue_quiztimetaken").show();
+                });');
+            }
         }
-        
-        if( !is_siteadmin() && $attemptobj->get_quiz()->quiztype == 'duels' ){
+
+        if (!is_siteadmin() && $attemptobj->get_quiz()->quiztype == 'duels') {
 
             global $USER;
             $baseemail = base64_encode($USER->email);
-            
+
             global $CFG;
             require_once($CFG->dirroot . '/lib/filelib.php');
             $leeloolxplicense = get_config('local_leeloolxptrivias')->license;
@@ -1090,8 +1117,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             if ($infoleeloolxp->status != 'false') {
                 $leeloolxpurl = $infoleeloolxp->data->install_url;
 
-                $url = $leeloolxpurl.'/admin/sync_moodle_course/savetriviadata';
-                $saveattemptidurl = $leeloolxpurl.'/admin/sync_moodle_course/saveattemptid';
+                $url = $leeloolxpurl . '/admin/sync_moodle_course/savetriviadata';
+                $saveattemptidurl = $leeloolxpurl . '/admin/sync_moodle_course/saveattemptid';
                 //$PAGE->requires->css('/local/leeloolxptrivias/css/trivia.css');
                 $this->page->requires->js_init_code('require(["jquery"], function ($) {
                     $(document).ready(function () {
@@ -1117,7 +1144,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                             let expires = "expires="+ d.toUTCString();
                             document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
                         }
-            
+
                         var l_quiz_time = getCookie("l_quiz_time");
                         var l_quiz_isopp = getCookie("l_quiz_isopp");
                         var l_quiz_id = getCookie("l_quiz_id");
@@ -1126,19 +1153,19 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
                         if( m_attempt_id == 0 ){
                             var postForm = {
-                                "useremail" : "'.$baseemail.'",
+                                "useremail" : "' . $baseemail . '",
                                 "l_quiz_id" : l_quiz_id,
-                                "attemptid" : "'.$attemptobj->get_attempt()->id.'",
+                                "attemptid" : "' . $attemptobj->get_attempt()->id . '",
                             };
-    
+
                             var postdata = {
                                 "data" : window.btoa(JSON.stringify(postForm)),
-                                "installlogintoken": "'.$_COOKIE['installlogintoken'].'"
+                                "installlogintoken": "' . $_COOKIE['installlogintoken'] . '"
                             }
-                            
+
                             $.ajax({
                                 type : "POST",
-                                url : "'.$saveattemptidurl.'",
+                                url : "' . $saveattemptidurl . '",
                                 data : postdata,
                                 success : function(data) {
                                     setCookie("m_attempt_id", data, 30);
@@ -1146,26 +1173,26 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                 }
                             });
                         }
-                        
+
 
 
                         function save_trivia_time(){
                             var postForm = {
                                 "timetaken" : Math.round( (parseInt( getCookie("l_quiz_time") ) ) / 1000),
-                                "useremail" : "'.$baseemail.'",
-                                "course_id" : "'.$attemptobj->get_quiz()->course.'",
-                                "moodlequizid" : "'.$attemptobj->get_quiz()->id.'",
+                                "useremail" : "' . $baseemail . '",
+                                "course_id" : "' . $attemptobj->get_quiz()->course . '",
+                                "moodlequizid" : "' . $attemptobj->get_quiz()->id . '",
                                 "isopponent" : l_quiz_isopp,
                             };
 
                             var postdata = {
                                 "data" : window.btoa(JSON.stringify(postForm)),
-                                "installlogintoken": "'.$_COOKIE['installlogintoken'].'"
+                                "installlogintoken": "' . $_COOKIE['installlogintoken'] . '"
                             }
-                            
+
                             $.ajax({
                                 type : "POST",
-                                url : "'.$url.'",
+                                url : "' . $url . '",
                                 data : postdata,
                             });
                         }
@@ -1180,22 +1207,24 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         });
 
                         $(".thinkblue_quiztimetaken").show();
-                    }); 
+                    });
                 });');
-
             }
-        }    
+        }
 
         $output = '';
         $output .= $this->header();
 
-        if( $total_page == 1 ){
+        if ($total_page == 1) {
             $output .= '<style>#mod_quiz_navblock .qn_buttons { display: none!important; }</style>';
         }
 
         $output .= $this->quiz_notices($messages);
-        $output .= html_writer::tag('div', '<span class="timerspan"></span><span class="pagespan">'.$crr_page.'/'.$total_page.'</span>',
-                array('class' => 'thinkblue_quiztimetaken top_timer hidden'));
+        $output .= html_writer::tag(
+            'div',
+            '<span class="timerspan"></span><span class="pagespan">' . $crr_page . '/' . $total_page . '</span>',
+            array('class' => 'thinkblue_quiztimetaken top_timer hidden')
+        );
         $output .= $this->attempt_form($attemptobj, $page, $slots, $id, $nextpage);
 
         $output .= $this->footer();
@@ -1216,8 +1245,11 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             if ($userpicture->size === true) {
                 $fullname = html_writer::div($fullname);
             }
-            $output .= html_writer::tag('div', $this->render($userpicture) . $fullname,
-                    array('id' => 'user-picture', 'class' => 'clearfix'));
+            $output .= html_writer::tag(
+                'div',
+                $this->render($userpicture) . $fullname,
+                array('id' => 'user-picture', 'class' => 'clearfix')
+            );
         }
         $output .= $panel->render_before_button_bits($this);
 
@@ -1228,7 +1260,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         }
         $output .= html_writer::end_tag('div');
 
-        if( !is_siteadmin() ){
+        if (!is_siteadmin()) {
             $this->page->requires->js_init_code('require(["jquery"], function ($) {
                 $(document).ready(function () {
                     function setCookie(cname, cvalue, exdays) {
@@ -1268,7 +1300,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                     }
 
                     var myVar = setInterval( myTimer , 1000);
-                    
+
                     $(window).bind("beforeunload", function(){
                         clearInterval(myVar);
                     });
@@ -1276,15 +1308,25 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             });
             ');
 
-            $output .= html_writer::tag('div', 'Time taken: <span class="timerspan"></span>',
-                array('class' => 'thinkblue_quiztimetaken hidden'));
+            $output .= html_writer::tag(
+                'div',
+                'Time taken: <span class="timerspan"></span>',
+                array('class' => 'thinkblue_quiztimetaken hidden')
+            );
         }
 
-        $output .= html_writer::tag('div', $panel->render_end_bits($this),
-                array('class' => 'othernav'));
+        $output .= html_writer::tag(
+            'div',
+            $panel->render_end_bits($this),
+            array('class' => 'othernav')
+        );
 
-        $this->page->requires->js_init_call('M.mod_quiz.nav.init', null, false,
-                quiz_get_js_module());
+        $this->page->requires->js_init_call(
+            'M.mod_quiz.nav.init',
+            null,
+            false,
+            quiz_get_js_module()
+        );
 
         return $output;
     }

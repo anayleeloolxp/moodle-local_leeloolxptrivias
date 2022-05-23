@@ -21,6 +21,7 @@
  * @author     Leeloo LXP <info@leeloolxp.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 namespace local_leeloolxptrivias\output\core;
 
 defined('MOODLE_INTERNAL') || die;
@@ -64,13 +65,15 @@ class course_renderer extends \core_course_renderer {
         // Avoid unnecessary duplication: if e.g. a forum name already
         // includes the word forum (or Forum, etc) then it is unhelpful
         // to include that in the accessible description that is added.
-        if (false !== strpos(core_text::strtolower($instancename),
-                core_text::strtolower($altname))) {
+        if (false !== strpos(
+            core_text::strtolower($instancename),
+            core_text::strtolower($altname)
+        )) {
             $altname = '';
         }
         // File type after name, for alphabetic lists (screen reader).
         if ($altname) {
-            $altname = get_accesshide(' '.$altname);
+            $altname = get_accesshide(' ' . $altname);
         }
 
         list($linkclasses, $textclasses) = $this->course_section_cm_classes($mod);
@@ -79,44 +82,45 @@ class course_renderer extends \core_course_renderer {
         // has already been encoded for display (puke).
         $onclick = htmlspecialchars_decode($mod->onclick, ENT_QUOTES);
 
-        if( $mod->modname == 'quiz' ){
+        if ($mod->modname == 'quiz') {
             global $DB, $CFG;
             $quizid = $mod->get_course_module_record()->instance;
             $quizdata = $DB->get_record('quiz', array('id' => $quizid), '*', MUST_EXIST);
 
-            if( isset($quizdata->quiztype) ){
+            if (isset($quizdata->quiztype)) {
                 //$url .= '&quiztype='.$quizdata->quiztype;
-                if( $quizdata->quiztype == 'discover' ){
-                    $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Discover_on.png';
+                if ($quizdata->quiztype == 'discover') {
+                    $iconsrc = $CFG->wwwroot . '/local/leeloolxptrivias/pix/Discover_on.png';
                     $url .= '&autostart=1';
-                }else if( $quizdata->quiztype == 'exercises' ){
-                    $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Studycase_on.png';
-                }else if( $quizdata->quiztype == 'trivias' ){
-                    $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Trivia_on.png';
+                } else if ($quizdata->quiztype == 'exercises') {
+                    $iconsrc = $CFG->wwwroot . '/local/leeloolxptrivias/pix/Studycase_on.png';
+                } else if ($quizdata->quiztype == 'trivias') {
+                    $iconsrc = $CFG->wwwroot . '/local/leeloolxptrivias/pix/Trivia_on.png';
                     $url .= '&autostart=1';
-                }else if( $quizdata->quiztype == 'assessments' ){
-                    $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Assessments_on.png';
-                }else if( $quizdata->quiztype == 'quest' ){
-                    $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Quest_on.png';
-                }else if( $quizdata->quiztype == 'mission' ){
-                    $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Mission_on.png';
-                }else if( $quizdata->quiztype == 'duels' ){
-                    $iconsrc = $CFG->wwwroot.'/local/leeloolxptrivias/pix/Duelos_on.png';
+                } else if ($quizdata->quiztype == 'assessments') {
+                    $iconsrc = $CFG->wwwroot . '/local/leeloolxptrivias/pix/Assessments_on.png';
+                } else if ($quizdata->quiztype == 'quest') {
+                    $iconsrc = $CFG->wwwroot . '/local/leeloolxptrivias/pix/Quest_on.png';
+                } else if ($quizdata->quiztype == 'mission') {
+                    $iconsrc = $CFG->wwwroot . '/local/leeloolxptrivias/pix/Mission_on.png';
+                } else if ($quizdata->quiztype == 'duels') {
+                    $iconsrc = $CFG->wwwroot . '/local/leeloolxptrivias/pix/Duelos_on.png';
                 } else {
-                    $iconsrc = $mod->get_icon_url().'?default';
+                    $iconsrc = $mod->get_icon_url() . '?default';
                 }
             } else {
-                $iconsrc = $mod->get_icon_url().'?default';
+                $iconsrc = $mod->get_icon_url() . '?default';
             }
-
-        }else{
+        } else {
             $iconsrc = $mod->get_icon_url();
         }
 
         // Display link itself.
-        $activitylink = html_writer::empty_tag('img', array('src' => $iconsrc,
-                'class' => 'iconlarge activityicon', 'alt' => '', 'role' => 'presentation', 'aria-hidden' => 'true')) .
-                html_writer::tag('span', $instancename . $altname, array('class' => 'instancename'));
+        $activitylink = html_writer::empty_tag('img', array(
+            'src' => $iconsrc,
+            'class' => 'iconlarge activityicon', 'alt' => '', 'role' => 'presentation', 'aria-hidden' => 'true'
+        )) .
+            html_writer::tag('span', $instancename . $altname, array('class' => 'instancename'));
         if ($mod->uservisible) {
             $output .= html_writer::link($url, $activitylink, array('class' => 'aalink' . $linkclasses, 'onclick' => $onclick));
         } else {
@@ -187,7 +191,7 @@ class course_renderer extends \core_course_renderer {
 
         $indentclasses = 'mod-indent';
         if (!empty($mod->indent)) {
-            $indentclasses .= ' mod-indent-'.$mod->indent;
+            $indentclasses .= ' mod-indent-' . $mod->indent;
             if ($mod->indent > 15) {
                 $indentclasses .= ' mod-indent-huge';
             }
@@ -238,7 +242,7 @@ class course_renderer extends \core_course_renderer {
         $modicons = '';
         if ($this->page->user_is_editing()) {
             $editactions = course_get_cm_edit_actions($mod, $mod->indent, $sectionreturn);
-            $modicons .= ' '. $this->course_section_cm_edit_actions($editactions, $mod, $displayoptions);
+            $modicons .= ' ' . $this->course_section_cm_edit_actions($editactions, $mod, $displayoptions);
             $modicons .= $mod->afterediticons;
         }
 
