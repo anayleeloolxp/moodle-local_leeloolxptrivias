@@ -87,9 +87,9 @@ class local_leeloolxptrivias_external extends external_api {
         $baseemail = '';
         $leeloolxpurl = '';
 
-        $l_quiz_isopp = 0;
-        $l_quiz_time = 0;
-        $l_quiz_id = 0;
+        $lquizisoppunder = 0;
+        $lquiztimeunder = 0;
+        $lquizidunder = 0;
         $savequizdata = array(
             'moodlequizid' => '',
             'course_id' => '',
@@ -177,16 +177,13 @@ class local_leeloolxptrivias_external extends external_api {
                         'CURLOPT_HEADER' => false,
                         'CURLOPT_POST' => count($postdata),
                         'CURLOPT_HTTPHEADER' => array(
-                            'LeelooLXPToken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
+                            'Leeloolxptoken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
                         )
                     );
 
                     $outputopp = $curl->post($url, $postdata, $options);
 
                     $infoopp = json_decode($outputopp);
-
-                    //print_r($postdata);
-                    //print_r($infoopp);
 
                     if ($infoopp) {
 
@@ -199,8 +196,8 @@ class local_leeloolxptrivias_external extends external_api {
 
                         $reward = $infoopp->reward;
                         $timelastatempt = $infoopp->timelastatempt * 10000;
-                        $l_quiz_isopp = $infoopp->l_quiz_isopp;
-                        $l_quiz_id = $infoopp->l_quiz_id;
+                        $lquizisoppunder = $infoopp->l_quiz_isopp;
+                        $lquizidunder = $infoopp->l_quiz_id;
 
                         $savequizdata = array(
                             'moodlequizid' => $quiz->id,
@@ -220,21 +217,24 @@ class local_leeloolxptrivias_external extends external_api {
                             'activity_id' => $cmid
                         );
 
-                        $attemptlast = $DB->get_record_sql("SELECT state FROM {quiz_attempts} WHERE quiz = ? and userid = ? ORDER BY id DESC", [$quiz->id, $USER->id]);
+                        $attemptlast = $DB->get_record_sql(
+                            "SELECT state FROM {quiz_attempts} WHERE quiz = ? and userid = ? ORDER BY id DESC",
+                            [$quiz->id, $USER->id]
+                        );
 
                         $hidespinner = '';
 
-                        $l_quiz_isopp = 0;
-                        $l_quiz_time = 0;
-                        $l_quiz_id = 0;
+                        $lquizisoppunder = 0;
+                        $lquiztimeunder = 0;
+                        $lquizidunder = 0;
 
                         if (isset($attemptlast->state)) {
                             if ($attemptlast->state == 'inprogress') {
                                 $hidespinner = 'style="display:none"';
 
-                                $l_quiz_isopp = $l_quiz_isopp;
-                                $l_quiz_time = $timelastatempt;
-                                $l_quiz_id = $l_quiz_id;
+                                $lquizisoppunder = $lquizisoppunder;
+                                $lquiztimeunder = $timelastatempt;
+                                $lquizidunder = $lquizidunder;
 
                                 $isinprogress = 1;
                             }
@@ -260,8 +260,6 @@ class local_leeloolxptrivias_external extends external_api {
             }
         }
 
-
-
         $data = array();
         $data['is_siteadmin'] = $issiteadmin;
         $data['type'] = $quiz->quiztype;
@@ -278,13 +276,12 @@ class local_leeloolxptrivias_external extends external_api {
 
         $data['isinprogress'] = $isinprogress;
 
-        $data['l_quiz_isopp'] = $l_quiz_isopp;
-        $data['l_quiz_time'] = $l_quiz_time;
-        $data['l_quiz_id'] = $l_quiz_id;
+        $data['l_quiz_isopp'] = $lquizisoppunder;
+        $data['l_quiz_time'] = $lquiztimeunder;
+        $data['l_quiz_id'] = $lquizidunder;
         $data['savequizdata'] = $savequizdata;
         $data['urlsave'] = $urlsave;
         $data['leeloolxpurl'] = $leeloolxpurl;
-
 
         $result = array();
         $result['status'] = true;

@@ -24,8 +24,6 @@
 
 namespace local_leeloolxptrivias\output\core;
 
-defined('MOODLE_INTERNAL') || die;
-
 use cm_info;
 use core_text;
 use html_writer;
@@ -59,7 +57,7 @@ class course_renderer extends \core_course_renderer {
             return $output;
         }
 
-        //Accessibility: for files get description via icon, this is very ugly hack!
+        // Accessibility: for files get description via icon, this is very ugly hack!
         $instancename = $mod->get_formatted_name();
         $altname = $mod->modfullname;
         // Avoid unnecessary duplication: if e.g. a forum name already
@@ -88,7 +86,6 @@ class course_renderer extends \core_course_renderer {
             $quizdata = $DB->get_record('quiz', array('id' => $quizid), '*', MUST_EXIST);
 
             if (isset($quizdata->quiztype)) {
-                //$url .= '&quiztype='.$quizdata->quiztype;
                 if ($quizdata->quiztype == 'discover') {
                     $iconsrc = $CFG->wwwroot . '/local/leeloolxptrivias/pix/Discover_on.png';
                     $url .= '&autostart=1';
@@ -178,13 +175,7 @@ class course_renderer extends \core_course_renderer {
         }
 
         $output = '';
-        // We return empty string (because course module will not be displayed at all)
-        // if:
-        // 1) The activity is not visible to users
-        // and
-        // 2) The 'availableinfo' is empty, i.e. the activity was
-        //     hidden in a way that leaves no info, such as using the
-        //     eye icon.
+
         if (!$mod->is_visible_on_course_page()) {
             return $output;
         }
@@ -208,10 +199,10 @@ class course_renderer extends \core_course_renderer {
         // This div is used to indent the content.
         $output .= html_writer::div('', $indentclasses);
 
-        // Start a wrapper for the actual content to keep the indentation consistent
+        // Start a wrapper for the actual content to keep the indentation consistent.
         $output .= html_writer::start_tag('div');
 
-        // Display the link to the module (or do nothing if module has no url)
+        // Display the link to the module (or do nothing if module has no url).
         $cmname = $this->course_section_cm_name($mod, $displayoptions);
 
         if (!empty($cmname)) {
@@ -219,12 +210,11 @@ class course_renderer extends \core_course_renderer {
             $output .= html_writer::start_tag('div', array('class' => 'activityinstance'));
             $output .= $cmname;
 
-
-            // Module can put text after the link (e.g. forum unread)
+            // Module can put text after the link (e.g. forum unread).
             $output .= $mod->afterlink;
 
             // Closing the tag which contains everything but edit icons. Content part of the module should not be part of this.
-            $output .= html_writer::end_tag('div'); // .activityinstance
+            $output .= html_writer::end_tag('div'); // Activityinstance.
         }
 
         // If there is content but NO link (eg label), then display the
@@ -255,13 +245,13 @@ class course_renderer extends \core_course_renderer {
         // Show availability info (if module is not available).
         $output .= $this->course_section_cm_availability($mod, $displayoptions);
 
-        // If there is content AND a link, then display the content here
-        // (AFTER any icons). Otherwise it was displayed before
+        // If there is content AND a link, then display the content here.
+        // AFTER any icons. Otherwise it was displayed before.
         if (!empty($url)) {
             $output .= $contentpart;
         }
 
-        $output .= html_writer::end_tag('div'); // $indentclasses
+        $output .= html_writer::end_tag('div');
 
         // End of indentation div.
         $output .= html_writer::end_tag('div');

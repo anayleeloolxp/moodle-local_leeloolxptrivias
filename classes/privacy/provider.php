@@ -25,8 +25,6 @@
 
 namespace local_leeloolxptrivias\privacy;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Privacy Subsystem for local_leeloolxptrivias implementing null_provider.
  *

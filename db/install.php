@@ -23,8 +23,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Custom code to be run on installing the plugin.
  */
@@ -33,8 +31,8 @@ function xmldb_local_leeloolxptrivias_install() {
     global $DB;
     $dbman = $DB->get_manager();
     $table = new xmldb_table('quiz');
-    $field = new xmldb_field('quiztype'); // You'll have to look up the definition to see
-    $field->set_attributes(XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, null, '', 'id');
+    $field = new xmldb_field('quiztype'); // You'll have to look up the definition to see.
+    $field->set_attributes(XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, 'discover', null, '', 'id');
 
     if (!$dbman->field_exists($table, $field)) {
         $dbman->add_field($table, $field);

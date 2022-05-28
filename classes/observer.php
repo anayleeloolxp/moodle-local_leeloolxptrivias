@@ -29,8 +29,6 @@ use core_user;
 use curl;
 use moodle_url;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Plugin to sync users on new enroll, groups, trackign of activity view to LeelooLXP account of the Moodle Admin
  */
@@ -78,9 +76,6 @@ class observer {
             return true;
         }
 
-        file_put_contents(dirname(__FILE__) . '/cookies.txt', print_r($_COOKIE, true));
-        file_put_contents(dirname(__FILE__) . '/event.txt', print_r($event, true));
-
         $quizdata = $DB->get_record('quiz', array('id' => $quizid));
 
         if (isset($quizdata->quiztype)) {
@@ -117,13 +112,17 @@ class observer {
                     return true;
                 }
 
-                //$score = rand(1,100);
-
-                $postdata = array('email' => base64_encode($userdata->email), 'score' => $score, 'moodlequizid' => $quizid, 'courseid' => $courseid, 'lquizid' => $lquizid, 'lquizisopp' => $lquizisopp, 'lquiztime' => $lquiztime, 'activityid' => $activityid, 'attemptid' => $attemptid);
-
-                file_put_contents(dirname(__FILE__) . '/postdata.txt', print_r($postdata, true));
-
-                //file_put_contents(dirname(__FILE__).'/leeloolxpurl.txt', print_r($leeloolxpurl, true));
+                $postdata = array(
+                    'email' => base64_encode($userdata->email),
+                    'score' => $score,
+                    'moodlequizid' => $quizid,
+                    'courseid' => $courseid,
+                    'lquizid' => $lquizid,
+                    'lquizisopp' => $lquizisopp,
+                    'lquiztime' => $lquiztime,
+                    'activityid' => $activityid,
+                    'attemptid' => $attemptid
+                );
 
                 $url = $leeloolxpurl . '/admin/sync_moodle_course/trivia_submitted';
 
@@ -137,13 +136,12 @@ class observer {
 
                     'CURLOPT_POST' => count($postdata),
                     'CURLOPT_HTTPHEADER' => array(
-                        'LeelooLXPToken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
+                        'Leeloolxptoken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
                     )
 
                 );
 
                 if (!$output = $curl->post($url, $postdata, $options)) {
-                    //file_put_contents(dirname(__FILE__).'/output.txt', print_r($output, true));
                     return true;
                 }
             }
@@ -170,7 +168,10 @@ class observer {
         } else {
             $cookiename = 'question_difficulty_' . $questionid;
             $questiondifficulty = $_COOKIE[$cookiename];
-            $DB->execute("INSERT INTO {tb_question_diff} (questionid, difficulty) VALUES (?, ?)", [$questionid, $questiondifficulty]);
+            $DB->execute(
+                "INSERT INTO {tb_question_diff} (questionid, difficulty) VALUES (?, ?)",
+                [$questionid, $questiondifficulty]
+            );
         }
         return true;
     }
