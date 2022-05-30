@@ -178,7 +178,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: transparent !important;
+    background: transparent !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .superWheel .sWheel-marker {
@@ -190,8 +190,6 @@
     top: -18%;
     margin-top: 7%;
     margin-left: -8%;
-    -webkit-transition: .2 rotate linear;
-    transition: .2 rotate linear;
     z-index: 1;
     display: block;
     -webkit-transform: rotate(0deg);
@@ -300,7 +298,7 @@
 }
 
 .trivia_question #page-wrapper #page #page-content [data-region="blocks-column"] section.block .card-title.d-inline {
-    display: none !important;
+    display: none !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .trivia_question #page-wrapper #region-main div[role="main"] {
@@ -341,7 +339,7 @@
 
 .trivia_question #page-wrapper #region-main .content .ablock .answer > div > div > * {
     display: inline-block;
-    margin: 0 !important;
+    margin: 0 !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .trivia_question #page-wrapper #region-main .content .ablock .answer > div > input {
@@ -355,7 +353,7 @@
 
 .trivia_question #page-wrapper #region-main .content .ablock .answer > div > div p {
     margin: 0;
-    text-align: center !important;
+    text-align: center !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .trivia_question #page-wrapper #region-main .content .ablock .answer > div > div > .answernumber {
@@ -371,7 +369,7 @@
 }
 
 .trivia_question .qtype_multichoice_clearchoice .btn {
-    margin: 0 !important;
+    margin: 0 !important; /* stylelint-disable-line declaration-no-important */
     color: #a7b2da;
     border-radius: 10px;
     padding: 5px 20px;
@@ -394,22 +392,22 @@
 .trivia_question.path-mod-quiz #mod_quiz_navblock .qnbutton {
     width: 35px;
     height: 40px;
-    background: #e0e4ec !important;
-    color: #a7b2da !important;
+    background: #e0e4ec !important; /* stylelint-disable-line declaration-no-important */
+    color: #a7b2da !important; /* stylelint-disable-line declaration-no-important */
     border-radius: 6px;
     font-size: 18px;
     margin: 0 5px;
     font-weight: 400;
-    text-decoration: none !important;
-    border: none !important;
+    text-decoration: none !important; /* stylelint-disable-line declaration-no-important */
+    border: none !important; /* stylelint-disable-line declaration-no-important */
     text-shadow: none;
-    box-shadow: none !important;
+    box-shadow: none !important; /* stylelint-disable-line declaration-no-important */
     font-family: "Kaushan Script", cursive;
 }
 
 .trivia_question.path-mod-quiz #mod_quiz_navblock .qnbutton.thispage {
-    background: #a7b2da !important;
-    color: #fff !important;
+    background: #a7b2da !important; /* stylelint-disable-line declaration-no-important */
+    color: #fff !important; /* stylelint-disable-line declaration-no-important */
     font-size: 24px;
     font-weight: normal;
     border: none;
@@ -423,7 +421,7 @@
 }
 
 .trivia_question #page-wrapper #page #page-content [data-region="blocks-column"] section.block .thinkblue_quiztimetaken.hidden {
-    display: none !important;
+    display: none !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .trivia_question #page-wrapper #page #page-content [data-region="blocks-column"] section.block .othernav .endtestlink.aalink {
@@ -432,10 +430,10 @@
     display: inline-block;
     font-weight: 400;
     text-decoration: none;
-    box-shadow: 1px 3px 5px #dbdde5 inset !important;
-    background: #f5f5f6 !important;
+    box-shadow: 1px 3px 5px #dbdde5 inset !important; /* stylelint-disable-line declaration-no-important */
+    background: #f5f5f6 !important; /* stylelint-disable-line declaration-no-important */
     border-radius: 10px;
-    color: #222 !important;
+    color: #222 !important; /* stylelint-disable-line declaration-no-important */
     font-family: "Kaushan Script", cursive;
     padding: 7px 15px;
     height: 40px;
@@ -662,13 +660,13 @@ span.trivia_play {
 }
 
 .playagaindiv .trivia_playagain {
-    background: url([[pix:local_leeloolxptrivias|pay-round-img-inn2]]) no-repeat center center / cover !important;
+    background: url([[pix:local_leeloolxptrivias|pay-round-img-inn2]]) no-repeat center center / cover !important; /* stylelint-disable-line declaration-no-important */
     width: 275px;
     height: 275px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #2c2c2c !important;
+    color: #2c2c2c !important; /* stylelint-disable-line declaration-no-important */
     font-size: 48px;
     line-height: normal;
     font-family: "Kaushan Script", cursive;
@@ -676,13 +674,13 @@ span.trivia_play {
 }
 
 .playagaininnerdiv .small_playagain {
-    background: url([[pix:local_leeloolxptrivias|pay-round-img-inn2]]) no-repeat center center / cover !important;
+    background: url([[pix:local_leeloolxptrivias|pay-round-img-inn2]]) no-repeat center center / cover !important; /* stylelint-disable-line declaration-no-important */
     width: 170px;
     height: 170px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #2c2c2c !important;
+    color: #2c2c2c !important; /* stylelint-disable-line declaration-no-important */
     font-size: 30px;
     line-height: normal;
     font-family: "Kaushan Script", cursive;
@@ -701,15 +699,15 @@ span.trivia_play {
 }
 
 .playagaindiv.waiting_outer .trivia_playagain {
-    color: #2c2c2c !important;
+    color: #2c2c2c !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .playagaindiv.winner_outer .trivia_playagain {
-    color: #0fc2be !important;
+    color: #0fc2be !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .playagaindiv.losser_outer .trivia_playagain {
-    color: #c80200 !important;
+    color: #c80200 !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .losser .reward_html,
@@ -735,13 +733,13 @@ span.trivia_play {
 }
 
 .superWheel .sWheel-center > .sw-center-html {
-    background: url([[pix:local_leeloolxptrivias|pay-round-img-inn]]) no-repeat center center / cover !important;
+    background: url([[pix:local_leeloolxptrivias|pay-round-img-inn]]) no-repeat center center / cover !important; /* stylelint-disable-line declaration-no-important */
     min-width: 56%;
     min-height: 56%;
 }
 
 .loaderonly #page-wrapper > * {
-    display: none !important;
+    display: none !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .loaderonly #page-wrapper {
@@ -750,7 +748,7 @@ span.trivia_play {
 
 .loaderonly #page-wrapper::after {
     content: "";
-    background: url([[pix:local_leeloolxptrivias|Spinner-5a]]) no-repeat center center / cover !important;
+    background: url([[pix:local_leeloolxptrivias|Spinner-5a]]) no-repeat center center / cover !important; /* stylelint-disable-line declaration-no-important */
     display: block;
     width: 65px;
     height: 65px;
@@ -801,8 +799,8 @@ span.trivia_play {
 
 .trivia_question .que.ddmarker .draghomes .marker .markertext {
     width: 100%;
-    border-radius: 20px !important;
-    border: 1px solid #000 !important;
+    border-radius: 20px !important; /* stylelint-disable-line declaration-no-important */
+    border: 1px solid #000 !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .trivia_question #page-wrapper #region-main .content .form-control,
@@ -813,7 +811,7 @@ span.trivia_play {
 }
 
 .trivia_question #page-wrapper #region-main .que .qtext p {
-    text-align: center !important;
+    text-align: center !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .trivia_question #page-wrapper #region-main .content .answer td {
@@ -883,9 +881,9 @@ span.trivia_play {
     position: absolute;
     cursor: move;
     white-space: nowrap;
-    max-width: 296px !important;
-    max-height: 110px !important;
-    transform: scale(1) !important;
+    max-width: 296px !important; /* stylelint-disable-line declaration-no-important */
+    max-height: 110px !important; /* stylelint-disable-line declaration-no-important */
+    transform: scale(1) !important; /* stylelint-disable-line declaration-no-important */
     object-fit: contain;
     border: none;
 }
@@ -1036,7 +1034,7 @@ span.pagespan {
 }
 
 .arena-slider.owl-carousel .owl-nav button.owl-prev span {
-    background: url([[pix:local_leeloolxptrivias|Left-arrow]]) no-repeat center center / cover !important;
+    background: url([[pix:local_leeloolxptrivias|Left-arrow]]) no-repeat center center / cover !important; /* stylelint-disable-line declaration-no-important */
     width: 75px;
     height: 61px;
     display: block;
@@ -1044,7 +1042,7 @@ span.pagespan {
 }
 
 .arena-slider.owl-carousel .owl-nav button.owl-next span {
-    background: url([[pix:local_leeloolxptrivias|Right-arrow]]) no-repeat center center / cover !important;
+    background: url([[pix:local_leeloolxptrivias|Right-arrow]]) no-repeat center center / cover !important; /* stylelint-disable-line declaration-no-important */
     width: 75px;
     height: 61px;
     display: block;
@@ -1054,7 +1052,7 @@ span.pagespan {
 .arena-slider.owl-carousel .owl-nav button {
     width: auto;
     height: auto;
-    background: none !important;
+    background: none !important; /* stylelint-disable-line declaration-no-important */
     box-shadow: none;
 }
 
@@ -1120,13 +1118,13 @@ span.pagespan {
     outline: none;
     font-family: "Kaushan Script", cursive;
     font-size: 22px;
-    background: url([[pix:local_leeloolxptrivias|Spinbutton]]) no-repeat center center / cover !important;
+    background: url([[pix:local_leeloolxptrivias|Spinbutton]]) no-repeat center center / cover !important; /* stylelint-disable-line declaration-no-important */
     color: #fff;
 }
 
 .gam-spinner-mdl main.cd-main-content button.wheel-standard-spin-button.spinningDone {
     font-size: 25px;
-    background: url([[pix:local_leeloolxptrivias|Spinbutton1]]) no-repeat center center / cover !important;
+    background: url([[pix:local_leeloolxptrivias|Spinbutton1]]) no-repeat center center / cover !important; /* stylelint-disable-line declaration-no-important */
     color: #fff;
 }
 
