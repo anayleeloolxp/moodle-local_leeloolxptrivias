@@ -187,7 +187,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                             qa.id,
                             qd.difficulty
                             FROM {question_attempts} qa
-                            left join {tb_question_diff} qd
+                            left join {local_leeloolxptrivias_tb_question_diff} qd
                             on qa.questionid = qd.questionid
                             WHERE questionusageid = ?",
                             [$attemptobj->get_attempt()->id]
