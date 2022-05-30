@@ -15,21 +15,27 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin version and other meta-data are defined here.
+ * Leeloolxptrivias - Upgrade script
  *
- * @package     local_leeloolxptrivias
+ * @package    local_leeloolxptrivias
  * @copyright  2020 Leeloo LXP (https://leeloolxp.com)
  * @author     Leeloo LXP <info@leeloolxp.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+/**
+ * Function to upgrade local_leeloolxptrivias
+ * @param int $oldversion the version we are upgrading from
+ * @return bool result
+ */
+function xmldb_local_leeloolxptrivias_upgrade($oldversion) {
+    global $DB;
+    $dbman = $DB->get_manager();
 
-$plugin->component = 'local_leeloolxptrivias';
-$plugin->release = '1.0.0';
-$plugin->version = 2022053001;
-$plugin->requires = 2019052000;
-$plugin->maturity = MATURITY_STABLE;
-$plugin->dependencies = array(
-    'local_leeloolxpapi' => 2021090102
-);
+    if ($oldversion < 2022053001) {
+        $table = new xmldb_table('tb_question_diff');
+        $dbman->rename_table($table, 'local_leeloolxptrivias_tb_question_diff', true, true);
+    }
+
+    return true;
+}
