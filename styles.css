@@ -1092,7 +1092,7 @@ span.pagespan {
 
 .superWheel .sWheel > .sWheel-txt-wrap > .sWheel-txt > div > div {
     background: #fff;
-    box-shadow: 0 0 5px rgb(0, 0, 0, 0.1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     width: 40px;
     height: 40px;
     display: inline-block;
