@@ -35,6 +35,7 @@ function xmldb_local_leeloolxptrivias_upgrade($oldversion) {
     if ($oldversion < 2022053001) {
         $table = new xmldb_table('tb_question_diff');
         $dbman->rename_table($table, 'local_leeloolxptrivias_tb_question_diff', true, true);
+        upgrade_plugin_savepoint(true, 2022053001, 'local', 'leeloolxptrivias');
     }
 
     return true;
