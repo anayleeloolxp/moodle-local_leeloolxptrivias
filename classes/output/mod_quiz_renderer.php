@@ -144,7 +144,19 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                     }
 
                     $usershtml = '<div class="trivia_users">
-                    <div class="trivia_user triviauser1 ' . $userwinnerclass . '"> <div class="user_img"><img src="' . $data->userimage . '" /></div> <div class="user_name"><span>1</span> <div class="resultuserdetail"><small>' . $data->user . '</small><span class="teamname">' . $data->userteam . '</span></div></div> <div class="user_scrore"><b>' . $data->userpoints . '</b> <small>points</small></div> </div> <div class="trivia_user triviauser2 ' . $oppwinnerclass . '"> <div class="user_img"><img src="' . $data->oppimage . '" /></div> <div class="user_name"><span>2</span> <div class="resultuserdetail"><small>' . $data->opponent . '</small><span class="teamname">' . $data->oppteam . '</span></div></div> <div class="user_scrore"><b>' . $data->opppoints . '</b> <small>points</small></div> </div></div>';
+                    <div class="trivia_user triviauser1 ' .
+                        $userwinnerclass . '"> <div class="user_img"><img src="' .
+                        $data->userimage . '" /></div> <div class="user_name"><span>1</span>' .
+                        '<div class="resultuserdetail"><small>' .
+                        $data->user . '</small><span class="teamname">' .
+                        $data->userteam . '</span></div></div> <div class="user_scrore"><b>' .
+                        $data->userpoints . '</b> <small>points</small></div> </div> <div class="trivia_user triviauser2 ' .
+                        $oppwinnerclass . '"> <div class="user_img"><img src="' .
+                        $data->oppimage .
+                        '" /></div> <div class="user_name"><span>2</span> <div class="resultuserdetail"><small>' .
+                        $data->opponent . '</small><span class="teamname">' .
+                        $data->oppteam . '</span></div></div> <div class="user_scrore"><b>' .
+                        $data->opppoints . '</b> <small>points</small></div> </div></div>';
 
                     if ($data->winner == '0') {
                         $classwin = 'waiting_outer';
@@ -356,7 +368,10 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                             <div class="gam-spinner-top">
                                                 <!--<div class="gam-nm-top">08<small>/10</small></div>
                                                 <div class="gam-txt-top">correct answers</div>-->
-                                                <div class="gam-nm-top">' . round(explode('/', $summarydata['marks']['content'])[0], 0) . '<small>/' . round(explode('/', $summarydata['marks']['content'])[1], 0) . '</small></div>
+                                                <div class="gam-nm-top">
+                                                ' . round(explode('/', $summarydata['marks']['content'])[0], 0) . '
+                                                <small>/' . round(explode('/', $summarydata['marks']['content'])[1], 0) . '</small>
+                                                </div>
                                                 <div class="gam-txt-top">' . $summarydata['marks']['title'] . '</div>
                                             </div>
                                             <div class="gam-spinner-mdl">
@@ -703,6 +718,15 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
                         if ($reqrematch != 0) {
 
+                            $oppnenntdiv = '<div class=\'rematch_playdiv\'>' .
+                                '<div class=\'wheel-with-image superWheel _0\' ' .
+                                'style=\'font-size: 25px;width: 500px;height: 500px;\'>' .
+                                '<div class=\'sWheel-wrapper\' style=\'width: 500px; height: 500px; font-size: 100%;\'>' .
+                                '<div class=\'sWheel-inner\'><div class=\'sWheel\'>' .
+                                '<div class=\'sWheel-bg-layer\'></div></div><div class=\'sWheel-center\'>' .
+                                '<div class=\'sw-center-html\' style=\'width: 30%; height: 30%;\'>' .
+                                '<span class=\'trivia_play\'>PLAY!</span></div></div></div></div></div></div>';
+
                             $this->page->requires->js_init_code('require(["jquery"], function ($) {
                                 $(document).ready(function () {
 
@@ -721,7 +745,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
                                     ' . $setcookies . '
 
-                                    $(".opponent_div").html("Rematch with ' . $opponentname . '<div class=\'rematch_playdiv\'><div class=\'wheel-with-image superWheel _0\' style=\'font-size: 25px;width: 500px;height: 500px;\'><div class=\'sWheel-wrapper\' style=\'width: 500px; height: 500px; font-size: 100%;\'><div class=\'sWheel-inner\'><div class=\'sWheel\'><div class=\'sWheel-bg-layer\'></div></div><div class=\'sWheel-center\'><div class=\'sw-center-html\' style=\'width: 30%; height: 30%;\'><span class=\'trivia_play\'>PLAY!</span></div></div></div></div></div></div>");
+                                    $(".opponent_div").html("Rematch with ' . $opponentname . $oppnenntdiv . '");
                                     $(".opponent_div").show();
 
                                     $(".quizstartbuttondivthinkblue form").submit(function(e){

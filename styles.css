@@ -14,7 +14,7 @@
     max-width: 100%;
     margin: 4em auto 1em;
     font-size: 25px;
-    font-weight: 700
+    font-weight: 700;
 }
 
 .superWheel,
@@ -23,11 +23,11 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
 }
 
 .sWheel-wrapper {
-    position: relative
+    position: relative;
 }
 
 .superWheel .sWheel-inner {
@@ -35,12 +35,12 @@
     overflow: hidden;
     width: 100%;
     height: 100%;
-    position: relative
+    position: relative;
 }
 
 .superWheel .sWheel {
     border-radius: 100%;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .superWheel .sWheel,
@@ -51,7 +51,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%
+    height: 100%;
 }
 
 .superWheel .sWheel > .sWheel-txt-wrap > .sWheel-txt,
@@ -61,13 +61,13 @@
     padding: 0;
     list-style: none;
     overflow: hidden;
-    color: #ecf0f1
+    color: #ecf0f1;
 }
 
 .superWheel .sWheel > .sWheel-txt-wrap,
 .superWheel .sWheel > .sWheel-bg-layer {
     -webkit-transform: rotate(-90deg);
-    transform: rotate(-90deg)
+    transform: rotate(-90deg);
 }
 
 .superWheel .sWheel .sWheel-child .sWheel-inside {
@@ -82,7 +82,7 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .superWheel .sWheel .sWheel-child .sWheel-inside > div {
@@ -96,7 +96,7 @@
     transform-origin: 115% 25%;
     padding-right: 40px;
     font-size: 18px;
-    font-weight: 700
+    font-weight: 700;
 }
 
 .superWheel .sWheel > .sWheel-bg-layer > div {
@@ -109,11 +109,11 @@
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
     border: 1px solid transparent;
-    background-color: #404040
+    background-color: #404040;
 }
 
 .superWheel .sWheel > .sWheel-bg-layer > div:nth-child(odd) {
-    background-color: #616161
+    background-color: #616161;
 }
 
 .superWheel .sWheel > .sWheel-txt-wrap > .sWheel-txt > div {
@@ -133,19 +133,19 @@
     font-size: 100%;
     cursor: default;
     color: #fff;
-    text-align: right
+    text-align: right;
 }
 
 .superWheel .sWheel > .sWheel-txt-wrap > .sWheel-txt > div img {
     max-width: 25%;
-    border-radius: 50%
+    border-radius: 50%;
 }
 
 .superWheel .sWheel-center {
     width: 100%;
     height: 100%;
     border-radius: 100%;
-    text-align: center
+    text-align: center;
 }
 
 .superWheel .sWheel-center > .sw-center-empty,
@@ -156,11 +156,11 @@
     left: 50%;
     -webkit-transform: translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    z-index: 2
+    z-index: 2;
 }
 
 .superWheel .sWheel-center > .sw-center-empty {
-    position: absolute
+    position: absolute;
 }
 
 .superWheel .sWheel-center > img {
@@ -169,7 +169,7 @@
     position: relative;
     top: 50%;
     -webkit-transform: translateY(-50%);
-    transform: translateY(-50%)
+    transform: translateY(-50%);
 }
 
 .superWheel .sWheel-center > div {
@@ -178,7 +178,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: transparent !important
+    background: transparent !important;
 }
 
 .superWheel .sWheel-marker {
@@ -197,19 +197,19 @@
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
     -webkit-transform-origin: 50% 35%;
-    transform-origin: 50% 35%
+    transform-origin: 50% 35%;
 }
 
 .superWheel .sWheel-marker > svg {
     height: 100%;
     display: block;
     text-align: center;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .superWheel .rotate {
     -webkit-transform: rotate(100deg);
-    transform: rotate(100deg)
+    transform: rotate(100deg);
 }
 
 .sWheel > .sWheel-bg-layer > svg {
@@ -219,34 +219,34 @@
     width: 100%;
     height: 100%;
     -webkit-transform: rotate(0deg);
-    transform: rotate(0deg)
+    transform: rotate(0deg);
 }
 
 @-webkit-keyframes animateColor {
     0% {
-        background-position: 0 50%
+        background-position: 0 50%;
     }
 
     50% {
-        background-position: 100% 50%
+        background-position: 100% 50%;
     }
 
     100% {
-        background-position: 0 50%
+        background-position: 0 50%;
     }
 }
 
 @keyframes animateColor {
     0% {
-        background-position: 0 50%
+        background-position: 0 50%;
     }
 
     50% {
-        background-position: 100% 50%
+        background-position: 100% 50%;
     }
 
     100% {
-        background-position: 0 50%
+        background-position: 0 50%;
     }
 }
 
@@ -348,7 +348,7 @@
     display: none;
 }
 
-.trivia_question #page-wrapper #region-main .content .ablock .answer > div > input:checked+div {
+.trivia_question #page-wrapper #region-main .content .ablock .answer > div > input:checked + div {
     background: #a7b2da;
     color: #fff;
 }
@@ -858,7 +858,7 @@ span.trivia_play {
     margin-right: 15px;
 }
 
-.trivia_question #page-wrapper #region-main .content .ablock .answer > div[class*="r"] input[type="radio"]:checked+label::after {
+.trivia_question #page-wrapper #region-main .content .ablock .answer > div[class*="r"] input[type="radio"]:checked + label::after {
     content: "";
     background: #a7b2da;
     width: 14px;

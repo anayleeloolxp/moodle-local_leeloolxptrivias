@@ -134,14 +134,6 @@ class course_renderer extends \core_course_renderer {
      * This includes link, content, availability, completion info and additional information
      * that module type wants to display (i.e. number of unread forum posts)
      *
-     * This function calls:
-     * {@link core_course_renderer::course_section_cm_name()}
-     * {@link core_course_renderer::course_section_cm_text()}
-     * {@link core_course_renderer::course_section_cm_availability()}
-     * {@link core_course_renderer::course_section_cm_completion()}
-     * {@link course_get_cm_edit_actions()}
-     * {@link core_course_renderer::course_section_cm_edit_actions()}
-     *
      * @param stdClass $course
      * @param completion_info $completioninfo
      * @param cm_info $mod
