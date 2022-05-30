@@ -148,13 +148,16 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
                     if ($data->winner == '0') {
                         $classwin = 'waiting_outer';
-                        $trivareview .= '<div class="triva_review_inner waiting"><h2>Waiting!</h2>' . $rewardhtml . $usershtml . '</div>';
+                        $trivareview .= '<div class="triva_review_inner waiting"><h2>Waiting!</h2>' .
+                            $rewardhtml . $usershtml . '</div>';
                     } else if ($USER->email == $data->winner) {
                         $classwin = 'winner_outer';
-                        $trivareview .= '<div class="triva_review_inner winner"><h2>You Won!</h2>' . $rewardhtml . $usershtml . '</div>';
+                        $trivareview .= '<div class="triva_review_inner winner"><h2>You Won!</h2>' .
+                            $rewardhtml . $usershtml . '</div>';
                     } else {
                         $classwin = 'losser_outer';
-                        $trivareview .= '<div class="triva_review_inner losser"><h2>You Lost!</h2>' . $rewardhtml . $usershtml . '</div>';
+                        $trivareview .= '<div class="triva_review_inner losser"><h2>You Lost!</h2>' .
+                            $rewardhtml . $usershtml . '</div>';
                     }
 
                     if ($USER->email == $data->user_email) {
@@ -271,7 +274,13 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                 $(document).on("click",".wheel-standard-spin-button",function(e){
 
                                     if( !$(this).hasClass("spinningDone") ){
-                                        $(".wheel-standard").superWheel("start","value",Math.floor(Math.random() * (' . $luckmax . ' - ' . $luckmin . ' + 1) + ' . $luckmin . '));
+                                        $(
+                                            ".wheel-standard"
+                                        ).superWheel(
+                                            "start",
+                                            "value",
+                                            Math.floor(Math.random() * (' . $luckmax . ' - ' . $luckmin . ' + 1) + ' . $luckmin . ')
+                                        );
                                         $(this).prop("disabled",true);
                                     }
 
@@ -337,7 +346,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
                         $trivaspinner .= '
                         <div class="modal-backdrop fade show"></div>
-                        <div class="modal fade show" id="gam_popup_spinner" tabindex="-1" role="dialog" aria-labelledby="gam_popup_spinner" aria-modal="true">
+                        <div class="modal fade show"
+                        id="gam_popup_spinner" tabindex="-1"
+                        role="dialog" aria-labelledby="gam_popup_spinner" aria-modal="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="gam-spinner">
@@ -352,7 +363,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                                 <main class="cd-main-content text-center">
 
                                                     <div class="wheel-standard"></div>
-                                                    <button type="button" class="button button-primary wheel-standard-spin-button">Spin!</button>
+                                                    <button type="button" class="button button-primary wheel-standard-spin-button">
+                                                    Spin!
+                                                    </button>
 
                                                 </main> <!-- cd-main-content -->
 
@@ -409,7 +422,10 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                             </a>
                         </div>
                         <div class="playagaininnerdiv">
-                            <a class="trivia_playagain" href="' . $CFG->wwwroot . '/mod/quiz/view.php?id=' . $attemptobj->get_quiz()->cmid . '">Play<br>Again!</a>
+                            <a class="trivia_playagain"
+                            href="' . $CFG->wwwroot . '/mod/quiz/view.php?id=' . $attemptobj->get_quiz()->cmid . '">
+                            Play<br>Again!
+                            </a>
                         </div>
                         <div class="playagaininnerdiv">
                             <a class="small_playagain" href="#">
@@ -425,7 +441,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         foreach ($data->current_rewards as $reward) {
                             $allrewardshtml .= '<div class="item">
                                 <div class="arena-slider-item">
-                                    <span data-toggle="tooltip" data-placement="top" data-original-title="' . $reward->name . '"><img src="' . $reward->image . '"/></span>
+                                    <span data-toggle="tooltip" data-placement="top" data-original-title="' . $reward->name . '">
+                                        <img src="' . $reward->image . '"/>
+                                    </span>
                                     <small>' . $reward->count . '</small>
                                 </div>
                             </div>';
@@ -534,12 +552,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
      * @param array $quiz Array conting quiz data
      * @param int $cm Course Module ID
      * @param int $context The page context ID
-     * @param array $infomessages information about this quiz
-     * @param mod_quiz_view_object $viewobj
-     * @param string $buttontext text for the start/continue attempt button, if
-     *      it should be shown.
-     * @param array $infomessages further information about why the student cannot
-     *      attempt this quiz now, if appicable this quiz
+     * @param mod_quiz_view_object $viewobj View object
+     * @return void Return data
      */
     public function view_page($course, $quiz, $cm, $context, $viewobj) {
 
@@ -917,6 +931,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
      * @param mod_quiz_preflight_check_form $preflightcheckform deprecated.
      * @param bool $popuprequired whether the attempt needs to be opened in a pop-up.
      * @param array $popupoptions the options to use if we are opening a popup.
+     * @param int $stopentry stopentry flag.
      * @return string HTML fragment.
      */
     public function start_attempt_button(
@@ -1059,7 +1074,11 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             $this->page->requires->js_init_code('require(["jquery"], function ($) {
                 $(document).ready(function () {
 
-                    $(".endtestlink").text("Finish ' . get_string($attemptobj->get_quiz()->quiztype . '_lang', 'local_leeloolxptrivias') . '");
+                    $(
+                        ".endtestlink"
+                    ).text(
+                        "Finish ' . get_string($attemptobj->get_quiz()->quiztype . '_lang', 'local_leeloolxptrivias') . '"
+                    );
 
                 });
             });');
@@ -1282,7 +1301,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         var cookiespenttime = parseInt(l_quiz_time) + parseInt(timeSpent);
                         setCookie("l_quiz_time", cookiespenttime, 1);
 
-                        $(".thinkblue_quiztimetaken span.timerspan").text( Math.round( (parseInt(l_quiz_time) + (new Date - start)) / 1000) + " Seconds");
+                        $(
+                            ".thinkblue_quiztimetaken span.timerspan"
+                        ).text( Math.round( (parseInt(l_quiz_time) + (new Date - start)) / 1000) + " Seconds");
                     }
 
                     var myVar = setInterval( myTimer , 1000);

@@ -58,18 +58,19 @@ class local_leeloolxptrivias_external extends external_api {
     /**
      * Get quiz data...
      *
-     * @param int $cmId the quiz instance id
+     * @param int $cmid the quiz instance id
+     * @param int $id the quiz id
      * @return array of text and status result
      * @since Moodle 3.0
      * @throws moodle_exception
      */
-    public static function getquiz($cmId, $id) {
+    public static function getquiz($cmid, $id) {
         global $DB, $CFG;
 
         $params = self::validate_parameters(
             self::getquiz_parameters(),
             array(
-                'cmId' => $cmId,
+                'cmId' => $cmid,
                 'id' => $id,
             )
         );

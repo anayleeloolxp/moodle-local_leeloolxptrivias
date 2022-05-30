@@ -30,8 +30,13 @@
  * @package local_leeloolxptrivias
  * @category output
  */
-
 class local_leeloolxptrivias_renderer_factory extends theme_overridden_renderer_factory {
+
+    /**
+     * Constructor for Trivias
+     *
+     * @param theme_config $theme
+     */
     public function __construct(theme_config $theme) {
         parent::__construct($theme);
         array_unshift($this->prefixes, 'local_leeloolxptrivias');

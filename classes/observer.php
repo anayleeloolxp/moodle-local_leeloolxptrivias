@@ -164,7 +164,10 @@ class observer {
         if ($questiondata) {
             $cookiename = 'question_difficulty_' . $questionid;
             $questiondifficulty = $_COOKIE[$cookiename];
-            $DB->execute("update {local_leeloolxptrivias_tb_question_diff} set difficulty = ? where questionid = ?", [$questiondifficulty, $questionid]);
+            $DB->execute(
+                "update {local_leeloolxptrivias_tb_question_diff} set difficulty = ? where questionid = ?",
+                [$questiondifficulty, $questionid]
+            );
         } else {
             $cookiename = 'question_difficulty_' . $questionid;
             $questiondifficulty = $_COOKIE[$cookiename];
