@@ -4,7 +4,7 @@
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
   <TABLES>
-    <TABLE NAME="local_leeloolxptrivias_tb_question_diff" COMMENT="leeloolxptrivias table for question difficulty">
+    <TABLE NAME="local_leeloolxptrivias_question" COMMENT="leeloolxptrivias table for question difficulty">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
         <FIELD NAME="questionid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Question id"/>

@@ -34,7 +34,7 @@ function local_leeloolxptrivias_before_footer() {
 
         if ($questionid != 0) {
 
-            $questiondata = $DB->get_record('local_leeloolxptrivias_tb_question_diff', array('questionid' => $questionid));
+            $questiondata = $DB->get_record('local_leeloolxptrivias_question', array('questionid' => $questionid));
 
             if ($questiondata) {
                 $difficultyval = $questiondata->difficulty;

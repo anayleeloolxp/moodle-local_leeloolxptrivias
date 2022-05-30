@@ -160,19 +160,19 @@ class observer {
         global $DB;
         $questionid = $event->objectid;
 
-        $questiondata = $DB->get_record('local_leeloolxptrivias_tb_question_diff', array('questionid' => $questionid));
+        $questiondata = $DB->get_record('local_leeloolxptrivias_question', array('questionid' => $questionid));
         if ($questiondata) {
             $cookiename = 'question_difficulty_' . $questionid;
             $questiondifficulty = $_COOKIE[$cookiename];
             $DB->execute(
-                "update {local_leeloolxptrivias_tb_question_diff} set difficulty = ? where questionid = ?",
+                "update {local_leeloolxptrivias_question} set difficulty = ? where questionid = ?",
                 [$questiondifficulty, $questionid]
             );
         } else {
             $cookiename = 'question_difficulty_' . $questionid;
             $questiondifficulty = $_COOKIE[$cookiename];
             $DB->execute(
-                "INSERT INTO {local_leeloolxptrivias_tb_question_diff} (questionid, difficulty) VALUES (?, ?)",
+                "INSERT INTO {local_leeloolxptrivias_question} (questionid, difficulty) VALUES (?, ?)",
                 [$questionid, $questiondifficulty]
             );
         }
