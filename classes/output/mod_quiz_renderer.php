@@ -76,6 +76,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
         if ($attemptobj->get_quiz()->quiztype == 'duels' && !is_siteadmin()) {
             $trivareview = '';
+            $hidereviewclass = '';
             $trivaspinner = '';
             global $CFG;
             require_once($CFG->dirroot . '/lib/filelib.php');
@@ -195,7 +196,6 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         $showpointsspinner = 0;
                     }
 
-                    $hidereviewclass = '';
                     if ($showpointsspinner == 1) {
                         $attemptdifficultysum = $DB->get_records_sql(
                             "SELECT
