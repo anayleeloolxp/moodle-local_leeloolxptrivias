@@ -771,6 +771,60 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                     });
                                 });
                             });');
+                        } else if ($isopponent == 1) {
+                            $oppnenntdiv = '<div class=\'rematch_playdiv\'>' .
+                                '<div class=\'wheel-with-image superWheel _0\' ' .
+                                'style=\'font-size: 25px;width: 500px;height: 500px;\'>' .
+                                '<div class=\'sWheel-wrapper\' style=\'width: 500px; height: 500px; font-size: 100%;\'>' .
+                                '<div class=\'sWheel-inner\'><div class=\'sWheel\'>' .
+                                '<div class=\'sWheel-bg-layer\'></div></div><div class=\'sWheel-center\'>' .
+                                '<div class=\'sw-center-html\' style=\'width: 30%; height: 30%;\'>' .
+                                '<span class=\'trivia_play\'>PLAY!</span></div></div></div></div></div></div>';
+
+                            $this->page->requires->js_init_code('require(["jquery"], function ($) {
+                                $(document).ready(function () {
+
+                                    $("body").addClass("trivia_quiz_view");
+
+                                    function setCookie(cname, cvalue, exdays) {
+                                        const d = new Date();
+                                        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                                        let expires = "expires="+ d.toUTCString();
+                                        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                                    }
+
+                                    $(document).on("click",".trivia_play",function(e){
+                                        $(".quizstartbuttondivthinkblue button").trigger("click");
+                                    });
+
+                                    ' . $setcookies . '
+
+                                    $(".opponent_div").html("Accept Challenge of ' . $opponentname . $oppnenntdiv . '");
+                                    $(".opponent_div").show();
+
+                                    $(".quizstartbuttondivthinkblue form").submit(function(e){
+
+                                        var postForm = {
+                                            "useremail" : "' . $baseemail . '",
+                                            "data" : \'' . json_encode($savequizdata) . '\',
+                                            "installlogintoken": "' . $_COOKIE['installlogintoken'] . '"
+                                        };
+
+                                        $.ajax({
+                                            type : "POST",
+                                            url : "' . $urlsave . '",
+                                            data : postForm,
+                                            dataType : "json",
+                                            success : function(data) {
+                                                setCookie("l_quiz_isopp", ' . $isopponent . ', 30);
+                                                setCookie("l_quiz_id", data, 30);
+                                                console.log(data);
+                                            }
+                                        });
+
+                                    });
+                                });
+                            });');
                         } else {
                             $this->page->requires->js_init_code('require(["jquery"], function ($) {
                                 $(document).ready(function () {
