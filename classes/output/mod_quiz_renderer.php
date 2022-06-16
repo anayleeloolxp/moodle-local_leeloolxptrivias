@@ -358,11 +358,13 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
                         if (isset($summarydata['marks']) && 1 == 0) {
                             $titleformarks = $summarydata['marks']['title'];
-                            $stringmarks = round(explode('/', $summarydata['marks']['content'])[0], 0) . '
-                            <small>/' . round(explode('/', $summarydata['marks']['content'])[1], 0) . '</small>';
+                            $stringmarks = round(explode('/', $summarydata['marks']['content'])[0], 0) .
+                                '<small>/' . round(explode('/', $summarydata['marks']['content'])[1], 0) . '</small>';
                         } else {
                             $titleformarks = '';
-                            $stringmarks = '<small style="color: black;font-size: 30px;">' . $summarydata['grade']['content'] . '</small>';
+                            $stringmarks = '<small style="color: black;font-size: 30px;">' .
+                                $summarydata['grade']['content'] .
+                                '</small>';
                         }
 
                         $trivaspinner .= '
