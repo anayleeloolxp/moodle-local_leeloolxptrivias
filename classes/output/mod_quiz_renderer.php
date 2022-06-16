@@ -356,6 +356,15 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                             });
                         });');
 
+                        if (isset($summarydata['marks']) && 1 == 0) {
+                            $titleformarks = $summarydata['marks']['title'];
+                            $stringmarks = round(explode('/', $summarydata['marks']['content'])[0], 0) . '
+                            <small>/' . round(explode('/', $summarydata['marks']['content'])[1], 0) . '</small>';
+                        } else {
+                            $titleformarks = '';
+                            $stringmarks = '<small style="color: black;font-size: 30px;">' . $summarydata['grade']['content'] . '</small>';
+                        }
+
                         $trivaspinner .= '
                         <div class="modal-backdrop fade show"></div>
                         <div class="modal fade show"
@@ -369,10 +378,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                                 <!--<div class="gam-nm-top">08<small>/10</small></div>
                                                 <div class="gam-txt-top">correct answers</div>-->
                                                 <div class="gam-nm-top">
-                                                ' . round(explode('/', $summarydata['marks']['content'])[0], 0) . '
-                                                <small>/' . round(explode('/', $summarydata['marks']['content'])[1], 0) . '</small>
+                                                ' . $stringmarks . '
                                                 </div>
-                                                <div class="gam-txt-top">' . $summarydata['marks']['title'] . '</div>
+                                                <div class="gam-txt-top">' . $titleformarks . '</div>
                                             </div>
                                             <div class="gam-spinner-mdl">
                                                 <main class="cd-main-content text-center">
