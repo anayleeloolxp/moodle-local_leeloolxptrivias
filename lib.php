@@ -42,7 +42,7 @@ function local_leeloolxptrivias_before_footer() {
                 $difficultyval = 1;
             }
 
-            $$selectedone = '';
+            $selectedone = '';
             $selectedtwo = '';
             $selectedthree = '';
 
