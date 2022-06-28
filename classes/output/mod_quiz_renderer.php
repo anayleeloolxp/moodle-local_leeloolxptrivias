@@ -356,6 +356,17 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                             });
                         });');
 
+                        if (isset($summarydata['marks']) && 1 == 0) {
+                            $titleformarks = $summarydata['marks']['title'];
+                            $stringmarks = round(explode('/', $summarydata['marks']['content'])[0], 0) .
+                                '<small>/' . round(explode('/', $summarydata['marks']['content'])[1], 0) . '</small>';
+                        } else {
+                            $titleformarks = '';
+                            $stringmarks = '<small style="color: black;font-size: 30px;">' .
+                                $summarydata['grade']['content'] .
+                                '</small>';
+                        }
+
                         $trivaspinner .= '
                         <div class="modal-backdrop fade show"></div>
                         <div class="modal fade show"
@@ -369,10 +380,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                                 <!--<div class="gam-nm-top">08<small>/10</small></div>
                                                 <div class="gam-txt-top">correct answers</div>-->
                                                 <div class="gam-nm-top">
-                                                ' . round(explode('/', $summarydata['marks']['content'])[0], 0) . '
-                                                <small>/' . round(explode('/', $summarydata['marks']['content'])[1], 0) . '</small>
+                                                ' . $stringmarks . '
                                                 </div>
-                                                <div class="gam-txt-top">' . $summarydata['marks']['title'] . '</div>
+                                                <div class="gam-txt-top">' . $titleformarks . '</div>
                                             </div>
                                             <div class="gam-spinner-mdl">
                                                 <main class="cd-main-content text-center">
@@ -746,6 +756,60 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                     ' . $setcookies . '
 
                                     $(".opponent_div").html("Rematch with ' . $opponentname . $oppnenntdiv . '");
+                                    $(".opponent_div").show();
+
+                                    $(".quizstartbuttondivthinkblue form").submit(function(e){
+
+                                        var postForm = {
+                                            "useremail" : "' . $baseemail . '",
+                                            "data" : \'' . json_encode($savequizdata) . '\',
+                                            "installlogintoken": "' . $_COOKIE['installlogintoken'] . '"
+                                        };
+
+                                        $.ajax({
+                                            type : "POST",
+                                            url : "' . $urlsave . '",
+                                            data : postForm,
+                                            dataType : "json",
+                                            success : function(data) {
+                                                setCookie("l_quiz_isopp", ' . $isopponent . ', 30);
+                                                setCookie("l_quiz_id", data, 30);
+                                                console.log(data);
+                                            }
+                                        });
+
+                                    });
+                                });
+                            });');
+                        } else if ($isopponent == 1) {
+                            $oppnenntdiv = '<div class=\'rematch_playdiv\'>' .
+                                '<div class=\'wheel-with-image superWheel _0\' ' .
+                                'style=\'font-size: 25px;width: 500px;height: 500px;\'>' .
+                                '<div class=\'sWheel-wrapper\' style=\'width: 500px; height: 500px; font-size: 100%;\'>' .
+                                '<div class=\'sWheel-inner\'><div class=\'sWheel\'>' .
+                                '<div class=\'sWheel-bg-layer\'></div></div><div class=\'sWheel-center\'>' .
+                                '<div class=\'sw-center-html\' style=\'width: 30%; height: 30%;\'>' .
+                                '<span class=\'trivia_play\'>PLAY!</span></div></div></div></div></div></div>';
+
+                            $this->page->requires->js_init_code('require(["jquery"], function ($) {
+                                $(document).ready(function () {
+
+                                    $("body").addClass("trivia_quiz_view");
+
+                                    function setCookie(cname, cvalue, exdays) {
+                                        const d = new Date();
+                                        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                                        let expires = "expires="+ d.toUTCString();
+                                        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                                    }
+
+                                    $(document).on("click",".trivia_play",function(e){
+                                        $(".quizstartbuttondivthinkblue button").trigger("click");
+                                    });
+
+                                    ' . $setcookies . '
+
+                                    $(".opponent_div").html("Accept Challenge of ' . $opponentname . $oppnenntdiv . '");
                                     $(".opponent_div").show();
 
                                     $(".quizstartbuttondivthinkblue form").submit(function(e){
