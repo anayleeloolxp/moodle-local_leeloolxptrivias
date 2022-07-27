@@ -132,7 +132,7 @@ function local_leeloolxptrivias_coursemodule_standard_elements($formwrapper, $mf
             'achievements' => get_string('achievements_lang', 'local_leeloolxptrivias'),
             'internal' => get_string('internal_lang', 'local_leeloolxptrivias'),
             'external' => get_string('external_lang', 'local_leeloolxptrivias'),
-            'objectiv' => get_string('objective_lang', 'local_leeloolxptrivias'),
+            'objective' => get_string('objective_lang', 'local_leeloolxptrivias'),
             'subjective' => get_string('subjective_lang', 'local_leeloolxptrivias'),
             'custom1' => get_string('custom1_lang', 'local_leeloolxptrivias'),
             'custom2' => get_string('custom2_lang', 'local_leeloolxptrivias'),
