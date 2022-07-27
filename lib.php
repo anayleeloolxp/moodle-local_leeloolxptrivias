@@ -111,13 +111,33 @@ function local_leeloolxptrivias_coursemodule_standard_elements($formwrapper, $mf
         $mform->addElement('header', 'leeloo_fields', get_string('leeloo_fields_lang', 'local_leeloolxptrivias'));
 
         $options = array(
+            'default' => get_string('default_lang', 'local_leeloolxptrivias'),
             'discover' => get_string('discover_lang', 'local_leeloolxptrivias'),
-            'exercises' => get_string('exercises_lang', 'local_leeloolxptrivias'),
-            'trivias' => get_string('trivias_lang', 'local_leeloolxptrivias'),
+            'remember' => get_string('remember_lang', 'local_leeloolxptrivias'),
+            'understand' => get_string('understand_lang', 'local_leeloolxptrivias'),
             'duels' => get_string('duels_lang', 'local_leeloolxptrivias'),
-            'assessments' => get_string('assessments_lang', 'local_leeloolxptrivias'),
+            'situation' => get_string('situation_lang', 'local_leeloolxptrivias'),
+            'case' => get_string('case_lang', 'local_leeloolxptrivias'),
             'quest' => get_string('quest_lang', 'local_leeloolxptrivias'),
-            'mission' => get_string('mission_lang', 'local_leeloolxptrivias')
+            'problem' => get_string('problem_lang', 'local_leeloolxptrivias'),
+            'trivias' => get_string('trivias_lang', 'local_leeloolxptrivias'),
+            'exercises' => get_string('exercises_lang', 'local_leeloolxptrivias'),
+            'assessments' => get_string('assessments_lang', 'local_leeloolxptrivias'),
+            's_assessments' => get_string('s_assessments_lang', 'local_leeloolxptrivias'),
+            'certification' => get_string('certification_lang', 'local_leeloolxptrivias'),
+            'exam' => get_string('exam_lang', 'local_leeloolxptrivias'),
+            'diagnostic' => get_string('diagnostic_lang', 'local_leeloolxptrivias'),
+            'placement' => get_string('placement_lang', 'local_leeloolxptrivias'),
+            'proficiency' => get_string('proficiency_lang', 'local_leeloolxptrivias'),
+            'achievements' => get_string('achievements_lang', 'local_leeloolxptrivias'),
+            'internal' => get_string('internal_lang', 'local_leeloolxptrivias'),
+            'external' => get_string('external_lang', 'local_leeloolxptrivias'),
+            'objectiv' => get_string('objective_lang', 'local_leeloolxptrivias'),
+            'subjective' => get_string('subjective_lang', 'local_leeloolxptrivias'),
+            'custom1' => get_string('custom1_lang', 'local_leeloolxptrivias'),
+            'custom2' => get_string('custom2_lang', 'local_leeloolxptrivias'),
+            'custom3' => get_string('custom3_lang', 'local_leeloolxptrivias'),
+            'custom4' => get_string('custom4_lang', 'local_leeloolxptrivias')
         );
         $mform->addElement('select', 'quiztype', get_string('quiz_type_lang', 'local_leeloolxptrivias'), $options);
     }
