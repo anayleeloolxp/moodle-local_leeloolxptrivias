@@ -38,5 +38,15 @@ function xmldb_local_leeloolxptrivias_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2022053001, 'local', 'leeloolxptrivias');
     }
 
+    if ($oldversion < 2022053002) {
+        $table = new xmldb_table('local_leeloolxptrivias_qd');
+        $field = new xmldb_field('vimeoid'); // You'll have to look up the definition to see.
+        $field->set_attributes(XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, 0, null, '', '');
+
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+    }
+
     return true;
 }

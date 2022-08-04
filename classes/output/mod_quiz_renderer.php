@@ -1425,4 +1425,123 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
         return $output;
     }
+
+    /**
+     * Ouputs the form for making an attempt
+     *
+     * @param quiz_attempt $attemptobj
+     * @param int $page Current page number
+     * @param array $slots Array of integers relating to questions
+     * @param int $id ID of the attempt
+     * @param int $nextpage Next page number
+     */
+    public function attempt_form($attemptobj, $page, $slots, $id, $nextpage) {
+        $output = '';
+
+        // Start the form.
+        $output .= html_writer::start_tag(
+            'form',
+            array(
+                'action' => new moodle_url(
+                    $attemptobj->processattempt_url(),
+                    array('cmid' => $attemptobj->get_cmid())
+                ), 'method' => 'post',
+                'enctype' => 'multipart/form-data', 'accept-charset' => 'utf-8',
+                'id' => 'responseform'
+            )
+        );
+        $output .= html_writer::start_tag('div');
+
+        // Print all the questions.
+        foreach ($slots as $slot) {
+            $questiondata = $attemptobj->get_question_attempt($slot)->get_question(true);
+            $questionid = $questiondata->id;
+
+            global $DB;
+            $qddata = $DB->get_record('local_leeloolxptrivias_qd', array('questionid' => $questionid));
+            $videoval = 0;
+            $videohtml = '';
+            if ($qddata) {
+                $videoval = $qddata->vimeoid;
+            }
+
+            if ($videoval) {
+                $videohtml = '<div class="videoWrapper"><iframe
+                id="vimeoiframe"
+                src="https://player.vimeo.com/video/' . $videoval . '"
+                width="640"
+                height="320"
+                allowfullscreen=""></iframe></div>
+                <style>
+                .videoWrapper {
+                    position: relative;
+                    padding-bottom: 56.25%; /* 16:9 */
+                    height: 0;
+                    margin-bottom: 20px;
+                  }
+                  .videoWrapper iframe {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                  }
+                </style>
+                ';
+            }
+
+            $output .= $videohtml . $attemptobj->render_question(
+                $slot,
+                false,
+                $this,
+                $attemptobj->attempt_url($slot, $page),
+                $this
+            );
+        }
+
+        $navmethod = $attemptobj->get_quiz()->navmethod;
+        $output .= $this->attempt_navigation_buttons($page, $attemptobj->is_last_page($page), $navmethod);
+
+        // Some hidden fields to trach what is going on.
+        $output .= html_writer::empty_tag('input', array(
+            'type' => 'hidden', 'name' => 'attempt',
+            'value' => $attemptobj->get_attemptid()
+        ));
+        $output .= html_writer::empty_tag('input', array(
+            'type' => 'hidden', 'name' => 'thispage',
+            'value' => $page, 'id' => 'followingpage'
+        ));
+        $output .= html_writer::empty_tag('input', array(
+            'type' => 'hidden', 'name' => 'nextpage',
+            'value' => $nextpage
+        ));
+        $output .= html_writer::empty_tag('input', array(
+            'type' => 'hidden', 'name' => 'timeup',
+            'value' => '0', 'id' => 'timeup'
+        ));
+        $output .= html_writer::empty_tag('input', array(
+            'type' => 'hidden', 'name' => 'sesskey',
+            'value' => sesskey()
+        ));
+        $output .= html_writer::empty_tag('input', array(
+            'type' => 'hidden', 'name' => 'scrollpos',
+            'value' => '', 'id' => 'scrollpos'
+        ));
+
+        // Add a hidden field with questionids. Do this at the end of the form, so
+        // if you navigate before the form has finished loading, it does not wipe all
+        // the student's answers.
+        $output .= html_writer::empty_tag('input', array(
+            'type' => 'hidden', 'name' => 'slots',
+            'value' => implode(',', $attemptobj->get_active_slots($page))
+        ));
+
+        // Finish the form.
+        $output .= html_writer::end_tag('div');
+        $output .= html_writer::end_tag('form');
+
+        $output .= $this->connection_warning();
+
+        return $output;
+    }
 }

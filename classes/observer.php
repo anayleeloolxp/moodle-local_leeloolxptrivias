@@ -164,16 +164,22 @@ class observer {
         if ($questiondata) {
             $cookiename = 'question_difficulty_' . $questionid;
             $questiondifficulty = $_COOKIE[$cookiename];
+
+            $vcookiename = 'question_vimeo_' . $questionid;
+            $questionvimeo = $_COOKIE[$vcookiename];
             $DB->execute(
-                "update {local_leeloolxptrivias_qd} set difficulty = ? where questionid = ?",
-                [$questiondifficulty, $questionid]
+                "update {local_leeloolxptrivias_qd} set difficulty = ? and vimeoid = ? where questionid = ?",
+                [$questiondifficulty, $questionvimeo, $questionid]
             );
         } else {
             $cookiename = 'question_difficulty_' . $questionid;
             $questiondifficulty = $_COOKIE[$cookiename];
+
+            $vcookiename = 'question_vimeo_' . $questionid;
+            $questionvimeo = $_COOKIE[$vcookiename];
             $DB->execute(
-                "INSERT INTO {local_leeloolxptrivias_qd} (questionid, difficulty) VALUES (?, ?)",
-                [$questionid, $questiondifficulty]
+                "INSERT INTO {local_leeloolxptrivias_qd} (questionid, difficulty, vimeoid) VALUES (?, ?, ?)",
+                [$questionid, $questiondifficulty, $questionvimeo]
             );
         }
         return true;

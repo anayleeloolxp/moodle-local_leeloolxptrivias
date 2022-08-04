@@ -38,8 +38,10 @@ function local_leeloolxptrivias_before_footer() {
 
             if ($questiondata) {
                 $difficultyval = $questiondata->difficulty;
+                $videoval = $questiondata->vimeoid;
             } else {
                 $difficultyval = 1;
+                $videoval = 0;
             }
 
             $selectedone = '';
@@ -69,6 +71,16 @@ function local_leeloolxptrivias_before_footer() {
                 '</select>' .
                 '<div class="form-control-feedback invalid-feedback" id="id_error_difficulty"></div>' .
                 '</div>' .
+                '</div>' .
+                '<div id="fitem_id_vimeoid" class="form-group row  fitem">' .
+                '<div class="col-md-3 col-form-label d-flex pb-0 pr-md-0">' .
+                '<label class="d-inline word-break " for="id_vimeoid">Vimeo video id</label>' .
+                '<div class="ml-1 ml-md-auto d-flex align-items-center align-self-start"></div>' .
+                '</div>' .
+                '<div class="col-md-9 form-inline align-items-start felement" data-fieldtype="text">' .
+                '<input type="text" class="form-control " name="vimeoid" id="id_vimeoid" value="' . $videoval . '" size="64">' .
+                '<div class="form-control-feedback invalid-feedback" id="id_error_vimeoid"></div>' .
+                '</div>' .
                 '</div>';
 
             $PAGE->requires->js_init_code('require(["jquery"], function ($) {
@@ -89,6 +101,14 @@ function local_leeloolxptrivias_before_footer() {
                     $("#id_difficulty").change(function () {
                         var selectedValue = $(this).val();
                         setCookie("question_difficulty_' . $questionid . '", selectedValue, 1);
+                    });
+
+
+                    setCookie("question_vimeo_' . $questionid . '", ' . $videoval . ', 1);
+
+                    $("#id_vimeoid").change(function () {
+                        var selectedValue = $(this).val();
+                        setCookie("question_vimeo_' . $questionid . '", selectedValue, 1);
                     });
 
                 });

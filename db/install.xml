@@ -8,7 +8,8 @@
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
         <FIELD NAME="questionid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Question id"/>
-        <FIELD NAME="difficulty" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Question id"/>
+        <FIELD NAME="difficulty" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Difficulty id"/>
+        <FIELD NAME="vimeoid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Vimeo id"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
