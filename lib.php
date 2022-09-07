@@ -154,6 +154,7 @@ function local_leeloolxptrivias_coursemodule_standard_elements($formwrapper, $mf
             'external' => get_string('external_lang', 'local_leeloolxptrivias'),
             'objective' => get_string('objective_lang', 'local_leeloolxptrivias'),
             'subjective' => get_string('subjective_lang', 'local_leeloolxptrivias'),
+            'regularduel' => get_string('regularduel_lang', 'local_leeloolxptrivias'),
             'custom1' => get_string('custom1_lang', 'local_leeloolxptrivias'),
             'custom2' => get_string('custom2_lang', 'local_leeloolxptrivias'),
             'custom3' => get_string('custom3_lang', 'local_leeloolxptrivias'),
