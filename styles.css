@@ -929,7 +929,8 @@ span.trivia_play {
 
 .leeloolxp_quiz_type_trivias .srm-top-team-div,
 .leeloolxp_quiz_type_discover .srm-top-team-div,
-.leeloolxp_quiz_type_duels .srm-top-team-div {
+.leeloolxp_quiz_type_duels .srm-top-team-div,
+.leeloolxp_quiz_type_regularduel .srm-top-team-div {
     display: none;
 }
 

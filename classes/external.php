@@ -121,7 +121,7 @@ class local_leeloolxptrivias_external extends external_api {
 
             $reqrematch = optional_param('rematch', 0, PARAM_INTEGER);
 
-            if ($quiz->quiztype == 'duels') {
+            if ($quiz->quiztype == 'duels' || $quiz->quiztype == 'regularduel') {
 
                 $spinnerhtml = '';
 

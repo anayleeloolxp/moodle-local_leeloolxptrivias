@@ -66,7 +66,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         $summarydata
     ) {
 
-        if ($attemptobj->get_quiz()->quiztype == 'duels' && !is_siteadmin()) {
+        if (($attemptobj->get_quiz()->quiztype == 'duels' || $attemptobj->get_quiz()->quiztype == 'regularduel') && !is_siteadmin()) {
             $this->page->add_body_class('trivia_review');
         }
 
@@ -74,7 +74,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
         $baseemail = base64_encode($USER->email);
 
-        if ($attemptobj->get_quiz()->quiztype == 'duels' && !is_siteadmin()) {
+        if (($attemptobj->get_quiz()->quiztype == 'duels' || $attemptobj->get_quiz()->quiztype == 'regularduel') && !is_siteadmin()) {
             $trivareview = '';
             $hidereviewclass = '';
             $trivaspinner = '';
@@ -254,75 +254,201 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                             $key++;
                         }
 
-                        $this->page->requires->js_init_code('require(["jquery"], function ($) {
-                            $(document).ready(function () {
+                        if ($attemptobj->get_quiz()->quiztype == 'duels') {
+                            $this->page->requires->js_init_code('require(["jquery"], function ($) {
+                                $(document).ready(function () {
 
-                                $(".wheel-standard").superWheel({
-                                    slices: ' . json_encode($slices) . ',
-                                    text : {
-                                        color: "#303030",
-                                    },
-                                    line: {
-                                        width: 10,
-                                        color: "#303030"
-                                    },
-                                    outer: {
-                                        width: 14,
-                                        color: "#303030"
-                                    },
-                                    inner: {
-                                        width: 15,
-                                        color: "#303030"
-                                    },
-                                    marker: {
-                                        background: "#00BCD4",
-                                        animate: 1
-                                    },
-                                    selector: "value",
+                                    $(".wheel-standard").superWheel({
+                                        slices: ' . json_encode($slices) . ',
+                                        text : {
+                                            color: "#303030",
+                                        },
+                                        line: {
+                                            width: 10,
+                                            color: "#303030"
+                                        },
+                                        outer: {
+                                            width: 14,
+                                            color: "#303030"
+                                        },
+                                        inner: {
+                                            width: 15,
+                                            color: "#303030"
+                                        },
+                                        marker: {
+                                            background: "#00BCD4",
+                                            animate: 1
+                                        },
+                                        selector: "value",
+                                    });
+
+                                    var tick = new Audio("' . $CFG->wwwroot . '/local/leeloolxptrivias/media/tick.mp3");
+
+                                    $(document).on("click",".wheel-standard-spin-button",function(e){
+
+                                        if( !$(this).hasClass("spinningDone") ){
+                                            $(
+                                                ".wheel-standard"
+                                            ).superWheel(
+                                                "start",
+                                                "value",
+                                                Math.floor(Math.random() * (' . $luckmax . ' - ' . $luckmin . ' + 1) + ' . $luckmin . ')
+                                            );
+                                            $(this).prop("disabled",true);
+                                        }
+
+                                    });
+
+                                    $(document).on("click",".spinningDone",function(e){
+                                        location.reload();
+                                    });
+
+
+                                    $(".wheel-standard").superWheel("onStart",function(results){
+
+                                        $(".wheel-standard-spin-button").text("Spin!").addClass("spinning");
+
+                                    });
+                                    $(".wheel-standard").superWheel("onStep",function(results){
+
+                                        if (typeof tick.currentTime !== "undefined")
+                                            tick.currentTime = 0;
+                                        tick.play();
+
+                                    });
+
+                                    $(".wheel-standard").superWheel("onComplete",function(results){
+
+                                        var postForm = {
+                                            "useremail" : "' . $baseemail . '",
+                                            "attemptid" : "' . $attemptobj->get_attempt()->id . '",
+                                            "isopp" : "' . $isopp . '",
+                                            "spinnerval" : results.value,
+                                            "course_id" : "' . $attemptobj->get_quiz()->course . '",
+                                            "activityid" : "' . $attemptobj->get_quiz()->cmid . '",
+                                            "quizmaxtime" : "' . $quizmaxtime . '",
+                                            "countquestions" : "' . $countquestions . '",
+                                            "attack" : "' . $data->attacks . '",
+                                            "defence" : "' . $data->defences . '",
+                                            "luck" : "' . $data->luck . '",
+                                            "will" : "' . $data->will . '",
+                                            "power" : "' . $data->power . '",
+                                            "marks" : "' . $summarydata['marks']['content'] . '",
+                                            "installlogintoken": "' . $_COOKIE['installlogintoken'] . '"
+                                        };
+
+                                        $.ajax({
+                                            type : "POST",
+                                            url : "' . $urlsavescore . '",
+                                            data : postForm,
+                                            dataType : "json",
+                                            success : function(data) {
+
+                                                $(".wheel-standard-spin-button").text("Ok!").addClass("spinningDone");
+                                                $(".gam-points-right").addClass("addpoint");
+                                                $(".gam-points-top").text(data);
+                                                $(".wheel-standard-spin-button").prop("disabled",false);
+
+                                            }
+                                        });
+
+                                    });
+
                                 });
+                            });');
 
-                                var tick = new Audio("' . $CFG->wwwroot . '/local/leeloolxptrivias/media/tick.mp3");
+                            if (isset($summarydata['marks']) && 1 == 0) {
+                                $titleformarks = $summarydata['marks']['title'];
+                                $stringmarks = round(explode('/', $summarydata['marks']['content'])[0], 0) .
+                                    '<small>/' . round(explode('/', $summarydata['marks']['content'])[1], 0) . '</small>';
+                            } else {
+                                $titleformarks = '';
+                                $stringmarks = '<small style="color: black;font-size: 30px;">' .
+                                    $summarydata['grade']['content'] .
+                                    '</small>';
+                            }
 
-                                $(document).on("click",".wheel-standard-spin-button",function(e){
+                            $trivaspinner .= '
+                            <div class="modal-backdrop fade show"></div>
+                            <div class="modal fade show"
+                            id="gam_popup_spinner" tabindex="-1"
+                            role="dialog" aria-labelledby="gam_popup_spinner" aria-modal="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="gam-spinner">
+                                            <div class="gam-spinner-left">
+                                                <div class="gam-spinner-top">
+                                                    <!--<div class="gam-nm-top">08<small>/10</small></div>
+                                                    <div class="gam-txt-top">correct answers</div>-->
+                                                    <div class="gam-nm-top">
+                                                    ' . $stringmarks . '
+                                                    </div>
+                                                    <div class="gam-txt-top">' . $titleformarks . '</div>
+                                                </div>
+                                                <div class="gam-spinner-mdl">
+                                                    <main class="cd-main-content text-center">
 
-                                    if( !$(this).hasClass("spinningDone") ){
-                                        $(
-                                            ".wheel-standard"
-                                        ).superWheel(
-                                            "start",
-                                            "value",
-                                            Math.floor(Math.random() * (' . $luckmax . ' - ' . $luckmin . ' + 1) + ' . $luckmin . ')
-                                        );
-                                        $(this).prop("disabled",true);
-                                    }
+                                                        <div class="wheel-standard"></div>
+                                                        <button type="button" class="button button-primary wheel-standard-spin-button">
+                                                        Spin!
+                                                        </button>
 
-                                });
+                                                    </main> <!-- cd-main-content -->
 
-                                $(document).on("click",".spinningDone",function(e){
-                                    location.reload();
-                                });
+                                                </div>
+                                                <div class="gam-spinner-btm">' . gmdate("H:i:s", $timetaken) . '</div>
+                                            </div>
+                                            <div class="gam-spinner-right">
+                                                <div class="gam-top-right">
+                                                    <div class="gam-points-right">
+                                                        <div class="gam-points-top">______</div>
+                                                        <div class="gam-points-txt">points</div>
+                                                    </div>
+                                                </div>
+                                                <div class="gam-btm-right">
+                                                    <ul>
+                                                        <li class="active">
+                                                            <div class="gam-btm-item">
+                                                                <p>' . $attackdefencetext . '</p>
+                                                                <h3>' . $attackdefencepoints . '</h3>
+                                                            </div>
+                                                        </li>
+                                                        <li class="">
+                                                            <div class="gam-btm-item">
+                                                                <p>Luck</p>
+                                                                <h3>' . $data->luck . '</h3>
+                                                            </div>
+                                                        </li>
+                                                        <li class="">
+                                                            <div class="gam-btm-item">
+                                                                <p>Power</p>
+                                                                <h3>' . $data->power . '</h3>
+                                                            </div>
+                                                        </li>
+                                                        <li class="">
+                                                            <div class="gam-btm-item">
+                                                                <p>Will</p>
+                                                                <h3>' . $data->will . '</h3>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            ';
+                        } else {
+                            $this->page->requires->js_init_code('require(["jquery"], function ($) {
+                                $(document).ready(function () {
 
-
-                                $(".wheel-standard").superWheel("onStart",function(results){
-
-                                    $(".wheel-standard-spin-button").text("Spin!").addClass("spinning");
-
-                                });
-                                $(".wheel-standard").superWheel("onStep",function(results){
-
-                                    if (typeof tick.currentTime !== "undefined")
-                                        tick.currentTime = 0;
-                                    tick.play();
-
-                                });
-
-                                $(".wheel-standard").superWheel("onComplete",function(results){
-
+                                    $("body").addClass("loaderonly");
                                     var postForm = {
                                         "useremail" : "' . $baseemail . '",
                                         "attemptid" : "' . $attemptobj->get_attempt()->id . '",
                                         "isopp" : "' . $isopp . '",
-                                        "spinnerval" : results.value,
+                                        "spinnerval" : 1,
                                         "course_id" : "' . $attemptobj->get_quiz()->course . '",
                                         "activityid" : "' . $attemptobj->get_quiz()->cmid . '",
                                         "quizmaxtime" : "' . $quizmaxtime . '",
@@ -343,101 +469,16 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                                         dataType : "json",
                                         success : function(data) {
 
-                                            $(".wheel-standard-spin-button").text("Ok!").addClass("spinningDone");
-                                            $(".gam-points-right").addClass("addpoint");
-                                            $(".gam-points-top").text(data);
-                                            $(".wheel-standard-spin-button").prop("disabled",false);
+                                            location.reload();
 
                                         }
                                     });
 
+
+
                                 });
-
-                            });
-                        });');
-
-                        if (isset($summarydata['marks']) && 1 == 0) {
-                            $titleformarks = $summarydata['marks']['title'];
-                            $stringmarks = round(explode('/', $summarydata['marks']['content'])[0], 0) .
-                                '<small>/' . round(explode('/', $summarydata['marks']['content'])[1], 0) . '</small>';
-                        } else {
-                            $titleformarks = '';
-                            $stringmarks = '<small style="color: black;font-size: 30px;">' .
-                                $summarydata['grade']['content'] .
-                                '</small>';
+                            });');
                         }
-
-                        $trivaspinner .= '
-                        <div class="modal-backdrop fade show"></div>
-                        <div class="modal fade show"
-                        id="gam_popup_spinner" tabindex="-1"
-                        role="dialog" aria-labelledby="gam_popup_spinner" aria-modal="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="gam-spinner">
-                                        <div class="gam-spinner-left">
-                                            <div class="gam-spinner-top">
-                                                <!--<div class="gam-nm-top">08<small>/10</small></div>
-                                                <div class="gam-txt-top">correct answers</div>-->
-                                                <div class="gam-nm-top">
-                                                ' . $stringmarks . '
-                                                </div>
-                                                <div class="gam-txt-top">' . $titleformarks . '</div>
-                                            </div>
-                                            <div class="gam-spinner-mdl">
-                                                <main class="cd-main-content text-center">
-
-                                                    <div class="wheel-standard"></div>
-                                                    <button type="button" class="button button-primary wheel-standard-spin-button">
-                                                    Spin!
-                                                    </button>
-
-                                                </main> <!-- cd-main-content -->
-
-                                            </div>
-                                            <div class="gam-spinner-btm">' . gmdate("H:i:s", $timetaken) . '</div>
-                                        </div>
-                                        <div class="gam-spinner-right">
-                                            <div class="gam-top-right">
-                                                <div class="gam-points-right">
-                                                    <div class="gam-points-top">______</div>
-                                                    <div class="gam-points-txt">points</div>
-                                                </div>
-                                            </div>
-                                            <div class="gam-btm-right">
-                                                <ul>
-                                                    <li class="active">
-                                                        <div class="gam-btm-item">
-                                                            <p>' . $attackdefencetext . '</p>
-                                                            <h3>' . $attackdefencepoints . '</h3>
-                                                        </div>
-                                                    </li>
-                                                    <li class="">
-                                                        <div class="gam-btm-item">
-                                                            <p>Luck</p>
-                                                            <h3>' . $data->luck . '</h3>
-                                                        </div>
-                                                    </li>
-                                                    <li class="">
-                                                        <div class="gam-btm-item">
-                                                            <p>Power</p>
-                                                            <h3>' . $data->power . '</h3>
-                                                        </div>
-                                                    </li>
-                                                    <li class="">
-                                                        <div class="gam-btm-item">
-                                                            <p>Will</p>
-                                                            <h3>' . $data->will . '</h3>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        ';
                     }
 
                     $trivareview .= '<div class="playagainDf playagaindiv ' . $classwin . '">
@@ -590,7 +631,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
             $reqrematch = optional_param('rematch', 0, PARAM_INTEGER);
 
-            if ($quiz->quiztype == 'duels') {
+            if ($quiz->quiztype == 'duels' || $quiz->quiztype == 'regularduel') {
 
                 $spinnerhtml = '';
                 $reward = 0;
@@ -991,7 +1032,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         }
 
         $output = '';
-        if (isset($quiz->quiztype) && !is_siteadmin() && $quiz->quiztype == 'duels') {
+        if (isset($quiz->quiztype) && !is_siteadmin() && ($quiz->quiztype == 'duels' || $quiz->quiztype == 'regularduel')) {
 
             if ($reward != 0) {
                 $rewardhtml = '<div class="reward_html">Reward: <span>' . $reward . '</span> Neurons</div>';
@@ -1153,7 +1194,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         if (
             $attemptobj->get_quiz()->quiztype == 'duels' ||
             $attemptobj->get_quiz()->quiztype == 'discover' ||
-            $attemptobj->get_quiz()->quiztype == 'trivias'
+            $attemptobj->get_quiz()->quiztype == 'trivias' ||
+            $attemptobj->get_quiz()->quiztype == 'regularduel'
         ) {
             $this->page->add_body_class('trivia_question');
 
@@ -1182,7 +1224,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             }
         }
 
-        if (!is_siteadmin() && $attemptobj->get_quiz()->quiztype == 'duels') {
+        if (!is_siteadmin() && ($attemptobj->get_quiz()->quiztype == 'duels' || $attemptobj->get_quiz()->quiztype == 'regularduel')) {
 
             global $USER;
             $baseemail = base64_encode($USER->email);
