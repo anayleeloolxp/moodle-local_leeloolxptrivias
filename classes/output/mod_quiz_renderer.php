@@ -66,7 +66,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         $summarydata
     ) {
 
-        if (($attemptobj->get_quiz()->quiztype == 'duels' || $attemptobj->get_quiz()->quiztype == 'regularduel') && !is_siteadmin()) {
+        if (
+            ($attemptobj->get_quiz()->quiztype == 'duels' || $attemptobj->get_quiz()->quiztype == 'regularduel') && !is_siteadmin()
+        ) {
             $this->page->add_body_class('trivia_review');
         }
 
@@ -74,14 +76,15 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
         $baseemail = base64_encode($USER->email);
 
-        if (($attemptobj->get_quiz()->quiztype == 'duels' || $attemptobj->get_quiz()->quiztype == 'regularduel') && !is_siteadmin()) {
+        if (
+            ($attemptobj->get_quiz()->quiztype == 'duels' || $attemptobj->get_quiz()->quiztype == 'regularduel') && !is_siteadmin()
+        ) {
 
             if ($attemptobj->get_quiz()->quiztype == 'duels') {
                 $spinbtntxt = 'Spin!';
             } else {
                 $spinbtntxt = 'Check!';
             }
-
 
             $trivareview = '';
             $hidereviewclass = '';
@@ -1195,7 +1198,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             }
         }
 
-        if (!is_siteadmin() && ($attemptobj->get_quiz()->quiztype == 'duels' || $attemptobj->get_quiz()->quiztype == 'regularduel')) {
+        if (
+            !is_siteadmin() && ($attemptobj->get_quiz()->quiztype == 'duels' || $attemptobj->get_quiz()->quiztype == 'regularduel')
+        ) {
 
             global $USER;
             $baseemail = base64_encode($USER->email);
