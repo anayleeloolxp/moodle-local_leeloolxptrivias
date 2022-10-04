@@ -34,6 +34,7 @@ use quiz_nav_panel_base;
 use html_writer;
 use popup_action;
 use mod_quiz_display_options;
+use completion_info;
 
 /**
  * Extending the mod_quiz_renderer interface.
@@ -455,24 +456,57 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         }
                     }
 
+                    $letsgourl = '';
+                    $thisar = 0;
+                    $courseid = $this->page->course->id;
+
+
+                    $modinfo = get_fast_modinfo($courseid);
+                    foreach ($modinfo->cms as $ar) {
+
+                        if ($letsgourl) {
+                            break;
+                        }
+
+                        if ($ar->visible == 1 && $thisar == 1) {
+                            $letsgourl = $ar->url;
+
+                            if ($ar->modname == 'quiz') {
+                                $quizid = $ar->get_course_module_record()->instance;
+                                $quizdata = $DB->get_record('quiz', array('id' => $quizid), '*', MUST_EXIST);
+                                if ($quizdata->quiztype == 'discover' || $quizdata->quiztype == 'trivias') {
+                                    $letsgourl .= '&autostart=1';
+                                }
+                            }
+                        }
+
+                        if ($attemptobj->get_quiz()->cmid == $ar->id) {
+                            $thisar = 1;
+                        }
+                    }
+
                     $trivareview .= '<div class="playagainDf playagaindiv ' . $classwin . '">
                         <div class="playagaininnerdiv">
-                            <a class="small_playagain" href="#">
+                            <a class="small_playagain" href="' . $CFG->wwwroot . '/mod/quiz/view.php?id=' . $attemptobj->get_quiz()->cmid . '">
                                 <span>New</span>
                             </a>
                         </div>
                         <div class="playagaininnerdiv">
                             <a class="trivia_playagain"
-                            href="' . $CFG->wwwroot . '/mod/quiz/view.php?id=' . $attemptobj->get_quiz()->cmid . '">
+                            href="' . $CFG->wwwroot . '/mod/quiz/view.php?id=' . $attemptobj->get_quiz()->cmid . '&rematch=' . $data->id . '">
                             Play<br>Again!
                             </a>
-                        </div>
-                        <div class="playagaininnerdiv">
-                            <a class="small_playagain" href="#">
+                        </div>';
+
+                    if ($letsgourl != '') {
+                        $trivareview .= '<div class="playagaininnerdiv">
+                            <a class="small_playagain" href="' . $letsgourl . '">
                                 <span>Next</span>
                             </a>
-                        </div>
-                    </div>';
+                        </div>';
+                    }
+
+                    $trivareview .= '</div>';
 
                     if (!empty($data->current_rewards)) {
 
