@@ -638,6 +638,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             $reqautostart = optional_param('autostart', 0, PARAM_RAW);
 
             $reqrematch = optional_param('rematch', 0, PARAM_INTEGER);
+            $reqaccept = optional_param('accept', 0, PARAM_INTEGER);
 
             if ($quiz->quiztype == 'duels' || $quiz->quiztype == 'regularduel') {
 
@@ -682,6 +683,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                         'moodlequizid' => $quiz->id,
                         'activityid' => $cm->id,
                         'rematch' => $reqrematch,
+                        'accept' => $reqaccept,
                     );
 
                     $url = $leeloolxpurl . '/admin/sync_moodle_course/quiz_opponents_response';
@@ -702,7 +704,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                     $outputopp = $curl->post($url, $postdata, $options);
 
                     $infoopp = json_decode($outputopp);
-
+                    /* echo '<pre>';
+                    print_r($infoopp);
+                    echo '</pre>'; */
                     if ($infoopp) {
 
                         $infooppdata = $infoopp->data;
@@ -732,7 +736,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                             'scoreopponent' => 0,
                             'date' => date('Y-m-d H:i:s'),
                             'level' => $level,
-                            'activity_id' => $quiz->cmid
+                            'activity_id' => $quiz->cmid,
+                            'accept' => $reqaccept,
                         );
 
                         $this->page->requires->js(new moodle_url('/local/leeloolxptrivias/js/jquery.superwheel.min.js'));
