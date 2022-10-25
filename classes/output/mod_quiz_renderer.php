@@ -1048,7 +1048,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         if (isset($quiz->quiztype) && !is_siteadmin() && ($quiz->quiztype == 'duels' || $quiz->quiztype == 'regularduel')) {
 
             if ($reward != 0) {
-                $rewardhtml = '<div class="reward_html">Reward: <span>' . $reward . '</span> Neurons</div>';
+                $rewardhtml = '<div class="reward_html">Reward: <span>' . $reward . '</span> ' . get_string('neurons', 'local_leeloolxptrivias') . '</div>';
             } else {
                 $rewardhtml = '';
             }

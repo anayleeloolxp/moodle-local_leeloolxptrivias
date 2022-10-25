@@ -64,3 +64,5 @@ $string['custom4_lang'] = 'Custom type D';
 
 $string['nolicense'] = 'Invalid Leeloo LXP License ID';
 $string['license'] = 'Leeloo LXP License ID';
+
+$string['neurons'] = 'Neurons';
