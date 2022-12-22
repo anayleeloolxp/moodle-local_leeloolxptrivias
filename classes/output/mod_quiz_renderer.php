@@ -596,15 +596,21 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
      * @param mod_quiz_display_options $displayoptions
      */
     public function summary_page($attemptobj, $displayoptions) {
+        if (
+            $attemptobj->get_quiz()->quiztype == 'duels' ||
+            $attemptobj->get_quiz()->quiztype == 'discover' ||
+            $attemptobj->get_quiz()->quiztype == 'trivias' ||
+            $attemptobj->get_quiz()->quiztype == 'regularduel'
+        ) {
+            $this->page->requires->js_init_code('require(["jquery"], function ($) {
+                $(document).ready(function () {
 
-        $this->page->requires->js_init_code('require(["jquery"], function ($) {
-            $(document).ready(function () {
+                    $("body").addClass("trivia_summarypage loaderonly");
 
-                $("body").addClass("trivia_summarypage loaderonly");
-
-                $(".submitbtns form").submit();
-            });
-        });');
+                    $(".submitbtns form").submit();
+                });
+            });');
+        }
 
         $output = '';
         $output .= $this->header();
