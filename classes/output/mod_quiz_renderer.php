@@ -580,6 +580,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                 $attemptobj
             );
 
+            $output .= $this->review_next_navigation($attemptobj, $page, $lastpage, $showall);
             $output .= $this->footer();
         }
 
