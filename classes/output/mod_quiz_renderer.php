@@ -587,6 +587,36 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         return $output;
     }
 
+    /**
+     * Returns either a liink or button
+     *
+     * @param quiz_attempt $attemptobj instance of quiz_attempt
+     */
+    public function finish_review_link(quiz_attempt $attemptobj) {
+        $url = $attemptobj->view_url() . '&shownext=1';
+
+        if ($attemptobj->get_access_manager(time())->attempt_must_be_in_popup()) {
+            $this->page->requires->js_init_call(
+                'M.mod_quiz.secure_window.init_close_button',
+                array($url),
+                false,
+                quiz_get_js_module()
+            );
+            return html_writer::empty_tag('input', array(
+                'type' => 'button',
+                'value' => get_string('finishreview', 'quiz'),
+                'id' => 'secureclosebutton',
+                'class' => 'mod_quiz-next-nav btn btn-primary'
+            ));
+        } else {
+            return html_writer::link(
+                $url,
+                get_string('finishreview', 'quiz'),
+                array('class' => 'mod_quiz-next-nav')
+            );
+        }
+    }
+
     /*
      * Summary Page
      */
@@ -639,6 +669,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
     public function view_page($course, $quiz, $cm, $context, $viewobj) {
 
         global $USER;
+
+        $reqshownext = optional_param('shownext', 0, PARAM_RAW);
 
         if (isset($quiz->quiztype) && !is_siteadmin()) {
 
@@ -1069,6 +1101,24 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         }
 
         $output .= $this->box($this->view_page_buttons($viewobj), 'quizattempt');
+
+        if ($reqshownext == 1) {
+            $this->page->requires->js_init_code('require(["jquery"], function ($) {
+                $(document).ready(function () {
+
+                    $("body").addClass("shownextbuttonsLeeloo");
+                    $("#navbuttons .next").addClass("blinkcss");
+                    var nextlink = $("#navbuttons .next").attr("href");
+                    if( nextlink ){
+                        $(".nextar_leeloo").attr("href", nextlink);
+                    }else{
+                        $(".nextar_leeloo").hide();
+                    }
+
+                });
+            });');
+        }
+
         return $output;
     }
 
@@ -1143,6 +1193,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
      */
     public function view_page_buttons(\mod_quiz_view_object $viewobj) {
         global $CFG;
+        $reqshownext = optional_param('shownext', 0, PARAM_RAW);
         $output = '';
 
         $attemptlast = end($viewobj->attempts);
@@ -1159,6 +1210,10 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         }
 
         $output .= $this->access_messages($viewobj->preventmessages);
+
+        if ($reqshownext == 1) {
+            $output .= '<a class="nextar_leeloo" href="">Siguiente Actividad</a>';
+        }
 
         if ($viewobj->buttontext) {
             $output .= $this->start_attempt_button(
