@@ -1432,6 +1432,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         }
 
         $output .= $this->quiz_notices($messages);
+        $output .= $this->countdown_timer($attemptobj, time());
         $output .= html_writer::tag(
             'div',
             '<span class="timerspan"></span><span class="pagespan">' . $crrpage . '/' . $totalpage . '</span>',
